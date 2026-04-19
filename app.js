@@ -369,6 +369,10 @@
   // Initial layout with animate:false runs synchronously; start bubble motion now
   startBubbleMotion();
 
+  // Expose for debugging from the browser console (e.g. cy.nodes('.canonical').length)
+  window.cy = cy;
+  window.artmap = { cy, data, nodeById };
+
   // Persist the positions (base, not oscillating) from bubbleState.
   // Only active in network mode — timeline positions are deterministic and
   // recomputed each session.
