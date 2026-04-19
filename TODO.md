@@ -23,9 +23,9 @@
 
 - [ ] **Filtres addicionals**: per període i per tema transversal (ara només per tipus de connexió).
 
-- [ ] **Persistència del layout**: guardar posicions de nodes a localStorage perquè carregades successives mantinguin la mateixa disposició (ara el `cose` re-ordena cada cop, confonent la memòria espacial dels alumnes).
+- [x] ~~**Persistència del layout**~~ Implementada 2026-04-19 via `localStorage` (`artmap.positions.v2`). Les posicions base es desen després del layout inicial, després de cada drag, i després de *Reordena*. El botó *Reordena* neteja la memòria i genera una nova disposició que també es desa.
 
-- [ ] **Deep linking per URL**: `#node/venus-botticelli` obri la fitxa de Venus Botticelli automàticament. Útil per compartir enllaços a una obra concreta.
+- [x] ~~**Deep linking per URL**~~ Implementat 2026-04-19. Format `#node/<id>` (p. ex., `https://aaronfortuno.github.io/art-map/#node/venus-botticelli`). Obre la fitxa, fixa el node i hi centra la vista amb animació. `history.replaceState` evita contaminar l'historial; `hashchange` gestiona navegació back/forward. El hash es neteja en clicar al fons o en seleccionar una aresta.
 
 - [ ] **Responsive / mode tableta**: el layout actual de 3 columnes no funciona per sota de ~1100 px. Pensar com col·lapsar el panell de controls i fer el detall com a drawer.
 

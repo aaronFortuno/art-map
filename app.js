@@ -82,10 +82,34 @@
     });
   });
 
+  // --- Layout persistence (localStorage) ---
+  // Store the "base" positions (without bubble-motion offset) so the graph
+  // keeps the same spatial memory across reloads. Versioned to allow schema
+  // changes to invalidate older caches.
+  const STORAGE_KEY = 'artmap.positions.v2';
+
+  function loadSavedPositions() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch { return null; }
+  }
+
+  function clearSavedPositions() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+  }
+
+  const savedPositions = loadSavedPositions();
+  // Only use saved positions if every current node has a saved entry —
+  // otherwise fall back to cose (e.g., after new nodes were added to seed.json).
+  const usingSavedLayout = !!savedPositions && data.nodes.every(n => savedPositions[n.id]);
+
   const cy = cytoscape({
     container: document.getElementById('cy'),
     elements,
-    layout: buildLayout(false),
+    layout: usingSavedLayout
+      ? { name: 'preset', positions: (node) => savedPositions[node.id()] || { x: 0, y: 0 }, fit: true, padding: 50 }
+      : buildLayout(false),
     minZoom: 0.2,
     maxZoom: 3,
     wheelSensitivity: 0.25,
@@ -252,6 +276,16 @@
   // Initial layout with animate:false runs synchronously; start bubble motion now
   startBubbleMotion();
 
+  // Persist the positions (base, not oscillating) from bubbleState
+  function savePositions() {
+    try {
+      const pos = {};
+      bubbleState.forEach((s, id) => { pos[id] = { x: s.baseX, y: s.baseY }; });
+      if (Object.keys(pos).length > 0) localStorage.setItem(STORAGE_KEY, JSON.stringify(pos));
+    } catch {}
+  }
+  savePositions();
+
   // Filter wiring
   filtersEl.querySelectorAll('input').forEach(cb =>
     cb.addEventListener('change', updateVisibility)
@@ -275,6 +309,7 @@
 
   // --- Focus system: hover previews + click-to-pin + search ---
   let pinned = false;        // true while a node/edge is click-selected
+  let pinnedNodeId = null;   // id of the pinned node (null if pin is on edge / nothing)
   let searchActive = false;  // true while search input has text
 
   function applyFocus(scope) {
@@ -309,17 +344,20 @@
     clearFocus();
   });
 
-  // Click: pin focus + populate detail panel
+  // Click: pin focus + populate detail panel + reflect state in URL
   cy.on('tap', 'node', evt => {
     const node = evt.target;
     pinned = true;
+    pinnedNodeId = node.id();
     applyFocus(node.closedNeighborhood());
     renderNodeDetail(nodeById[node.id()]);
+    setHashFor(node.id());
   });
 
   cy.on('tap', 'edge', evt => {
     const edge = evt.target;
     pinned = true;
+    pinnedNodeId = null;  // edge pin doesn't have a node anchor
     applyFocus(edge.union(edge.connectedNodes()));
     const e = edge.data();
     renderEdgeDetail({
@@ -327,17 +365,49 @@
       src: nodeById[e.source],
       tgt: nodeById[e.target]
     });
+    clearHash();
   });
 
   cy.on('tap', evt => {
     if (evt.target === cy) {
       pinned = false;
+      pinnedNodeId = null;
       if (!searchActive) clearFocus();
       else runSearch(document.getElementById('search-input').value);
       document.getElementById('detail').innerHTML =
         '<p class="placeholder">Passa el ratolí per sobre un node per previsualitzar el seu veïnat. Fes clic per fixar-lo i veure\'n la fitxa.</p>';
+      clearHash();
     }
   });
+
+  // --- Deep linking (#node/<id>) ---
+  function setHashFor(nodeId) {
+    const newHash = `#node/${encodeURIComponent(nodeId)}`;
+    if (location.hash !== newHash) {
+      history.replaceState(null, '', location.pathname + location.search + newHash);
+    }
+  }
+  function clearHash() {
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+  function openNodeByHash() {
+    const match = /^#node\/(.+)$/.exec(location.hash);
+    if (!match) return;
+    const id = decodeURIComponent(match[1]);
+    const node = cy.getElementById(id);
+    if (node.empty()) return;
+    pinned = true;
+    pinnedNodeId = id;
+    applyFocus(node.closedNeighborhood());
+    renderNodeDetail(nodeById[id]);
+    try {
+      cy.animate({ center: { eles: node } }, { duration: 400, easing: 'ease-in-out' });
+    } catch {}
+  }
+  window.addEventListener('hashchange', openNodeByHash);
+  openNodeByHash();
 
   // --- Live search ---
   const searchInput = document.getElementById('search-input');
@@ -348,6 +418,15 @@
     if (!q) {
       searchActive = false;
       searchCount.textContent = '';
+      // If a node is still pinned (e.g. via deep link), restore its focus;
+      // otherwise clear everything.
+      if (pinnedNodeId) {
+        const node = cy.getElementById(pinnedNodeId);
+        if (!node.empty()) {
+          applyFocus(node.closedNeighborhood());
+          return;
+        }
+      }
       if (!pinned) clearFocus();
       return;
     }
@@ -383,8 +462,12 @@
   document.getElementById('fit-btn').addEventListener('click', () => cy.fit(undefined, 50));
   document.getElementById('relayout-btn').addEventListener('click', () => {
     stopBubbleMotion();
+    clearSavedPositions();                   // user explicitly wants a fresh arrangement
     const layout = cy.layout(buildLayout(true));
-    layout.on('layoutstop', startBubbleMotion);
+    layout.on('layoutstop', () => {
+      startBubbleMotion();
+      savePositions();                       // persist the new arrangement
+    });
     layout.run();
   });
 
@@ -449,6 +532,7 @@
       s.baseX = p.x; s.baseY = p.y;
     }
     grabbedId = null;
+    savePositions();
   });
 
   function startBubbleMotion() {
