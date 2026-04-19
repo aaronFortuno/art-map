@@ -71,10 +71,12 @@
     filtersEl.appendChild(label);
   });
 
-  // Build Cytoscape elements. Canonical-vs-secondary distinction is encoded
-  // as the CSS class 'canonical' (not a data attribute) because class
-  // selectors and :not(.class) are more robust in Cytoscape than attribute
-  // selectors in some configurations.
+  // Build Cytoscape elements. Canonical-vs-secondary distinction is two
+  // explicit classes ('canonical' or 'secondary') rather than
+  // `.canonical` + `.secondary`. Cytoscape 3.30.2 rejects
+  // `:not(.class)` as an invalid selector (it accepts `:not([attr])` but
+  // not the class form), which silently breaks the whole stylesheet and
+  // falls everything back to the default 30 px node.
   const elements = [];
   data.nodes.forEach(n => {
     const d = { id: n.id, label: n.title };
@@ -82,7 +84,7 @@
     elements.push({
       group: 'nodes',
       data: d,
-      classes: n.canonical ? 'canonical' : ''
+      classes: n.canonical ? 'canonical' : 'secondary'
     });
   });
   data.edges.forEach((e, i) => {
@@ -246,7 +248,7 @@
       },
       // Secondary with image: clearly smaller, thin muted border, translucent
       {
-        selector: 'node[thumbUrl]:not(.canonical)',
+        selector: 'node[thumbUrl].secondary',
         style: {
           'width': 30,
           'height': 30,
@@ -282,7 +284,7 @@
       },
       // Secondary node highlighted: grows from 20 → 30, gets color
       {
-        selector: 'node.highlighted:not(.canonical)',
+        selector: 'node.highlighted.secondary',
         style: {
           'background-color': '#6b6458',
           'width': 30,
@@ -313,7 +315,7 @@
       },
       // Secondary WITH image highlighted: grows from 30 → 46, darker border
       {
-        selector: 'node.highlighted[thumbUrl]:not(.canonical)',
+        selector: 'node.highlighted[thumbUrl].secondary',
         style: {
           'width': 46,
           'height': 46,
