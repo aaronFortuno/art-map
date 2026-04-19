@@ -178,6 +178,13 @@
   // shrink naturally while the UI ornamentation stays readable.
   function buildStylesheet(zoom) {
     const inv = 1 / zoom;
+    // Partial compensation for node width/height: half of the zoom effect
+    // is cancelled so images grow ~50 % as much as they would otherwise.
+    //   zoom=1  → sizeF = 1    (unchanged)
+    //   zoom=2  → sizeF = 0.75 (screen goes from 20 to 30, not 40)
+    //   zoom=3  → sizeF = 0.67 (screen 40, not 60)
+    //   zoom=0.5→ sizeF = 1.5  (screen 15, not 10 — nodes shrink less too)
+    const sizeF = 0.5 + 0.5 * inv;
     return [
       {
         selector: 'node',
@@ -193,8 +200,8 @@
           'color': '#2a2a2a',
           'background-color': '#c4bdae',
           'border-width': 0,
-          'width': 20,
-          'height': 20,
+          'width': 20 * sizeF,
+          'height': 20 * sizeF,
           'opacity': 0.5,
           'text-opacity': 0,
           'transition-property': 'background-color border-color border-width opacity text-opacity width height background-image-opacity',
@@ -208,8 +215,8 @@
           'background-color': '#1c1917',
           'border-color': '#d4a743',
           'border-width': 3 * inv,
-          'width': 50,
-          'height': 50,
+          'width': 50 * sizeF,
+          'height': 50 * sizeF,
           'font-weight': 'bold',
           'font-size': 12 * inv,
           'opacity': 1,
@@ -230,8 +237,8 @@
       {
         selector: 'node[thumbUrl].canonical',
         style: {
-          'width': 66,
-          'height': 66,
+          'width': 66 * sizeF,
+          'height': 66 * sizeF,
           'border-width': 4 * inv,
           'border-color': '#d4a743',
           'opacity': 1,
@@ -241,8 +248,8 @@
       {
         selector: 'node[thumbUrl].secondary',
         style: {
-          'width': 30,
-          'height': 30,
+          'width': 30 * sizeF,
+          'height': 30 * sizeF,
           'border-width': 1 * inv,
           'border-color': '#a39d92',
           'opacity': 0.8,
@@ -275,8 +282,8 @@
         selector: 'node.highlighted.secondary',
         style: {
           'background-color': '#6b6458',
-          'width': 30,
-          'height': 30,
+          'width': 30 * sizeF,
+          'height': 30 * sizeF,
           'border-width': 1.5 * inv,
           'border-color': '#4a4639'
         }
@@ -284,8 +291,8 @@
       {
         selector: 'node.highlighted.canonical',
         style: {
-          'width': 58,
-          'height': 58,
+          'width': 58 * sizeF,
+          'height': 58 * sizeF,
           'border-width': 4 * inv,
           'border-color': '#e6bb58'
         }
@@ -293,8 +300,8 @@
       {
         selector: 'node.highlighted[thumbUrl].canonical',
         style: {
-          'width': 80,
-          'height': 80,
+          'width': 80 * sizeF,
+          'height': 80 * sizeF,
           'border-width': 5 * inv,
           'border-color': '#e6bb58'
         }
@@ -302,8 +309,8 @@
       {
         selector: 'node.highlighted[thumbUrl].secondary',
         style: {
-          'width': 46,
-          'height': 46,
+          'width': 46 * sizeF,
+          'height': 46 * sizeF,
           'border-width': 1.5 * inv,
           'border-color': '#4a4639'
         }
