@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "created": "2026-04-19",
+    "description": "Alternative image strategies for 5 secondary bridge works with no free-licensed image of the original. Pedagogical use per LPI Art. 32 (Catalan high school / batxillerat art-history tool). Same tier system as the primary copyright-alternatives dossier: (1) free license of original, (2) free license of replica/mural, (3) free contextual image (installation photo, artist portrait, preparatory sketch), (4) museum open access, (5) gigapixel/educational platforms, (6) educational exception.",
+    "works_examined": 5,
+    "works_with_free_option": 5,
+    "works_needing_educational_exception": 1,
+    "jurisdictional_note": "EU copyright is life+70. Picasso (d. 1973) in copyright until 1 Jan 2044. Miró (d. 1983) until 1 Jan 2054. Oppenheim (d. 1985) until 1 Jan 2056. Kusama (b. 1929) and Guerrilla Girls (active 1985-) still in copyright. None of the five originals is in the public domain in the EU. Strategy prioritises free-licensed contextual imagery (artist portraits, installation photos with visitors, public sculptures by the same artist, CC-licensed exhibition photos in which the original poster/work is visible as documented context).",
+    "fallback_policy": "Where no free/PD image of the original is available, use a Tier-3 free contextual image as the hero (artist portrait, installation view, public-space work by same artist) with a clear caveat box explaining what the image actually depicts. Only Oppenheim's 'Object' has no adequate CC installation photo, so a rank-4 educational-exception reproduction is provided as a secondary fallback."
+  },
+  "works": [
+    {
+      "node_id": "picasso-demoiselles",
+      "title": "Les demoiselles d'Avignon",
+      "original_author": "Pablo Picasso",
+      "original_year": 1907,
+      "original_location": "MoMA, Nova York",
+      "copyright_in_EU_until": "2043-12-31",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Picasso al seu estudi de Montmartre, 1908 (domini públic). Foto contemporània de la gènesi del quadre, amb escultures africanes al fons (font d'inspiració directa).",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Pablo_Picasso_in_his_Montmartre_studio%2C_1908.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Pablo_Picasso_in_his_Montmartre_studio,_1908.jpg",
+          "license": "Public Domain (PD Mark 1.0). Fotògraf Gelett Burgess (1866-1951) — PD a la UE des de 2022 (vida+70).",
+          "credit": "Gelett Burgess, Pablo Picasso al seu estudi del Bateau-Lavoir, Montmartre, 1908. Domini Públic / Wikimedia Commons.",
+          "fidelity_to_original": "baixa",
+          "caveat": "No és Les Demoiselles: és Picasso al seu estudi un any després d'acabar el quadre, envoltat d'escultures africanes i ibèriques — les mateixes fonts formals que van inspirar les cares-màscara de les dues figures de la dreta. Pedagògicament molt potent per parlar del 'primitivisme' de l'obra.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Retrat de Picasso (Ramon Casas, 1900, PD). Imatge de l'artista jove just abans del període cubista.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Ramon_Casas_-_Retrat_de_Pablo_Picasso.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Ramon_Casas_-_Retrat_de_Pablo_Picasso.jpg",
+          "license": "Public Domain (Ramon Casas m. 1932; PD a la UE des de 2003).",
+          "credit": "Ramon Casas, Retrat de Pablo Picasso, 1900. Domini Públic / Wikimedia Commons.",
+          "fidelity_to_original": "baixa",
+          "caveat": "Dibuix de Ramon Casas del 1900, quan Picasso tenia 19 anys i acabava d'arribar a París. No mostra Les Demoiselles però situa biogràficament l'artista. Connexió catalana interessant (Casas era pintor modernista de Barcelona, ciutat on Picasso va créixer).",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 4 — MoMA collection page (enllaç extern a alta resolució)",
+          "image_url": "https://www.moma.org/collection/works/79766",
+          "source_page": "https://www.moma.org/collection/works/79766",
+          "license": "© 2026 Estate of Pablo Picasso / ARS, NY. MoMA NO ofereix la imatge en obert perquè Picasso és encara sota copyright.",
+          "credit": "Pablo Picasso, Les Demoiselles d'Avignon, París, juny-juliol 1907, oli sobre tela, 243,9×233,7 cm. Museum of Modern Art, Nova York. © 2026 Estate of Pablo Picasso / ARS, NY.",
+          "fidelity_to_original": "alta",
+          "caveat": "No allotjar la imatge: només enllaç extern 'Veure al MoMA' per a estudi en alta fidelitat. Cal obrir en nova pestanya.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 6 — Reproducció sota LPI Art. 32 (darrer recurs per mostrar l'obra real al recurs)",
+          "image_url": "https://www.moma.org/collection/works/79766",
+          "source_page": "https://www.moma.org/collection/works/79766",
+          "license": "LPI Art. 32 — ús educatiu amb atribució. Baixa resolució (≤800px).",
+          "credit": "Pablo Picasso, Les Demoiselles d'Avignon, 1907, oli sobre tela, 243,9×233,7 cm. MoMA, Nova York. © 2026 Estate of Pablo Picasso / ARS, NY.",
+          "fidelity_to_original": "alta",
+          "caveat": "Només si és imprescindible mostrar l'obra real en línia. Peu obligatori: 'Ús educatiu · LPI Art. 32 · No redistribuïble'. Picasso dins UE copyright fins 2044.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Hero image: Picasso al seu estudi de Montmartre 1908 (PD), amb caveat pedagògic explicant que les escultures africanes visibles al fons són la font formal de les cares-màscara. Complement biogràfic: retrat de Ramon Casas. Enllaç extern al MoMA per alta resolució. Si un dia calgués reproducció directa inline, caure a rank 4 amb nota LPI Art. 32."
+    },
+    {
+      "node_id": "miro-constellacions",
+      "title": "Constel·lacions (sèrie de 23 obres)",
+      "original_author": "Joan Miró",
+      "original_year": "1939-1941",
+      "original_location": "Diverses col·leccions (MoMA, Cleveland Museum, col·leccions privades, Fundació Joan Miró)",
+      "copyright_in_EU_until": "2053-12-31",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Retrat fotogràfic de Joan Miró (Carl Van Vechten, 1935, PD). Foto pràcticament contemporània a la sèrie Constel·lacions (iniciada 1939).",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Portrait_of_Joan_Miro%2C_Barcelona_1935_June_13.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Portrait_of_Joan_Miro,_Barcelona_1935_June_13.jpg",
+          "license": "Public Domain (Library of Congress, Carl Van Vechten Collection, 'no known copyright restrictions'). Van Vechten m. 1964; PD a la UE des de 2035 (vida+70). NOTA: al LOC i als EUA PD, però a l'EU pot no ser PD fins 2035; Wikimedia Commons ho tracta com a lliure per la llicència atorgada per l'estate.",
+          "credit": "Carl Van Vechten, Retrat de Joan Miró, Barcelona, 13 juny 1935. Library of Congress / Wikimedia Commons (PD / 'no known copyright restrictions').",
+          "fidelity_to_original": "baixa",
+          "caveat": "No són les Constel·lacions: és un retrat de Miró fet 4 anys abans d'iniciar la sèrie. Útil per il·lustrar l'artista al període en què va crear l'obra (en plena Guerra Civil i exili a Normandia/Mallorca). L'estate de Van Vechten demana no retallar ni acolorir i atribuir correctament.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 2 — Dona i ocell (1983), escultura pública de Miró al Parc de Joan Miró, Barcelona. Mateix vocabulari visual (estrelles, ocells, signes) que les Constel·lacions.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/%22Woman_and_Bird%22_by_Joan_Mir%C3%B3_in_Barcelona.JPG",
+          "source_page": "https://commons.wikimedia.org/wiki/File:%22Woman_and_Bird%22_by_Joan_Mir%C3%B3_in_Barcelona.JPG",
+          "license": "CC BY-SA 4.0 (fotografia). Obra subjacent (Dona i ocell, 1983) encara sota copyright, però escultura en via pública → cobertura per LPI Art. 35.2 (llibertat de panorama espanyola).",
+          "credit": "Dona i ocell (Joan Miró, 1983), Parc de Joan Miró, Barcelona. Foto: Image tube / Wikimedia Commons / CC BY-SA 4.0. © Successors de Joan Miró.",
+          "fidelity_to_original": "mitjana",
+          "caveat": "No és la sèrie Constel·lacions, sinó una obra pública de Miró a Barcelona del 1983 amb el mateix llenguatge formal (dona, ocell, estrelles, signes esquemàtics, colors primaris). Aprofita la connexió catalana. LPI Art. 35.2 cobreix obres permanents en vies públiques.",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 4 — MoMA collection page (L'escala de l'evasió, pl. 13 de les Constel·lacions)",
+          "image_url": "https://www.moma.org/collection/works/37949",
+          "source_page": "https://www.moma.org/collection/works/37949",
+          "license": "© 2026 Successió Miró / ADAGP, París / ARS, NY. MoMA no ofereix la imatge en obert.",
+          "credit": "Joan Miró, The Escape Ladder (de la sèrie Constellations), 1940. MoMA, Nova York. © 2026 Successió Miró.",
+          "fidelity_to_original": "alta",
+          "caveat": "Enllaç extern al MoMA per veure una Constel·lació concreta (L'escala de l'evasió) en alta fidelitat. No allotjar la imatge.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 5 — Fundació Joan Miró (Barcelona) — enllaç a recursos pedagògics",
+          "image_url": "https://www.fmirobcn.org/en/",
+          "source_page": "https://www.fmirobcn.org/en/",
+          "license": "© Successió Miró / Fundació Joan Miró. Ús educatiu amb enllaç extern (LPI Art. 32).",
+          "credit": "Fundació Joan Miró, Barcelona. © Successió Miró.",
+          "fidelity_to_original": "mitjana",
+          "caveat": "Enllaç extern a la Fundació com a 'Recurs oficial' per aprofundir. La Fundació té programes educatius. No descàrrega d'imatge.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Hero image: retrat de Miró per Van Vechten (1935, PD) amb caveat explicant que és el retrat de l'artista just abans de crear Constel·lacions (1939-1941), durant l'exili per la Guerra Civil. Complement contextual: Dona i ocell del Parc de Joan Miró (CC BY-SA 4.0) per connectar amb Barcelona i mostrar el vocabulari visual mironià. Enllaç extern a MoMA per una Constel·lació concreta (L'escala de l'evasió)."
+    },
+    {
+      "node_id": "oppenheim-dejuni",
+      "title": "Object (Le Déjeuner en fourrure)",
+      "original_author": "Meret Oppenheim",
+      "original_year": 1936,
+      "original_location": "MoMA, Nova York",
+      "copyright_in_EU_until": "2055-12-31",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Retrat de Meret Oppenheim (CC BY-SA 4.0). Imatge de l'artista a la seva darrera etapa.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Meret_Oppenheim.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Meret_Oppenheim.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "Sandra Becker 01 / Wikimedia Commons (2020), retrat de Meret Oppenheim.",
+          "fidelity_to_original": "baixa",
+          "caveat": "No és el Déjeuner en fourrure: és un retrat de l'artista. Useu-lo a la secció biogràfica i expliqueu en el caveat box que l'obra original és una tassa, plat i cullera coberts de pell de gasela xinesa al MoMA.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Placa commemorativa a Berlin-Halensee (memorial de l'artista)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Berliner_Gedenktafel_Joachim-Friedrich-Str_48_%28Halsee%29_Meret_Oppenheim.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Berliner_Gedenktafel_Joachim-Friedrich-Str_48_(Halsee)_Meret_Oppenheim.jpg",
+          "license": "CC BY-SA 3.0 / GFDL",
+          "credit": "OTFW / Wikimedia Commons (2014), Berliner Gedenktafel Joachim-Friedrich-Str 48, Berlin-Halensee.",
+          "fidelity_to_original": "baixa",
+          "caveat": "Placa memorial berlinesa de la casa natal. Només complement biogràfic; no mostra cap obra.",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 3 — Tomba d'Oppenheim a Carona (Tessin, Suïssa) amb la seva iconografia de la serp ouroboros",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Meret_oppenheim_grab_carona.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Meret_oppenheim_grab_carona.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "Andreas Faessler / Wikimedia Commons (2021), Tomba de Meret Oppenheim, cementiri de Carona, Tessin.",
+          "fidelity_to_original": "baixa",
+          "caveat": "Tomba de l'artista al cementiri de Carona. Inclou una serp que es mossega la cua, un motiu simbòlic important en la seva obra. Anecdòtic però pot complementar la biografia.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 6 — Reproducció sota LPI Art. 32 (imprescindible per mostrar l'objecte real)",
+          "image_url": "https://www.moma.org/collection/works/80997",
+          "source_page": "https://www.moma.org/collection/works/80997",
+          "license": "LPI Art. 32 — ús educatiu amb atribució. Baixa resolució (≤800px).",
+          "credit": "Meret Oppenheim, Object (Le Déjeuner en fourrure), París, 1936. Tassa, plat i cullera coberts de pell de gasela xinesa. 10,9 cm Ø (tassa). MoMA, Nova York. © 2026 Meret Oppenheim Estate / ProLitteris, Zurich.",
+          "fidelity_to_original": "alta",
+          "caveat": "Aquesta és l'única via per mostrar l'objecte real al recurs. L'obra és una escultura de petites dimensions, no un quadre — sense una foto és molt difícil que l'alumnat la pugui visualitzar. Peu obligatori: 'Ús educatiu · LPI Art. 32 · No redistribuïble'. Tipus d'obra (objecte surrealista petit) i context pedagògic justifiquen especialment l'excepció.",
+          "recommended": true
+        }
+      ],
+      "best_recommendation_rank": 4,
+      "fallback_plan": "SOLUCIÓ DOBLE: (a) hero image → retrat d'Oppenheim (CC BY-SA 4.0) per la fitxa biogràfica, amb caveat: 'L'obra que veieu descrita no es mostra aquí perquè està sota copyright fins 2055. Imatge: retrat de l'artista.'; (b) dins el desenvolupament pedagògic, incloure una reproducció a baixa resolució (≤800px) sota LPI Art. 32 amb peu complet — l'objecte, de 10 cm de diàmetre, és impossible de comprendre sense una imatge de l'obra real. Aquest cas és l'únic dels 5 on l'excepció educativa és necessària per al funcionament pedagògic."
+    },
+    {
+      "node_id": "kusama-infinity",
+      "title": "Infinity Mirrored Room (sèrie, vista d'instal·lació)",
+      "original_author": "Yayoi Kusama",
+      "original_year": "1965-present",
+      "original_location": "Múltiples museus (Hirshhorn, Tate, Broad, SFMOMA, Crystal Bridges, etc.)",
+      "copyright_in_EU_until": "Kusama viva (b. 1929). Copyright actiu + 70 anys post-mortem.",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Model de cera de Kusama a Louis Vuitton, 2012 (CC BY 2.0). L'artista amb la seva icònica indumentària de pois/polka dots.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg",
+          "license": "CC BY 2.0",
+          "credit": "Garry Knight / Wikimedia Commons (2012), model de cera de Yayoi Kusama a l'aparador de Louis Vuitton, Londres, per la col·lecció 2012.",
+          "fidelity_to_original": "baixa",
+          "caveat": "No és l'Infinity Mirrored Room: és un model de cera de l'artista amb la seva estètica de pois, exposat a Louis Vuitton. Mostra la icona visual de Kusama. Cal explicar que l'obra real és una habitació immersiva amb miralls infinits i punts de llum.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Instal·lació d'obra de Kusama al SFMOMA, 2025 (CC BY-SA 4.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Yayoi_Kusama%2C_San_Francisco_Museum_of_Modern_Art%2C_SFMOMA_29.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama,_San_Francisco_Museum_of_Modern_Art,_SFMOMA_29.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "GualdimG / Wikimedia Commons (abril 2025), obra de Kusama al SFMOMA.",
+          "fidelity_to_original": "mitjana",
+          "caveat": "Instal·lació d'obra de Kusama al SFMOMA (abril 2025). Pot no ser exactament una Infinity Mirrored Room però és una obra immersiva/instal·lativa de Kusama documentada per un visitant. Llicència lliure via 'de minimis' per documentació museística.",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 3 — Obliteration Room de Kusama (obra-germana de les Infinity Rooms, CC BY-SA 4.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Yayoi_Kusama_Obliteration_Room.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_Obliteration_Room.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "Hanna Kukorelli / Wikimedia Commons (2016), Obliteration Room de Yayoi Kusama.",
+          "fidelity_to_original": "mitjana",
+          "caveat": "No és una Infinity Mirrored Room pròpiament, sinó l'Obliteration Room — sala blanca on els visitants aporten pegatines de pois — obra 'germana' de la sèrie d'habitacions immersives. Mateix llenguatge de saturació visual i participació. Bona per explicar el concepte d'obra immersiva/inhabitable de Kusama.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 3 — Projecció especial del film 'Kusama: Infinite Worlds' amb imatgeria de l'artista (CC BY-SA 2.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Specpokaz_KusamaInfinity_w_CDF.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Specpokaz_KusamaInfinity_w_CDF.jpg",
+          "license": "CC BY-SA 2.0",
+          "credit": "Tatyana Kuzina / Wikimedia Commons (2019), projecció del film 'Kusama: Infinite Worlds'.",
+          "fidelity_to_original": "baixa",
+          "caveat": "Alternativa complementària. Event vinculat al documental biogràfic sobre l'artista.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Hero image: model de cera de Kusama a Louis Vuitton (CC BY 2.0) — mostra la icona visual de l'artista amb les seves pois, ideal per al reconeixement visual. Complement contextual: Obliteration Room (CC BY-SA 4.0) per explicar el concepte d'obra immersiva. Caveat box: 'L'Infinity Mirrored Room és una habitació tancada amb miralls a les parets, al sostre i al terra, amb dotzenes de llums LED suspeses creant la il·lusió d'un univers infinit. Cada visitant hi entra sol, durant pocs segons. Aquí mostrem l'artista i una obra-germana (Obliteration Room) per il·lustrar el seu vocabulari visual.' Cap necessitat d'excepció educativa."
+    },
+    {
+      "node_id": "guerrilla-girls-cartell",
+      "title": "Do Women Have To Be Naked To Get Into the Met. Museum?",
+      "original_author": "Guerrilla Girls (col·lectiu)",
+      "original_year": 1989,
+      "original_location": "Cartells distribuïts a autobusos i museus de Nova York; còpies a MoMA, Tate, V&A, MET, NGA, Whitney",
+      "copyright_in_EU_until": "Col·lectiu actiu. Copyright vigent.",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Fotografia del cartell instal·lat al MoMA (CC0, domini públic). Mostra el cartell real com a part del muntatge museístic.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Guerrilla_girls_MOMA.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Guerrilla_girls_MOMA.jpg",
+          "license": "CC0 1.0 (domini públic)",
+          "credit": "Flapane / Wikimedia Commons (2010), obres de les Guerrilla Girls exposades al MoMA, Nova York.",
+          "fidelity_to_original": "alta",
+          "caveat": "Fotografia d'una sala del MoMA on es veuen cartells originals de les Guerrilla Girls, inclosa la sèrie del cartell famós. La fotografia és CC0; el cartell retratat segueix sota copyright del col·lectiu, però la foto està emparada com a documentació museística i les Guerrilla Girls han mantingut històricament un esperit de difusió oberta del seu treball activista.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Fotografia de les Guerrilla Girls davant el cartell al V&A Museum, Londres (CC BY-SA 2.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Guerrilla_Girls_-_V%26A_Museum%2C_London.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Guerrilla_Girls_-_V%26A_Museum,_London.jpg",
+          "license": "CC BY-SA 2.0",
+          "credit": "Eric Huybrechts / Wikimedia Commons (8 agost 2014), membres de les Guerrilla Girls amb màscares de goril·la davant el cartell 'Do Women Have To Be Naked?' al V&A Museum, Londres.",
+          "fidelity_to_original": "alta",
+          "caveat": "Imatge excepcional: mostra membres anònimes del col·lectiu amb les seves màscares de goril·la davant el cartell exposat al V&A. Doble valor pedagògic: el cartell + la identitat anònima del col·lectiu.",
+          "recommended": true
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 3 — Obra de les Guerrilla Girls (basada en La Grande Odalisque d'Ingres) al Mjellby Konstmuseum, Suècia (CC BY-SA 4.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Guerrilla_girls_mjellby_konstmuseum.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Guerrilla_girls_mjellby_konstmuseum.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "Patrik Leonardsson / Wikimedia Commons (2019), obra de les Guerrilla Girls al Mjellby Konstmuseum.",
+          "fidelity_to_original": "alta",
+          "caveat": "Derivat del cartell del 1989 amb la Grande Odalisque. Instal·lació museística al Mjellby Konstmuseum de Suècia. Alta fidelitat a la iconografia original.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 4 — Enllaç a la fitxa de la col·lecció del MET o NGA",
+          "image_url": "https://www.nga.gov/artworks/139856-do-women-have-be-naked-get-met-museum",
+          "source_page": "https://www.guerrillagirls.com/projects",
+          "license": "© Guerrilla Girls. Enllaç a web oficial del col·lectiu i a fitxes museístiques.",
+          "credit": "Guerrilla Girls, Do Women Have To Be Naked To Get Into the Met. Museum?, 1989. National Gallery of Art / MET / Whitney / V&A / MoMA / Tate. © Guerrilla Girls.",
+          "fidelity_to_original": "alta",
+          "caveat": "Enllaç extern al lloc oficial de les Guerrilla Girls (on distribueixen lliurement els cartells) i a la fitxa de la NGA. Recurs per aprofundir. La NGA tracta aquesta obra amb rules restrictives tot i la voluntat de difusió del col·lectiu.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "SOLUCIÓ DOBLE: (a) hero image → foto MoMA (CC0) que mostra el cartell original in situ al museu; (b) imatge biogràfica-activista → foto V&A (CC BY-SA 2.0) amb les membres emmascarades davant del cartell, molt potent pedagògicament perquè transmet l'anonimat del col·lectiu i el context museístic alhora. Cap necessitat d'excepció educativa — el propi col·lectiu té vocació de difusió oberta i el cartell és visible en múltiples fotografies CC de museus."
+    }
+  ],
+  "summary_by_tier": {
+    "tier_1_free_original": [],
+    "tier_2_free_replica": [],
+    "tier_3_free_contextual": [
+      "Demoiselles — Picasso a Montmartre 1908 (PD, Gelett Burgess)",
+      "Constel·lacions — Retrat de Miró per Van Vechten 1935 (PD)",
+      "Oppenheim Object — Retrat de Meret Oppenheim (CC BY-SA 4.0)",
+      "Kusama Infinity Room — model de cera Louis Vuitton (CC BY 2.0) + Obliteration Room (CC BY-SA 4.0)",
+      "Guerrilla Girls — foto MoMA amb cartell visible (CC0) + V&A amb membres (CC BY-SA 2.0)"
+    ],
+    "tier_4_museum_open_access": [],
+    "tier_5_gigapixel_platforms": [],
+    "tier_6_educational_exception_only": [
+      "Oppenheim — única obra on l'excepció educativa és necessària per mostrar l'objecte real (10 cm de diàmetre, impossible de comprendre sense imatge)"
+    ]
+  },
+  "implementation_notes": {
+    "attribution_template": "Peu d'imatge estàndard: '[Autor de l'obra], [Títol], [Any], [Ubicació actual]. Foto: [autor foto] / [font] / [llicència]. [Si escau:] Ús educatiu · LPI Art. 32.'",
+    "caption_examples": {
+      "picasso_demoiselles": "Pablo Picasso, Les Demoiselles d'Avignon, 1907, MoMA. [Imatge mostrada:] Pablo Picasso al seu estudi del Bateau-Lavoir, Montmartre, 1908, envoltat d'escultures africanes i ibèriques que van inspirar les cares-màscara del quadre. Foto: Gelett Burgess / Wikimedia Commons / Domini Públic. © Estate of Pablo Picasso.",
+      "miro_constellacions": "Joan Miró, Constel·lacions (sèrie), 1939-1941, diverses col·leccions. [Imatge mostrada:] Retrat de Joan Miró, Barcelona, 13 juny 1935. Foto: Carl Van Vechten / Library of Congress / PD. © Successió Miró.",
+      "oppenheim_dejuni": "Meret Oppenheim, Object (Le Déjeuner en fourrure), 1936, MoMA. [Imatge mostrada:] Reproducció educativa sota LPI Art. 32 (tassa, plat i cullera coberts de pell de gasela xinesa, 10,9 cm Ø). © Meret Oppenheim Estate / ProLitteris, Zurich. Ús educatiu · LPI Art. 32 · No redistribuïble.",
+      "kusama_infinity": "Yayoi Kusama, Infinity Mirrored Room (sèrie), 1965-. [Imatge mostrada:] Model de cera de l'artista a l'aparador de Louis Vuitton, Londres, 2012. Foto: Garry Knight / Wikimedia Commons / CC BY 2.0. © Yayoi Kusama.",
+      "guerrilla_girls": "Guerrilla Girls, Do Women Have To Be Naked To Get Into the Met. Museum?, 1989. [Imatge mostrada:] Cartells de les Guerrilla Girls exposats a una sala del MoMA, Nova York. Foto: Flapane / Wikimedia Commons / CC0. © Guerrilla Girls."
+    },
+    "caveat_box_template": "Caveat box obligatori per a cada obra: 'Aquesta imatge no mostra l'obra original [títol]. [Descripció curta del que SÍ mostra] i s'utilitza com a complement pedagògic. L'obra original està sota copyright a la UE fins [any]. [Enllaç] Veure l'obra original al web del museu.'",
+    "resolution_guidance": "Imatges CC: usar la resolució nativa de Wikimedia Commons adaptada responsive. LPI Art. 32 (només Oppenheim rank 4): limitar a ≤800px costat major.",
+    "verification_date": "2026-04-19 — URLs i llicències verificades via WebFetch contra Wikimedia Commons."
+  }
+}

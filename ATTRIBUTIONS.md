@@ -7,18 +7,23 @@ Wikimedia, però cada fitxer conserva la seva llicència original i cal atribuir
 correctament en qualsevol reutilització.
 
 Per a les obres que encara estan sota drets d'autor (Picasso, Pollock,
-Abramović, Viola), la imatge que es mostra **no és l'original** sinó una rèplica
-lliure, una fotografia contextual o un retrat de l'artista. Cada cas està
-documentat a la secció [Estratègies alternatives](#estrategies-alternatives).
+Abramović, Viola al bloc canònic; Picasso, Miró, Oppenheim, Kusama,
+Guerrilla Girls, Sherman, Dalí al bloc secundari), la imatge que es mostra
+**no és l'original** sinó una rèplica lliure, una fotografia contextual o
+un retrat de l'artista. Cada cas està documentat a les seccions
+[Estratègies alternatives canòniques](#estrategies-alternatives-canoniques)
+i [Estratègies alternatives secundàries](#estrategies-alternatives-secundaries).
 L'obra de Frida Kahlo va entrar en domini públic a la UE l'1 de gener de 2025.
 
 Generat automàticament per `scripts/generate_attributions.py` des de
-`data/images.json`.
+`data/images.json` i `data/secondary-images.json`.
 
 ## Índex
 
 - [Obres canòniques (1-55)](#obres-canoniques-1-55)
-- [Estratègies alternatives (obres sota drets d'autor)](#estrategies-alternatives)
+- [Estratègies alternatives canòniques](#estrategies-alternatives-canoniques)
+- [Nodes secundaris (ponts pedagògics)](#nodes-secundaris)
+- [Estratègies alternatives secundàries](#estrategies-alternatives-secundaries)
 
 
 ## Obres canòniques (1-55)
@@ -81,9 +86,9 @@ Generat automàticament per `scripts/generate_attributions.py` des de
 | 54 | The Artist Is Present (2010, c. 30 min) | CC BY 2.0 | Antonio Zugaldia (Flickr), via Wikimedia Commons | [Commons](https://upload.wikimedia.org/wikipedia/commons/e/e5/Marina_Abramovi%C4%87_The_Artist_Is_Present_%284616780675%29.jpg) |
 | 55 | Martyrs and Mary (2014) | CC BY-SA 2.0 | Kris McKay (Flickr), via Wikimedia Commons | [Commons](https://upload.wikimedia.org/wikipedia/commons/5/52/BillViola.jpg) |
 
-## Estratègies alternatives
+## Estratègies alternatives canòniques
 
-Les cinc obres següents continuen sota drets d'autor (excepte Kahlo, que és PD a la UE des de 2025). Per a cadascuna mostrem una imatge alternativa amb llicència compatible i n'expliquem l'estratègia.
+Les cinc obres canòniques següents continuen sota drets d'autor (excepte Kahlo, PD a la UE des de 2025). Per a cadascuna mostrem una imatge alternativa amb llicència compatible i n'expliquem l'estratègia.
 
 ### #50 · Guernica
 
@@ -129,6 +134,126 @@ Les cinc obres següents continuen sota drets d'autor (excepte Kahlo, que és PD
 - **Font**: [https://upload.wikimedia.org/wikipedia/commons/5/52/BillViola.jpg](https://upload.wikimedia.org/wikipedia/commons/5/52/BillViola.jpg)
 
 > **Nota pedagògica**: La videoinstal lacio Martyrs continua sota drets d autor de Bill Viola Studio. No existeix imatge lliure de l obra. Aquesta es un retrat de l artista.
+
+## Nodes secundaris
+
+Els nodes secundaris són obres pont que enriqueixen la xarxa però no entren a la llista oficial de les PAU. Inclouen sobretot dones artistes i obres no-occidentals (mandat del Decret 171/2022).
+
+| id | Obra | Autoria | Llicència | Crèdit | Font |
+|---|---|---|---|---|---|
+| `af-klint-temple` | The Ten Largest, No. 7, Adulthood | Hilma af Klint | Public domain | Hilma af Klint (1862-1944); foto: Albin Dahlström, Moderna Museet | [Commons](https://commons.wikimedia.org/wiki/File:Hilma_af_Klint_-_The_Ten_Largest_No._7_-_Adulthood_-_1907.jpg) |
+| `alhambra` | Alhambra - Patio de los Leones | — | CC BY-SA 3.0 | José Luiz Bernardes Ribeiro / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Patio_de_los_Leones_-_Alhambra.JPG) |
+| `altar-pergam` | Pergamonaltar | — | CC BY-SA 3.0 / GFDL | Lestat (Jan Mehlich) / Wikimedia Commons (2007) | [Commons](https://commons.wikimedia.org/wiki/File:Berlin_-_Pergamonmuseum_-_Altar_01.jpg) |
+| `anguissola-autoretrat` | Autoretrat al cavallet | Sofonisba Anguissola | Public domain | Sofonisba Anguissola (1532-1625); Muzeum-Zamek w Łańcucie | [Commons](https://commons.wikimedia.org/wiki/File:Sofonisba_Anguissola,_Selvportr%C3%A6t_ved_staffeliet,_1556,_Museum_Castle_in_%C5%81a%C5%84cut.jpg) |
+| `ara-pacis` | Ara Pacis Augustae | — | CC BY-SA 4.0 | Rabax63 / Wikimedia Commons (2017) | [Commons](https://commons.wikimedia.org/wiki/File:Ara_Pacis_(SW).jpg) |
+| `beat-liebana` | Beatus de Liébana (Morgan Beatus) - Dona i dragó (Ap. 12) | Maius / copistes monàstics | CC BY 2.0 | manuscript_nerd (Flickr, 2012) / Morgan Library MS M.644 | [Commons](https://commons.wikimedia.org/wiki/File:The_Morgan_Beatus.jpg) |
+| `bermejo-pieta` | Pietat Desplà | Bartolomé Bermejo | Public domain | Bartolomé Bermejo (c. 1440-c. 1501); Museu de la Catedral de Barcelona | [Commons](https://commons.wikimedia.org/wiki/File:B.Bermejo_Pietat_Despla_4153.jpg) |
+| `bo-bardi-masp` | Museu de Arte de São Paulo (MASP) | Lina Bo Bardi | CC BY-SA 3.0 (Wikimedia Commons) | Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Novo_MASP.jpg) |
+| `brancusi-muse` | Muse endormie | Constantin Brâncuși | Public domain (assumida a Commons) / caveat: Brâncuși †1957, PD UE 1 de gener de 2028 | Constantin Brâncuși (1876-1957); foto de la versió en marbre | [Commons](https://commons.wikimedia.org/wiki/File:Sleepingmuse1.jpg) |
+| `cassatt-banyera` | The Child's Bath | Mary Cassatt | Public domain | Mary Cassatt (1844-1926); Art Institute of Chicago, Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Mary_Cassatt_-_The_Child%27s_Bath_-_Google_Art_Project.jpg) |
+| `cezanne-sainte-victoire` | Montagne Sainte-Victoire (sèrie) | Paul Cézanne | Public domain | Paul Cézanne (1839-1906); Philadelphia Museum of Art version (1904-06) | [Commons](https://commons.wikimedia.org/wiki/File:Montagne_Sainte-Victoire,_par_Paul_C%C3%A9zanne_108.jpg) |
+| `dali-persistencia` | Paisatge del Cap de Creus (imatge contextual) | Víctor Perea Ros (fotografia del paisatge) | CC BY-SA 4.0 | Víctor Perea Ros / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Cap_de_Creus_landscape.jpg) |
+| `gentileschi-judith` | Giuditta che decapita Oloferne | Artemisia Gentileschi | Public domain | Artemisia Gentileschi (1593-c.1653), digitised by Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Artemisia_Gentileschi_-_Giuditta_decapita_Oloferne_-_Google_Art_Project-Adjust.jpg) |
+| `gray-e1027` | Vil·la E-1027 | Eileen Gray | Public domain (CC0) | Tangopaso / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Buildings_in_Cap-Martin.jpg) |
+| `guerrilla-girls-cartell` | Do Women Have To Be Naked To Get Into the Met. Museum? | Guerrilla Girls | CC0 1.0 (Domini Públic) | Flapane (MoMA, 2010), via Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Guerrilla_girls_MOMA.jpg) |
+| `hadid-maxxi` | MAXXI (Museo nazionale delle arti del XXI secolo) | Zaha Hadid | CC BY-SA 4.0 (Wikimedia Commons) | Wikimedia Commons contributor | [Commons](https://commons.wikimedia.org/wiki/File:Au%C3%9Fenansicht_MAXXI.jpg) |
+| `hepworth-single-form` | Single Form | Barbara Hepworth | CC BY-SA 3.0 / GFDL | Stefan Schulze / Wikimedia Commons (2005); escultura: Barbara Hepworth (1903-1975), UN HQ Nova York | [Commons](https://commons.wikimedia.org/wiki/File:Single_Form,_UNO_New_York.JPG) |
+| `hiroshige-pluja` | Ōhashi Atake no yūdachi (Pluja sobtada al pont Shin-Ōhashi) | Utagawa Hiroshige | Public domain | Utagawa Hiroshige (1797-1858); sèrie Meisho Edo Hyakkei, 1857 | [Commons](https://commons.wikimedia.org/wiki/File:Utagawa_Hiroshige_-_Evening_Shower_at_Atake_and_the_Great_Bridge.jpg) |
+| `history-portraits-sherman` | History Portraits (sèrie) | Cindy Sherman | CC BY 2.0 | Jean-Pierre Dalbéra / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:R%C3%A9trospective_Cindy_Sherman_%C3%A0_la_Fondation_Louis_Vuitton,_Paris_2020.jpg) |
+| `hokusai-onada` | La gran onada de Kanagawa | Katsushika Hokusai | Public domain | Katsushika Hokusai (1760-1849); sèrie Fugaku Sanjūrokkei, c. 1831 | [Commons](https://commons.wikimedia.org/wiki/File:Tsunami_by_hokusai_19th_century.jpg) |
+| `huguet-consagracio` | Consagració de sant Agustí | Jaume Huguet | Public domain | Jaume Huguet (c. 1412-1492); MNAC, Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Jaume_Huguet_-_Consecration_of_Saint_Augustine_-_Google_Art_Project.jpg) |
+| `klimt-kiss` | Der Kuss | Gustav Klimt | Public domain | Gustav Klimt (1862-1918); Österreichische Galerie Belvedere, Google Cultural Institute | [Commons](https://commons.wikimedia.org/wiki/File:The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg) |
+| `kusama-infinity` | Infinity Mirrored Room (vista d'instal·lació) | Yayoi Kusama | CC BY 2.0 | Garry Knight (Flickr, 2012), via Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg) |
+| `leyster-autoretrat` | Self-Portrait | Judith Leyster | Public domain | Judith Leyster (1609-1660); National Gallery of Art, Washington | [Commons](https://commons.wikimedia.org/wiki/File:Self-portrait_by_Judith_Leyster.jpg) |
+| `magritte-pipa` | La trahison des images (Ceci n'est pas une pipe) | René Magritte | CC BY-SA 4.0 (foto del visitant; obra original encara en copyright a UE) | Caterpillar84 / Wikimedia Commons (2017); obra: René Magritte (1898-1967), LACMA | [Commons](https://commons.wikimedia.org/wiki/File:Magritte_treachery.jpg) |
+| `maison-carree` | Maison Carrée | — | CC BY-SA 4.0 (Wikimedia Commons) | Krzysztof Golik / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Maison_Carree_in_Nimes_(16).jpg) |
+| `mascara-fang` | Màscara Fang (Ngil, Gabon) | Anònim Fang | Public domain | Marie-Lan Nguyen (User:Jastrow) / Wikimedia Commons (2006); objecte: Musée du quai Branly, inv. 71.1965.104.1 | [Commons](https://commons.wikimedia.org/wiki/File:Fang_mask_Louvre_MH65-104-1.jpg) |
+| `matisse-dansa` | La Danse | Henri Matisse | Public domain (EU) / en drets d'autor als EUA fins 2029 - veure caveat | Henri Matisse (1869-1954); Ermitage, Sant Petersburg | [Commons](https://commons.wikimedia.org/wiki/File:Matissedance.jpg) |
+| `miro-constellacions` | Constel·lacions (sèrie) | Joan Miró | Public Domain (Library of Congress) | Carl Van Vechten (1935), via Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Portrait_of_Joan_Miro,_Barcelona_1935_June_13.jpg) |
+| `moore-reclining` | Reclining Figure | Henry Moore | CC BY-SA 3.0 / GFDL | Daderot / Wikimedia Commons; escultura: Henry Moore (1898-1986), MIT Campus | [Commons](https://commons.wikimedia.org/wiki/File:Henry_Moore,_Three_Piece_Reclining_Figure_Draped_(1976),_MIT_Campus_-_detail.JPG) |
+| `morisot-bressol` | Le berceau (The Cradle) | Berthe Morisot | Public domain | Berthe Morisot (1841-1895); Musée d'Orsay, Paris | [Commons](https://commons.wikimedia.org/wiki/File:Berthe_Morisot_008.jpg) |
+| `olimpia-manet` | Olympia | Édouard Manet | Public domain | Édouard Manet (1832-1883), digitised by Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Edouard_Manet_-_Olympia_-_Google_Art_ProjectFXD.jpg) |
+| `oppenheim-dejuni` | Object (Le Déjeuner en fourrure) | Meret Oppenheim | CC BY-SA 4.0 | Sandra Becker, via Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Meret_Oppenheim.jpg) |
+| `picasso-demoiselles` | Les demoiselles d'Avignon | Pablo Picasso | Public Domain | Gelett Burgess (1908), via Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Pablo_Picasso_in_his_Montmartre_studio,_1908.jpg) |
+| `pisano-pulpit` | Púlpit del baptisteri de Pisa | Nicola Pisano | CC BY-SA 3.0 / CC BY 2.5 | Sailko / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Pisa,_battistero,_pulpito_di_Nicola_Pisano.JPG) |
+| `primavera-botticelli` | La primavera | Sandro Botticelli | Public domain | Sandro Botticelli (1445-1510), digitised by Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Sandro_Botticelli_-_La_Primavera_-_Google_Art_Project.jpg) |
+| `san-miguel-escalada` | San Miguel de Escalada | — | CC BY-SA 4.0 | Fogar Mozárabe / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Monasterio_moz%C3%A1rabe_de_San_Miguel_de_Escalada.jpg) |
+| `sant-apolinar-ravena` | Sant'Apollinare in Classe - mosaic absidal | — | CC BY-SA 4.0 | Ludvig14 / Wikimedia Commons (2008) | [Commons](https://commons.wikimedia.org/wiki/File:Ravenna_SantApollinare_Classe_0115.jpg) |
+| `sant-joan-penyes` | Monestir de Sant Joan de la Penya | — | CC BY 3.0 / GFDL | Elemaki (José Porras) / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:SanJuandelaPe%C3%B1a.JPG) |
+| `santa-maria-maggiore` | Basilica di Santa Maria Maggiore | — | CC BY-SA 4.0 | Paris Orlando / Wikimedia Commons (2022) | [Commons](https://commons.wikimedia.org/wiki/File:Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg) |
+| `seu-nova-lleida` | Catedral de Girona - nau única gòtica | Guillem Bofill i altres | CC BY-SA 4.0 (Wikimedia Commons) | Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Girona_Cathedral_2020_-_nave.jpg) |
+| `seurat-grande-jatte` | Un dimanche après-midi à l'Île de la Grande Jatte | Georges Seurat | Public domain | Georges Seurat (1859-1891); Art Institute of Chicago | [Commons](https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg) |
+| `taj-mahal` | Taj Mahal | Atribuït a Ustad Ahmad Lahauri | CC BY-SA 4.0 (Wikimedia Commons) | Yann Forget / Wikimedia Commons | [Commons](https://commons.wikimedia.org/wiki/File:Taj_Mahal_(Edited).jpeg) |
+| `van-gogh-camp-blat` | Korenveld met kraaien (Wheatfield with Crows) | Vincent van Gogh | Public domain | Vincent van Gogh (1853-1890); Van Gogh Museum, Amsterdam | [Commons](https://commons.wikimedia.org/wiki/File:Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg) |
+| `venus-urbino-tizia` | Venere di Urbino | Tiziano | Public domain | Tiziano Vecellio (c. 1488-1576), digitised by Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Tiziano_-_Venere_di_Urbino_-_Google_Art_Project.jpg) |
+| `vigee-marie-antoinette` | Marie-Antoinette et ses enfants | Élisabeth Vigée Le Brun | Public domain | Élisabeth Vigée Le Brun (1755-1842); Château de Versailles, Google Art Project | [Commons](https://commons.wikimedia.org/wiki/File:Louise_Elisabeth_Vig%C3%A9e-Lebrun_-_Marie-Antoinette_de_Lorraine-Habsbourg,_reine_de_France_et_ses_enfants_-_Google_Art_Project.jpg) |
+
+## Estratègies alternatives secundàries
+
+Aquests nodes secundaris mostren una imatge que **no és l'original**: retrat de l'artista, instal·lació d'una obra germana, rèplica, o fotografia documental del cartell/obra sota llicència lliure. La nota pedagògica ho explicita a cada cas.
+
+### `dali-persistencia` · Paisatge del Cap de Creus (imatge contextual)
+
+- **Estratègia**: Imatge contextual (no l original).
+- **Llicència**: CC BY-SA 4.0
+- **Crèdit**: Víctor Perea Ros / Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:Cap_de_Creus_landscape.jpg](https://commons.wikimedia.org/wiki/File:Cap_de_Creus_landscape.jpg)
+
+> **Nota pedagògica**: Dalí †1989 → PD UE 1 de gener de 2060. L'obra original està en copyright (© Fundació Gala-Salvador Dalí / VEGAP). S'usa imatge contextual del paisatge del Cap de Creus (on Dalí troba les roques que inspiren els rellotges). Ús pedagògic de la imatge original via LPI Art. 32 (MoMA link: moma.org/collection/works/79018).
+
+### `guerrilla-girls-cartell` · Do Women Have To Be Naked To Get Into the Met. Museum?
+
+- **Estratègia**: Fotografia del cartell de les Guerrilla Girls instal·lat al MoMA el 2010.
+- **Llicència**: CC0 1.0 (Domini Públic)
+- **Crèdit**: Flapane (MoMA, 2010), via Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:Guerrilla_girls_MOMA.jpg](https://commons.wikimedia.org/wiki/File:Guerrilla_girls_MOMA.jpg)
+
+> **Nota pedagògica**: El cartell de 1989 continua en drets d'autor (col·lectiu actiu), però aquesta fotografia del cartell exposat al MoMA és CC0 (domini públic) i mostra clarament el missatge original.
+
+### `history-portraits-sherman` · History Portraits (sèrie)
+
+- **Estratègia**: Imatge contextual (no l original).
+- **Llicència**: CC BY 2.0
+- **Crèdit**: Jean-Pierre Dalbéra / Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:R%C3%A9trospective_Cindy_Sherman_%C3%A0_la_Fondation_Louis_Vuitton,_Paris_2020.jpg](https://commons.wikimedia.org/wiki/File:R%C3%A9trospective_Cindy_Sherman_%C3%A0_la_Fondation_Louis_Vuitton,_Paris_2020.jpg)
+
+> **Nota pedagògica**: Obra original sota copyright (Sherman, nascuda 1954, viva). Cap imatge directa de la sèrie History Portraits a Commons. S'usa foto d'exposició/instal·lació com a alternativa contextual. Ús educatiu LPI Art. 32 si cal reproduir l'obra original.
+
+### `kusama-infinity` · Infinity Mirrored Room (vista d'instal·lació)
+
+- **Estratègia**: Model de cera de Kusama a l'aparador de Louis Vuitton (Londres, 2012), imatge icònica amb els seus punts.
+- **Llicència**: CC BY 2.0
+- **Crèdit**: Garry Knight (Flickr, 2012), via Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg](https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg)
+
+> **Nota pedagògica**: Les Infinity Mirrored Rooms de Kusama (sèrie iniciada el 1965) continuen en drets d'autor (Kusama, viva). Aquesta imatge del model de cera amb la seva estètica de punts és contextual — no és cap de les instal·lacions pròpiament dites.
+
+### `miro-constellacions` · Constel·lacions (sèrie)
+
+- **Estratègia**: Retrat fotogràfic de Joan Miró (Barcelona, 1935), quatre anys abans de començar les Constel·lacions.
+- **Llicència**: Public Domain (Library of Congress)
+- **Crèdit**: Carl Van Vechten (1935), via Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:Portrait_of_Joan_Miro,_Barcelona_1935_June_13.jpg](https://commons.wikimedia.org/wiki/File:Portrait_of_Joan_Miro,_Barcelona_1935_June_13.jpg)
+
+> **Nota pedagògica**: Les Constel·lacions de Miró (1939-1941) continuen en drets d'autor a la UE fins al 2054. Aquesta fotografia és un retrat contextual de l'artista, no una de les obres de la sèrie.
+
+### `oppenheim-dejuni` · Object (Le Déjeuner en fourrure)
+
+- **Estratègia**: Retrat fotogràfic de Meret Oppenheim.
+- **Llicència**: CC BY-SA 4.0
+- **Crèdit**: Sandra Becker, via Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:Meret_Oppenheim.jpg](https://commons.wikimedia.org/wiki/File:Meret_Oppenheim.jpg)
+
+> **Nota pedagògica**: Object (Le Déjeuner en fourrure, 1936) és una tassa, plat i cullera coberts de pell (10 cm), actualment al MoMA. L'obra continua en drets d'autor a la UE fins al 2056 i no hi ha fotografies lliures de l'objecte a Wikimedia. Per a projeccions educatives cal una reproducció sota excepcio LPI Art. 32 (MoMA la publica al seu web amb caption).
+
+### `picasso-demoiselles` · Les demoiselles d'Avignon
+
+- **Estratègia**: Picasso al seu estudi de Montmartre (1908), envoltat de les escultures africanes i ibèriques que van inspirar les màscares de Les Demoiselles.
+- **Llicència**: Public Domain
+- **Crèdit**: Gelett Burgess (1908), via Wikimedia Commons
+- **Font**: [https://commons.wikimedia.org/wiki/File:Pablo_Picasso_in_his_Montmartre_studio,_1908.jpg](https://commons.wikimedia.org/wiki/File:Pablo_Picasso_in_his_Montmartre_studio,_1908.jpg)
+
+> **Nota pedagògica**: L'obra 'Les demoiselles d'Avignon' (Picasso, 1907) continua en drets d'autor a la UE fins al 2044. Aquesta fotografia mostra Picasso a l'estudi amb les fonts directes visuals del quadre — pedagògicament valuosa, però no és l'obra.
 
 ---
 

@@ -15,9 +15,10 @@
       "guerrilla-girls-cartell"
     ],
     "notes": "Mapping of bridge/secondary nodes (canonical: false in seed.json) to Wikimedia Commons images. EU copyright is life+70. PD confirmed as of 2026: Matisse (†1954), Klimt (†1918), Af Klint (†1944). Still in EU copyright: Picasso (†1973 → PD 2044), Brâncuși (†1957 → 2028, Commons hosts a marble photo as 2D reproduction), Magritte (†1967 → 2038, Commons hosts LACMA visitor photo under US FoP), Miró (†1983 → 2054), Dalí (†1989 → 2060), Oppenheim (†1985 → 2056), Moore (†1986 → 2057, but US FoP allows sculpture photos), Hepworth (†1975 → 2046, same), Kusama (alive), Sherman (alive), Guerrilla Girls (active). For the 7 missing cases, use LPI Art. 32 educational exception with museum links.",
-    "local_downloaded": 41,
+    "local_downloaded": 46,
     "local_failed": 8,
-    "local_updated": "2026-04-19"
+    "local_updated": "2026-04-19",
+    "alternatives_integrated": 5
   },
   "images": [
     {
@@ -377,12 +378,16 @@
       "title": "Les demoiselles d'Avignon",
       "author": "Pablo Picasso",
       "wikipedia_page": "https://en.wikipedia.org/wiki/Les_Demoiselles_d%27Avignon",
-      "wikimedia_file_page": null,
-      "image_url": null,
-      "license": "© Sucesión Pablo Picasso, VEGAP - en drets d'autor fins 2043",
-      "credit": "Pablo Picasso (1881-1973); MoMA, Nova York",
+      "wikimedia_file_page": "https://commons.wikimedia.org/wiki/File:Pablo_Picasso_in_his_Montmartre_studio,_1908.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/p/pa/Pablo_Picasso_in_his_Montmartre_studio,_1908.jpg",
+      "license": "Public Domain",
+      "credit": "Gelett Burgess (1908), via Wikimedia Commons",
       "image_missing": true,
-      "notes": "Picasso †1973 → PD UE l'1 de gener de 2044. Imatge en copyright, no disponible a Commons. Ús pedagògic LPI Art. 32 amb reproducció a baixa resolució del MoMA (moma.org/collection/works/79766). Alternativa: estudis preparatoris de Picasso que també són en copyright."
+      "notes": "Picasso †1973 → PD UE l'1 de gener de 2044. Imatge en copyright, no disponible a Commons. Ús pedagògic LPI Art. 32 amb reproducció a baixa resolució del MoMA (moma.org/collection/works/79766). Alternativa: estudis preparatoris de Picasso que també són en copyright.",
+      "local_url": "img/picasso-demoiselles.jpg",
+      "local_size": 385745,
+      "image_strategy": "Picasso al seu estudi de Montmartre (1908), envoltat de les escultures africanes i ibèriques que van inspirar les màscares de Les Demoiselles.",
+      "image_caveat": "L'obra 'Les demoiselles d'Avignon' (Picasso, 1907) continua en drets d'autor a la UE fins al 2044. Aquesta fotografia mostra Picasso a l'estudi amb les fonts directes visuals del quadre — pedagògicament valuosa, però no és l'obra."
     },
     {
       "node_id": "mascara-fang",
@@ -461,12 +466,16 @@
       "title": "Constel·lacions (sèrie)",
       "author": "Joan Miró",
       "wikipedia_page": "https://en.wikipedia.org/wiki/Constellations_(Mir%C3%B3)",
-      "wikimedia_file_page": null,
-      "image_url": null,
-      "license": "© Successió Miró / ADAGP, Paris / VEGAP, Madrid - en drets d'autor fins 2053",
-      "credit": "Joan Miró (1893-1983)",
+      "wikimedia_file_page": "https://commons.wikimedia.org/wiki/File:Portrait_of_Joan_Miro,_Barcelona_1935_June_13.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/p/po/Portrait_of_Joan_Miro,_Barcelona_1935_June_13.jpg",
+      "license": "Public Domain (Library of Congress)",
+      "credit": "Carl Van Vechten (1935), via Wikimedia Commons",
       "image_missing": true,
-      "notes": "Miró †1983 → PD UE 1 de gener de 2054. Cap imatge a Commons. Ús pedagògic LPI Art. 32 amb baixa resolució. Alternativa contextual: fotos del taller de Miró a Mallorca (Fundació Pilar i Joan Miró)."
+      "notes": "Miró †1983 → PD UE 1 de gener de 2054. Cap imatge a Commons. Ús pedagògic LPI Art. 32 amb baixa resolució. Alternativa contextual: fotos del taller de Miró a Mallorca (Fundació Pilar i Joan Miró).",
+      "local_url": "img/miro-constellacions.jpg",
+      "local_size": 457900,
+      "image_strategy": "Retrat fotogràfic de Joan Miró (Barcelona, 1935), quatre anys abans de començar les Constel·lacions.",
+      "image_caveat": "Les Constel·lacions de Miró (1939-1941) continuen en drets d'autor a la UE fins al 2054. Aquesta fotografia és un retrat contextual de l'artista, no una de les obres de la sèrie."
     },
     {
       "node_id": "magritte-pipa",
@@ -487,12 +496,16 @@
       "title": "Object (Le Déjeuner en fourrure)",
       "author": "Meret Oppenheim",
       "wikipedia_page": "https://en.wikipedia.org/wiki/Object_(Meret_Oppenheim)",
-      "wikimedia_file_page": null,
-      "image_url": null,
-      "license": "© Meret Oppenheim estate / VEGAP - en drets d'autor fins 2055",
-      "credit": "Meret Oppenheim (1913-1985); MoMA, Nova York",
+      "wikimedia_file_page": "https://commons.wikimedia.org/wiki/File:Meret_Oppenheim.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/m/me/Meret_Oppenheim.jpg",
+      "license": "CC BY-SA 4.0",
+      "credit": "Sandra Becker, via Wikimedia Commons",
       "image_missing": true,
-      "notes": "Oppenheim †1985 → PD UE 1 de gener de 2056. Cap imatge a Commons. Ús pedagògic LPI Art. 32 amb enllaç a MoMA (moma.org/collection/works/80997)."
+      "notes": "Oppenheim †1985 → PD UE 1 de gener de 2056. Cap imatge a Commons. Ús pedagògic LPI Art. 32 amb enllaç a MoMA (moma.org/collection/works/80997).",
+      "local_url": "img/oppenheim-dejuni.jpg",
+      "local_size": 519659,
+      "image_strategy": "Retrat fotogràfic de Meret Oppenheim.",
+      "image_caveat": "Object (Le Déjeuner en fourrure, 1936) és una tassa, plat i cullera coberts de pell (10 cm), actualment al MoMA. L'obra continua en drets d'autor a la UE fins al 2056 i no hi ha fotografies lliures de l'objecte a Wikimedia. Per a projeccions educatives cal una reproducció sota excepcio LPI Art. 32 (MoMA la publica al seu web amb caption)."
     },
     {
       "node_id": "huguet-consagracio",
@@ -639,24 +652,32 @@
       "title": "Infinity Mirrored Room (vista d'instal·lació)",
       "author": "Yayoi Kusama",
       "wikipedia_page": "https://en.wikipedia.org/wiki/Yayoi_Kusama",
-      "wikimedia_file_page": null,
-      "image_url": null,
-      "license": "© Yayoi Kusama - en drets d'autor",
-      "credit": "Yayoi Kusama (n. 1929)",
+      "wikimedia_file_page": "https://commons.wikimedia.org/wiki/File:Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/y/ya/Yayoi_Kusama_wax_model_at_Louis_Vitton.jpg",
+      "license": "CC BY 2.0",
+      "credit": "Garry Knight (Flickr, 2012), via Wikimedia Commons",
       "image_missing": true,
-      "notes": "Kusama viva, obra en copyright. Cap imatge lliure a Commons de les Infinity Rooms. Les fotografies d'instal·lació tampoc resolen el problema (obra derivativa d'una obra protegida). Ús pedagògic via LPI Art. 32 amb enllaç a material promocional dels museus (Tate, Hirshhorn). Alternativa contextual: retrat de Kusama si en trobem de lliures."
+      "notes": "Kusama viva, obra en copyright. Cap imatge lliure a Commons de les Infinity Rooms. Les fotografies d'instal·lació tampoc resolen el problema (obra derivativa d'una obra protegida). Ús pedagògic via LPI Art. 32 amb enllaç a material promocional dels museus (Tate, Hirshhorn). Alternativa contextual: retrat de Kusama si en trobem de lliures.",
+      "local_url": "img/kusama-infinity.jpg",
+      "local_size": 690076,
+      "image_strategy": "Model de cera de Kusama a l'aparador de Louis Vuitton (Londres, 2012), imatge icònica amb els seus punts.",
+      "image_caveat": "Les Infinity Mirrored Rooms de Kusama (sèrie iniciada el 1965) continuen en drets d'autor (Kusama, viva). Aquesta imatge del model de cera amb la seva estètica de punts és contextual — no és cap de les instal·lacions pròpiament dites."
     },
     {
       "node_id": "guerrilla-girls-cartell",
       "title": "Do Women Have To Be Naked To Get Into the Met. Museum?",
       "author": "Guerrilla Girls",
       "wikipedia_page": "https://en.wikipedia.org/wiki/Guerrilla_Girls",
-      "wikimedia_file_page": null,
-      "image_url": null,
-      "license": "© Guerrilla Girls - en drets d'autor",
-      "credit": "Guerrilla Girls (col·lectiu, actiu des de 1985)",
+      "wikimedia_file_page": "https://commons.wikimedia.org/wiki/File:Guerrilla_girls_MOMA.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/g/gu/Guerrilla_girls_MOMA.jpg",
+      "license": "CC0 1.0 (Domini Públic)",
+      "credit": "Flapane (MoMA, 2010), via Wikimedia Commons",
       "image_missing": true,
-      "notes": "Col·lectiu encara actiu; cartell en copyright. No hi ha imatge lliure a Commons. El cartell reapropia La Grande Odalisque d'Ingres (que SÍ és PD), però la composició pròpia del col·lectiu no ho és. Ús pedagògic LPI Art. 32 amb enllaç al Met (metmuseum.org/art/collection/search/849438), Tate, Whitney. Alternativa contextual: La Grande Odalisque d'Ingres (PD) com a element iconogràfic original."
+      "notes": "Col·lectiu encara actiu; cartell en copyright. No hi ha imatge lliure a Commons. El cartell reapropia La Grande Odalisque d'Ingres (que SÍ és PD), però la composició pròpia del col·lectiu no ho és. Ús pedagògic LPI Art. 32 amb enllaç al Met (metmuseum.org/art/collection/search/849438), Tate, Whitney. Alternativa contextual: La Grande Odalisque d'Ingres (PD) com a element iconogràfic original.",
+      "local_url": "img/guerrilla-girls-cartell.jpg",
+      "local_size": 279220,
+      "image_strategy": "Fotografia del cartell de les Guerrilla Girls instal·lat al MoMA el 2010.",
+      "image_caveat": "El cartell de 1989 continua en drets d'autor (col·lectiu actiu), però aquesta fotografia del cartell exposat al MoMA és CC0 (domini públic) i mostra clarament el missatge original."
     }
   ]
 }
