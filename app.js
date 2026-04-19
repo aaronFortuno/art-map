@@ -324,24 +324,52 @@
     cy.elements().removeClass('ghosted highlighted');
   }
 
-  // Hover: transient preview (no detail panel change)
+  // Hover: transient preview (no detail panel change).
+  // Debounced (~40 ms on enter, ~60 ms on leave) so that rapid mouse moves
+  // across many nodes don't thrash Cytoscape's style engine. Without this,
+  // each in-flight transition gets cut short and the graph looks jumpy.
+  let hoverTimer = null;
+  let lastHoveredId = null;
+
+  function scheduleHover(fn, delay) {
+    if (hoverTimer) clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(fn, delay);
+  }
+
   cy.on('mouseover', 'node', evt => {
     if (pinned || searchActive) return;
-    applyFocus(evt.target.closedNeighborhood());
+    const id = evt.target.id();
+    lastHoveredId = id;
+    scheduleHover(() => {
+      if (lastHoveredId !== id) return;
+      const node = cy.getElementById(id);
+      if (!node.empty()) applyFocus(node.closedNeighborhood());
+    }, 40);
   });
   cy.on('mouseout', 'node', () => {
     if (pinned || searchActive) return;
-    clearFocus();
+    lastHoveredId = null;
+    scheduleHover(() => {
+      if (lastHoveredId === null) clearFocus();
+    }, 60);
   });
 
   cy.on('mouseover', 'edge', evt => {
     if (pinned || searchActive) return;
-    const edge = evt.target;
-    applyFocus(edge.union(edge.connectedNodes()));
+    const id = 'edge:' + evt.target.id();
+    lastHoveredId = id;
+    scheduleHover(() => {
+      if (lastHoveredId !== id) return;
+      const edge = cy.getElementById(evt.target.id());
+      if (!edge.empty()) applyFocus(edge.union(edge.connectedNodes()));
+    }, 40);
   });
   cy.on('mouseout', 'edge', () => {
     if (pinned || searchActive) return;
-    clearFocus();
+    lastHoveredId = null;
+    scheduleHover(() => {
+      if (lastHoveredId === null) clearFocus();
+    }, 60);
   });
 
   // Click: pin focus + populate detail panel + reflect state in URL
@@ -354,6 +382,7 @@
     setHashFor(node.id());
     openDetailIfMobile();
     closeControlsIfMobile();
+    centerOnNode(node);
   });
 
   cy.on('tap', 'edge', evt => {
@@ -452,8 +481,38 @@
     pinnedNodeId = id;
     applyFocus(node.closedNeighborhood());
     renderNodeDetail(nodeById[id]);
+    openDetailIfMobile();
+    centerOnNode(node);
+  }
+
+  // Pan so that `node` sits at the centre of the visible graph area. On mobile,
+  // the bottom sheet covers ~70% of the screen — we shift the target up so the
+  // active node ends up in the top ~18% of the viewport, still visible above
+  // the sheet.
+  function centerOnNode(node) {
+    if (!node || node.empty()) return;
+    const nPos = node.position();
+    const pan = cy.pan();
+    const zoom = cy.zoom();
+    const W = cy.width();
+    const H = cy.height();
+
+    const currentScreenX = nPos.x * zoom + pan.x;
+    const currentScreenY = nPos.y * zoom + pan.y;
+
+    const targetX = W / 2;
+    const targetY = isMobile() ? H * 0.18 : H / 2;
+
     try {
-      cy.animate({ center: { eles: node } }, { duration: 400, easing: 'ease-in-out' });
+      cy.animate({
+        pan: {
+          x: pan.x + (targetX - currentScreenX),
+          y: pan.y + (targetY - currentScreenY)
+        }
+      }, {
+        duration: 400,
+        easing: 'ease-in-out'
+      });
     } catch {}
   }
   window.addEventListener('hashchange', openNodeByHash);

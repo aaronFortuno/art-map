@@ -4,9 +4,13 @@
 
 ### Funcionalitats
 
-- [ ] **Interpolació de transicions in-flight**: quan el ratolí travessa diversos nodes ràpidament, cada canvi de classe `.highlighted`/`.ghosted` talla la transició anterior i salta instantàniament al nou estat en comptes d'interpolar des de l'estat actual. En un desplaçament llarg (8-10 nodes tocats) se n'acumulen 8-10 salts abruptes — visualment molest. A investigar: opcions de Cytoscape per interpolar canvis mid-animation, debounce del focus (esperar ~50 ms abans d'aplicar), o moure la capa de ghost/highlight a un overlay fora de Cytoscape amb CSS transitions estàndard.
+- [x] ~~**Interpolació de transicions in-flight**~~ Mitigat 2026-04-19 amb *debounce* del hover: `mouseover` i `mouseout` esperen 40 ms (entrada) i 60 ms (sortida) abans d'aplicar/esborrar el focus. Els desplaçaments llargs ja no acumulen 8-10 salts; només aplica focus quan el cursor s'atura sobre un node. No és una interpolació real (Cytoscape segueix "saltant" en canvis de classe mid-animation) però elimina el cas patològic. Si es torna a detectar el salt en patrons d'ús específic, caldrà migrar la capa de ghost/highlight a un overlay CSS fora de Cytoscape.
 
-- [ ] **Durada de transicions a 400-500 ms**: un cop resolt el problema anterior, augmentar la `transition-duration` per fer el moviment més agradable (ara són 200 ms perquè el salt instantani als 200 ms és menys ofensiu que si fossin 500 ms).
+- [ ] **Durada de transicions a 400-500 ms**: pendent de verificar si amb el *debounce* anterior es pot pujar ja sense que es notin els talls. Provar i ajustar.
+
+- [x] ~~**Favicon + metadades d'app**~~ Fet 2026-04-19: `favicon.svg` amb el glifo de xarxa (dos nodes canònics + un secundari units per arestes) a l'arrel. `theme-color`, descripció, Open Graph i Twitter Card al `<head>`. Pendent: versions PNG 192×192 i 512×512 i un webmanifest si es vol "installable" com a PWA.
+
+- [x] ~~**Centrar la vista al node seleccionat**~~ Fet 2026-04-19: `centerOnNode()` s'invoca tant en clic com en deep link. Calcula pan mitjançant `cy.pan()/zoom()` per deixar el node al centre del viewport (desktop) o al 18% superior (mòbil, amb el bottom sheet ocupant el 70% inferior). Animació de 400 ms ease-in-out.
 
 - [ ] **Hotspots sobre les imatges**. Marcar punts d'interès (coordenades H-V relatives a la imatge) amb text associat per guiar l'atenció dels alumnes a detalls concrets (p. ex., la mà pudorosa de la Venus de Cnido, el mirall dels Arnolfini, la bombeta del Guernica, la criada negra de l'Olímpia).
     - Requerirà un mode "admin" a la interfície per dibuixar i editar els punts in situ
