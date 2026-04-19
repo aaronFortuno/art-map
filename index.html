@@ -55,6 +55,26 @@
         <div id="connection-filters"></div>
       </section>
       <section>
+        <details class="filter-group">
+          <summary class="filter-summary">Períodes <span class="filter-count" id="period-count"></span></summary>
+          <div class="filter-actions">
+            <button class="mini-btn" id="periods-all" type="button">Tots</button>
+            <button class="mini-btn" id="periods-none" type="button">Cap</button>
+          </div>
+          <div id="period-filters" class="filter-list"></div>
+        </details>
+      </section>
+      <section>
+        <details class="filter-group">
+          <summary class="filter-summary">Temes <span class="filter-count" id="theme-count"></span></summary>
+          <div class="filter-actions">
+            <button class="mini-btn" id="themes-all" type="button">Tots</button>
+            <button class="mini-btn" id="themes-none" type="button">Cap</button>
+          </div>
+          <div id="theme-filters" class="filter-list"></div>
+        </details>
+      </section>
+      <section>
         <h3>Nodes</h3>
         <label><input type="checkbox" id="toggle-secondary" checked> Mostra obres secundàries</label>
       </section>
