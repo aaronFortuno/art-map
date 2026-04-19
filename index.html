@@ -30,6 +30,7 @@
     <h1>Art Map</h1>
     <span class="subtitle">PAU 2026 · Història de l'Art</span>
     <span class="stats" id="stats"></span>
+    <button id="presentation-toggle" class="pres-toggle" title="Prepara una seqüència d'obres per a una presentació guiada">Mode presentació</button>
   </header>
   <div id="panel-backdrop" class="panel-backdrop"></div>
 
@@ -79,6 +80,41 @@
     <aside class="panel detail" id="detail">
       <p class="placeholder">Passa el ratolí per sobre un node per previsualitzar el seu veïnat. Fes clic per fixar-lo i veure'n la fitxa.</p>
     </aside>
+  </div>
+
+  <!-- Presentation prep mode: strip at bottom -->
+  <div id="presentation-strip" class="pres-hidden" aria-label="Diapositives de la presentació">
+    <div class="strip-header">
+      <div class="strip-label">
+        <strong>Seqüència de presentació</strong>
+        <span class="strip-count-wrap">(<span id="strip-count">0</span> obres)</span>
+      </div>
+      <div class="strip-actions">
+        <button id="import-session" class="pres-btn" title="Carrega una seqüència desada en un fitxer JSON">Importar</button>
+        <button id="export-session" class="pres-btn" title="Desa la seqüència actual en un fitxer JSON">Exportar</button>
+        <button id="clear-session" class="pres-btn pres-btn-danger" title="Buida la seqüència">Buidar</button>
+        <button id="start-presentation" class="pres-btn pres-btn-primary" title="Inicia la presentació guiada">▶ Començar</button>
+        <button id="exit-prep" class="pres-btn" title="Torna al mode exploració">Tancar</button>
+      </div>
+    </div>
+    <div class="strip-slides" id="strip-slides"></div>
+  </div>
+
+  <!-- Presentation play mode: full-screen dark viewer with nav -->
+  <div id="presentation-view" class="pres-hidden" aria-label="Presentació en curs">
+    <button id="pres-exit" class="pres-exit-btn" aria-label="Sortir de la presentació" title="Tornar al mode preparació (Esc)">×</button>
+    <div class="pres-content">
+      <div class="pres-image-wrap">
+        <img id="pres-img" alt="">
+        <div class="pres-caption" id="pres-caption"></div>
+      </div>
+      <aside class="pres-details" id="pres-details"></aside>
+    </div>
+    <div class="pres-nav">
+      <button id="pres-prev" class="pres-nav-btn" title="Anterior (←)">‹</button>
+      <span class="pres-counter" id="pres-counter">1 / 1</span>
+      <button id="pres-next" class="pres-nav-btn" title="Següent (→ o Espai)">›</button>
+    </div>
   </div>
 
   <div id="print-container" aria-hidden="true"></div>

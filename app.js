@@ -1238,6 +1238,7 @@
       </div>
       <div class="fitxa-toolbar">
         <button class="node-action btn-print-single" data-node-id="${escapeHtml(n.id)}" title="Genera un PDF només amb aquesta fitxa">📄 Exportar fitxa (PDF)</button>
+        <button class="node-action btn-add-to-pres pres-prep-only" data-node-id="${escapeHtml(n.id)}" title="Afegir aquesta obra a la seqüència de presentació">+ Afegir a la presentació</button>
       </div>
       ${themes.length
         ? `<div class="themes">${themes.map(t => `<span class="theme-tag">${escapeHtml(t)}</span>`).join('')}</div>`
@@ -1444,4 +1445,303 @@
       btn.addEventListener('click', () => selectNodeById(btn.dataset.nodeId));
     });
   }
+
+  // =======================================================================
+  // PRESENTATION MODE — teacher prepares a slide sequence and plays it back
+  //
+  // Three modes:
+  //   off   = normal interactive exploration (default)
+  //   prep  = regular map + a "Diapositives" strip at the bottom.
+  //           Each node's detail panel shows a "+ Afegir" button; the strip
+  //           lists all added nodes, lets you remove/reorder (drag), and
+  //           import/export the sequence as a JSON file.
+  //   play  = full-screen dark viewer showing one slide at a time. Navigate
+  //           with ← / → / Space / click arrows; Esc returns to prep.
+  //
+  // The sequence is persisted to localStorage so it survives reloads.
+  // =======================================================================
+
+  const PRES_KEY = 'artmap.presentation.v1';
+  let presentationMode = 'off';
+  let presSequence = loadPresSequence();
+  let presCurrentIdx = 0;
+
+  function loadPresSequence() {
+    try {
+      const raw = localStorage.getItem(PRES_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr.filter(id => nodeById[id]) : [];
+    } catch { return []; }
+  }
+
+  function persistPresSequence() {
+    try { localStorage.setItem(PRES_KEY, JSON.stringify(presSequence)); } catch {}
+  }
+
+  function setPresentationMode(mode) {
+    presentationMode = mode;
+    document.body.classList.toggle('presentation-prep', mode === 'prep');
+    document.body.classList.toggle('presentation-play', mode === 'play');
+    document.getElementById('presentation-strip').classList.toggle('pres-hidden', mode !== 'prep');
+    document.getElementById('presentation-view').classList.toggle('pres-hidden', mode !== 'play');
+    document.getElementById('presentation-toggle').textContent =
+      mode === 'off' ? 'Mode presentació' : 'Tornar al mapa';
+    // Give Cytoscape a moment to adjust its container size when we grow/shrink it
+    if (mode !== 'play') setTimeout(() => cy.resize(), 50);
+  }
+
+  function togglePresentationMode() {
+    if (presentationMode === 'off') {
+      setPresentationMode('prep');
+      renderSlides();
+    } else {
+      setPresentationMode('off');
+    }
+  }
+
+  function addToSequence(nodeId) {
+    if (!nodeId || !nodeById[nodeId]) return;
+    if (presSequence.includes(nodeId)) {
+      // Visual nudge for a duplicate add: briefly flash the existing slide
+      flashSlide(nodeId);
+      return;
+    }
+    presSequence.push(nodeId);
+    persistPresSequence();
+    renderSlides();
+    flashSlide(nodeId);
+  }
+
+  function removeFromSequence(nodeId) {
+    presSequence = presSequence.filter(id => id !== nodeId);
+    persistPresSequence();
+    renderSlides();
+  }
+
+  function clearSequence() {
+    if (presSequence.length === 0) return;
+    if (!confirm(`Vols buidar la seqüència de ${presSequence.length} obres?`)) return;
+    presSequence = [];
+    persistPresSequence();
+    renderSlides();
+  }
+
+  function flashSlide(nodeId) {
+    const el = document.querySelector(`#strip-slides .slide[data-node-id="${CSS.escape(nodeId)}"]`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    el.style.transition = 'background 0.2s ease';
+    el.style.background = '#b8860b';
+    setTimeout(() => { el.style.background = ''; }, 300);
+  }
+
+  function renderSlides() {
+    const container = document.getElementById('strip-slides');
+    document.getElementById('strip-count').textContent = presSequence.length;
+    document.getElementById('start-presentation').disabled = presSequence.length === 0;
+    document.getElementById('export-session').disabled = presSequence.length === 0;
+    document.getElementById('clear-session').disabled = presSequence.length === 0;
+
+    if (presSequence.length === 0) {
+      container.innerHTML = '<div class="strip-empty">Obre una obra al mapa i prem el botó <strong>+ Afegir a la presentació</strong> per començar.</div>';
+      return;
+    }
+
+    container.innerHTML = presSequence.map((id, i) => {
+      const n = nodeById[id];
+      if (!n) return '';
+      const thumb = n.imageThumb || '';
+      const imgHtml = thumb
+        ? `<img src="${escapeHtml(thumb)}" alt="" loading="lazy">`
+        : '<div class="slide-noimg"></div>';
+      return `
+        <div class="slide" draggable="true" data-node-id="${escapeHtml(id)}" data-idx="${i}" title="${escapeHtml(n.title)}">
+          <div class="slide-num">${i + 1}</div>
+          <button class="slide-remove" data-remove-id="${escapeHtml(id)}" aria-label="Treure de la seqüència">×</button>
+          <div class="slide-thumb">${imgHtml}</div>
+          <div class="slide-title">${escapeHtml(n.title)}</div>
+        </div>
+      `;
+    }).join('');
+
+    // Wire up per-slide click (jumps to the node on the map)
+    container.querySelectorAll('.slide').forEach(slideEl => {
+      slideEl.addEventListener('click', evt => {
+        if (evt.target.closest('.slide-remove')) return;
+        selectNodeById(slideEl.dataset.nodeId);
+      });
+    });
+    container.querySelectorAll('.slide-remove').forEach(btn => {
+      btn.addEventListener('click', evt => {
+        evt.stopPropagation();
+        removeFromSequence(btn.dataset.removeId);
+      });
+    });
+
+    // Drag-and-drop reordering
+    let dragIdx = null;
+    container.querySelectorAll('.slide').forEach(slideEl => {
+      slideEl.addEventListener('dragstart', evt => {
+        dragIdx = +slideEl.dataset.idx;
+        slideEl.classList.add('slide-dragging');
+        evt.dataTransfer.effectAllowed = 'move';
+      });
+      slideEl.addEventListener('dragend', () => {
+        slideEl.classList.remove('slide-dragging');
+      });
+      slideEl.addEventListener('dragover', evt => {
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'move';
+      });
+      slideEl.addEventListener('drop', evt => {
+        evt.preventDefault();
+        if (dragIdx === null) return;
+        const targetIdx = +slideEl.dataset.idx;
+        if (targetIdx === dragIdx) return;
+        const [moved] = presSequence.splice(dragIdx, 1);
+        presSequence.splice(targetIdx, 0, moved);
+        persistPresSequence();
+        renderSlides();
+        dragIdx = null;
+      });
+    });
+  }
+
+  // ----- Play mode -----
+  function startPresentation() {
+    if (presSequence.length === 0) return;
+    presCurrentIdx = 0;
+    setPresentationMode('play');
+    showSlide(0);
+  }
+
+  function showSlide(idx) {
+    const id = presSequence[idx];
+    const n = nodeById[id];
+    if (!n) return;
+
+    const imgEl = document.getElementById('pres-img');
+    const captionEl = document.getElementById('pres-caption');
+    const detailsEl = document.getElementById('pres-details');
+    const counterEl = document.getElementById('pres-counter');
+
+    counterEl.textContent = `${idx + 1} / ${presSequence.length}`;
+
+    if (n.imageLarge) {
+      imgEl.src = n.imageLarge;
+      imgEl.alt = n.title;
+      imgEl.style.display = '';
+    } else {
+      imgEl.style.display = 'none';
+    }
+
+    captionEl.innerHTML = [
+      escapeHtml(n.imageStrategy || ''),
+      escapeHtml(n.imageCredit || ''),
+      n.imageLicense ? escapeHtml(n.imageLicense) : '',
+      n.imageWikiPage ? `<a href="${escapeHtml(n.imageWikiPage)}" target="_blank" rel="noopener">Commons</a>` : ''
+    ].filter(Boolean).join(' · ');
+
+    detailsEl.innerHTML = buildDetailHtml(n, /*includeImage*/false);
+
+    document.getElementById('pres-prev').disabled = (idx === 0);
+    document.getElementById('pres-next').disabled = (idx === presSequence.length - 1);
+  }
+
+  function navSlide(delta) {
+    const next = presCurrentIdx + delta;
+    if (next < 0 || next >= presSequence.length) return;
+    presCurrentIdx = next;
+    showSlide(presCurrentIdx);
+  }
+
+  function exitPlay() {
+    setPresentationMode('prep');
+  }
+
+  // ----- Import / Export -----
+  function exportSession() {
+    if (presSequence.length === 0) return;
+    const data = {
+      version: '1.0',
+      app: 'Art Map',
+      created: new Date().toISOString(),
+      description: `Seqüència de presentació amb ${presSequence.length} obres`,
+      sequence: presSequence.map(id => {
+        const n = nodeById[id] || {};
+        return { id, title: n.title || null, author: n.author || null };
+      })
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `artmap-session-${new Date().toISOString().slice(0, 19).replace(/:/g, '-')}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function importSession() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.addEventListener('change', async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      try {
+        const data = JSON.parse(await file.text());
+        if (!Array.isArray(data.sequence)) throw new Error('JSON sense camp sequence');
+        const ids = data.sequence
+          .map(entry => typeof entry === 'string' ? entry : entry?.id)
+          .filter(id => id && nodeById[id]);
+        if (ids.length === 0) {
+          alert('El fitxer no conté cap obra que coincideixi amb els ids actuals del mapa.');
+          return;
+        }
+        const dropped = data.sequence.length - ids.length;
+        presSequence = ids;
+        presCurrentIdx = 0;
+        persistPresSequence();
+        renderSlides();
+        const msg = dropped > 0
+          ? `Carregades ${ids.length} obres (${dropped} entrades ignorades per ids desconeguts).`
+          : `Carregades ${ids.length} obres.`;
+        alert(msg);
+      } catch (e) {
+        alert(`Error llegint el fitxer: ${e.message}`);
+      }
+    });
+    input.click();
+  }
+
+  // ----- Wire up buttons -----
+  document.getElementById('presentation-toggle').addEventListener('click', togglePresentationMode);
+  document.getElementById('exit-prep').addEventListener('click', () => setPresentationMode('off'));
+  document.getElementById('start-presentation').addEventListener('click', startPresentation);
+  document.getElementById('clear-session').addEventListener('click', clearSequence);
+  document.getElementById('export-session').addEventListener('click', exportSession);
+  document.getElementById('import-session').addEventListener('click', importSession);
+  document.getElementById('pres-exit').addEventListener('click', exitPlay);
+  document.getElementById('pres-prev').addEventListener('click', () => navSlide(-1));
+  document.getElementById('pres-next').addEventListener('click', () => navSlide(1));
+
+  // "+ Afegir" button inside renderNodeDetail: event delegation covers dynamic buttons
+  document.addEventListener('click', evt => {
+    const btn = evt.target.closest('.btn-add-to-pres');
+    if (btn && btn.dataset.nodeId) {
+      addToSequence(btn.dataset.nodeId);
+    }
+  });
+
+  // Play-mode keyboard navigation
+  document.addEventListener('keydown', evt => {
+    if (presentationMode !== 'play') return;
+    if (evt.key === 'ArrowLeft') { evt.preventDefault(); navSlide(-1); }
+    else if (evt.key === 'ArrowRight' || evt.key === ' ') { evt.preventDefault(); navSlide(1); }
+    else if (evt.key === 'Escape') { evt.preventDefault(); exitPlay(); }
+    else if (evt.key === 'Home') { evt.preventDefault(); presCurrentIdx = 0; showSlide(0); }
+    else if (evt.key === 'End')  { evt.preventDefault(); presCurrentIdx = presSequence.length - 1; showSlide(presCurrentIdx); }
+  });
 })();

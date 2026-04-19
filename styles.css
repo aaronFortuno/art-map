@@ -505,6 +505,352 @@ input[type="search"]:focus {
   transition: opacity 0.18s ease-out;
 }
 
+/* =====================================================================
+   PRESENTATION MODE
+   ===================================================================== */
+
+.pres-hidden { display: none !important; }
+
+/* Buttons used across strip header and play nav */
+.pres-btn {
+  font-family: inherit;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.8rem;
+  background: #2a2620;
+  color: #e5e0d5;
+  border: 1px solid #4a4639;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.pres-btn:hover { background: #3a342d; border-color: #b8860b; }
+.pres-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.pres-btn-primary {
+  background: #b8860b;
+  border-color: #b8860b;
+  color: #1c1917;
+  font-weight: bold;
+}
+.pres-btn-primary:hover { background: #d4a743; border-color: #d4a743; }
+
+.pres-btn-danger { color: #e6a09e; }
+.pres-btn-danger:hover { background: #5a2e2b; border-color: #b8535a; color: #f7e5e2; }
+
+/* Header toggle */
+.pres-toggle {
+  margin-left: 0.6rem;
+  background: transparent;
+  color: #f7f5f0;
+  border: 1px solid #6b6458;
+  font-family: inherit;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.pres-toggle:hover { background: rgba(255,255,255,0.08); border-color: #b8860b; }
+
+body.presentation-prep .pres-toggle {
+  background: #b8860b;
+  color: #1c1917;
+  border-color: #b8860b;
+}
+
+/* Utility: elements only visible in prep mode */
+.pres-prep-only { display: none; }
+body.presentation-prep .pres-prep-only { display: inline-block; }
+
+/* Strip at bottom of viewport */
+#presentation-strip {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: #1c1917;
+  border-top: 3px solid #b8860b;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  max-height: 220px;
+  color: #e5e0d5;
+}
+
+.strip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid #3a342d;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.strip-label { font-size: 0.9rem; font-family: Georgia, serif; }
+.strip-count-wrap { color: #a39d92; font-size: 0.8rem; margin-left: 0.3rem; }
+.strip-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+.strip-slides {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.6rem 0.9rem;
+  min-height: 130px;
+}
+
+.strip-empty {
+  color: #a39d92;
+  font-style: italic;
+  font-size: 0.85rem;
+  padding: 2rem 0 0 0.4rem;
+  align-self: center;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 110px;
+  background: #2a2620;
+  border: 1px solid #3a342d;
+  position: relative;
+  cursor: grab;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide:hover { border-color: #b8860b; }
+.slide:active { cursor: grabbing; }
+.slide.slide-dragging { opacity: 0.4; }
+
+.slide-num {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0.7);
+  color: #d4a743;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.72rem;
+  font-weight: bold;
+  z-index: 2;
+  font-family: sans-serif;
+}
+
+.slide-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0.7);
+  color: #e6a09e;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  z-index: 2;
+  padding: 0;
+}
+.slide-remove:hover { background: #5a2e2b; color: white; }
+
+.slide-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #1c1917;
+}
+.slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.slide-noimg { width: 100%; height: 100%; background: #3a342d; }
+
+.slide-title {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.35rem;
+  color: #e5e0d5;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-family: Georgia, serif;
+}
+
+/* Play-mode full-screen view */
+#presentation-view {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #0a0907;
+  color: #f0ece1;
+  display: flex;
+  flex-direction: column;
+  animation: pres-fade-in 0.28s ease-out;
+}
+
+@keyframes pres-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pres-exit-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: rgba(255,255,255,0.08);
+  color: #f0ece1;
+  border: 1px solid #4a4639;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.15s ease;
+}
+.pres-exit-btn:hover { background: rgba(255,255,255,0.18); border-color: #b8860b; }
+
+.pres-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr min(480px, 38%);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.pres-image-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-height: 0;
+}
+
+.pres-image-wrap img {
+  max-width: 100%;
+  max-height: calc(100vh - 10rem);
+  object-fit: contain;
+  box-shadow: 0 6px 40px rgba(0, 0, 0, 0.7);
+  animation: pres-img-in 0.32s ease-out;
+}
+
+@keyframes pres-img-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.pres-caption {
+  margin-top: 0.8rem;
+  font-size: 0.78rem;
+  color: #a39d92;
+  font-family: sans-serif;
+  text-align: center;
+  max-width: 80%;
+}
+.pres-caption a { color: #d4a743; text-decoration: none; }
+.pres-caption a:hover { text-decoration: underline; }
+
+.pres-details {
+  padding: 2rem 1.8rem;
+  overflow-y: auto;
+  background: #13110f;
+  border-left: 1px solid #2a2620;
+  animation: pres-slide-in 0.32s ease-out;
+}
+
+@keyframes pres-slide-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Override detail-panel colours inside dark presentation view */
+.pres-details h2 { color: #f0ece1; font-size: 1.4rem; margin: 0 0 0.3rem 0; }
+.pres-details .author { color: #c9c1b0; }
+.pres-details .meta { color: #c9c1b0; border-bottom-color: #3a342d; }
+.pres-details .meta strong { color: #e5e0d5; }
+.pres-details h4 { color: #a39d92; }
+.pres-details p, .pres-details li { color: #e5e0d5; }
+.pres-details .theme-tag { background: #2a2620; color: #c9c1b0; }
+.pres-details .canonical-badge { background: #d4a743; color: #1c1917; }
+.pres-details .edge-note { background: #2a2620; color: #e5e0d5; }
+.pres-details .fitxa-toolbar { display: none; }  /* no add/export buttons during play */
+.pres-details .image-caveat { background: #2a2620; color: #c9c1b0; border-color: #3a342d; }
+.pres-details .image-strategy { color: #d4a743; }
+
+.pres-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 0.8rem;
+  background: #0a0907;
+  border-top: 1px solid #2a2620;
+}
+
+.pres-nav-btn {
+  width: 3rem;
+  height: 3rem;
+  background: #1c1917;
+  color: #f0ece1;
+  border: 1px solid #4a4639;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: sans-serif;
+}
+
+.pres-nav-btn:hover:not(:disabled) { background: #3a342d; border-color: #b8860b; }
+.pres-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.pres-counter {
+  color: #a39d92;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  min-width: 5rem;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* Responsive for the strip and play view */
+@media (max-width: 900px) {
+  #presentation-strip {
+    max-height: 180px;
+  }
+  .slide { width: 90px; }
+  .slide-thumb { aspect-ratio: 1; }
+  .pres-content { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .pres-details { border-left: none; border-top: 1px solid #2a2620; max-height: 40vh; padding: 1rem 1.2rem; }
+  .pres-image-wrap { padding: 2rem 1rem 0.5rem 1rem; }
+  .pres-image-wrap img { max-height: 45vh; }
+  .pres-exit-btn { top: 0.6rem; right: 0.6rem; }
+}
+
+/* Hide the regular controls/detail panels while actively playing — graph
+   is hidden by the play-mode full-screen overlay anyway, but we also don't
+   want the mobile drawers to animate behind it. */
+body.presentation-play #panel-backdrop,
+body.presentation-play .detail,
+body.presentation-play .controls { display: none !important; }
+
+/* When prep mode is active, shift the main map content up so the strip
+   doesn't cover the bottom of the graph. */
+body.presentation-prep .layout {
+  height: calc(100vh - 52px - 220px);
+}
+
+@media (max-width: 900px) {
+  body.presentation-prep .layout { height: calc(100vh - 52px - 180px); }
+}
+
 /* Print container: hidden on screen; @media print reveals it */
 #print-container { display: none; }
 
