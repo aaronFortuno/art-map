@@ -8,10 +8,6 @@ Estat al 2026-04-19. Les 101 fitxes tenen imatge + anàlisi desenvolupada + conn
 
 - [ ] **Reintentar hover-bloom + separació horitzontal al mode cronologia**. Primer intent revertit (commit `047bde3`) per un conflicte entre `node.animate` i el tick de bombolles que feia invisibles els blooms i posava el node "sticky" al ratolí. L'enfocament alternatiu: animar el *bubble base* amb el propi rAF del tick (interpolació progressiva de `baseX`/`baseY`) enlloc d'usar `node.animate`. Sense cyre-escriptura cruada, sense `animatingNodes` set.
 
-- [ ] **Durada de transicions a 400-500 ms**: actualment a 200 ms perquè els talls in-flight es notaven menys. Amb el *debounce* del hover (40/60 ms) probablement ja es pot pujar. Provar i ajustar.
-
-- [ ] **Navegació per teclat**: Tab entre canòniques, Enter per fixar, fletxes per moure's entre veïns, `/` per focus a la cerca. Important per accessibilitat.
-
 - [ ] **Filtres addicionals**: per període i per tema transversal (ara només per tipus de connexió). Implementar com a secció plegable al panell de controls amb *checkboxes*.
 
 - [ ] **Hover a pastilla de període/tema**: ressaltar al graf els nodes corresponents, com un filtre temporal. Complementari al punt anterior.
@@ -38,11 +34,9 @@ Estat al 2026-04-19. Les 101 fitxes tenen imatge + anàlisi desenvolupada + conn
 
 ## Tècnic / polish
 
-- [ ] **Tipografia del graf a mides diferents**: les etiquetes són actualment 8 px i es veuen bé en portàtil però poc llegibles en projector. Caldria una opció de "mode presentació" (ja llistat) o un slider de mida.
-
-- [ ] **Favicon PNG fallback (192×192, 512×512) + webmanifest**: per tenir-ho *installable* com a PWA des del mòbil amb icona i tema.
-
 - [ ] **Image download resiliency**: la política anti-bot de Wikimedia tira 429s periòdicament. El nostre script té *retry* bàsic. Si tornem a fer passades massives (afegir més nodes), seria bo un retry-amb-backoff més robust al `scripts/download_*.py`.
+
+- [ ] **Slider de mida de font** (o mode adaptatiu segons amplada de viewport): ara les canòniques són 12 px i les secundàries 10 px; es veuen bé a portàtil i passables a projector però un *control* explícit seria útil per classes amb hardware divers.
 
 ## Idees per al futur (no urgent)
 
