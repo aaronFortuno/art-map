@@ -493,6 +493,7 @@
     const id = evt.target.id();
     lastHoveredId = id;
     scheduleHover(() => {
+      if (pinned || searchActive) return;         // state may have changed while we waited
       if (lastHoveredId !== id) return;
       const node = cy.getElementById(id);
       if (!node.empty()) {
@@ -505,6 +506,7 @@
     if (pinned || searchActive) return;
     lastHoveredId = null;
     scheduleHover(() => {
+      if (pinned || searchActive) return;         // don't collapse a click-pinned expansion
       if (lastHoveredId === null) {
         clearFocus();
         collapseExpansion();
@@ -517,6 +519,7 @@
     const id = 'edge:' + evt.target.id();
     lastHoveredId = id;
     scheduleHover(() => {
+      if (pinned || searchActive) return;
       if (lastHoveredId !== id) return;
       const edge = cy.getElementById(evt.target.id());
       if (!edge.empty()) applyFocus(edge.union(edge.connectedNodes()));
@@ -526,6 +529,7 @@
     if (pinned || searchActive) return;
     lastHoveredId = null;
     scheduleHover(() => {
+      if (pinned || searchActive) return;
       if (lastHoveredId === null) clearFocus();
     }, 60);
   });
@@ -739,10 +743,19 @@
     expansionState = null;
   }
 
+  // Cancel any pending hover timer before a tap handler runs — otherwise a
+  // scheduled hover/out callback can fire *after* the tap and overwrite the
+  // click-level state (collapse the just-expanded neighbourhood, demote a
+  // 'click' strength to 'hover', etc.).
+  function cancelHoverTimer() {
+    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+  }
+
   // Click: pin focus + populate detail panel + reflect state in URL
-  cy.on('tap', 'node', evt => selectNode(evt.target));
+  cy.on('tap', 'node', evt => { cancelHoverTimer(); selectNode(evt.target); });
 
   cy.on('tap', 'edge', evt => {
+    cancelHoverTimer();
     const edge = evt.target;
     pinned = true;
     pinnedNodeId = null;  // edge pin doesn't have a node anchor
@@ -760,6 +773,7 @@
 
   cy.on('tap', evt => {
     if (evt.target === cy) {
+      cancelHoverTimer();
       pinned = false;
       pinnedNodeId = null;
       collapseExpansion();
