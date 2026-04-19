@@ -189,11 +189,11 @@
         style: {
           'label': 'data(label)',
           'text-wrap': 'wrap',
-          'text-max-width': 110,
+          'text-max-width': 140,
           'text-valign': 'bottom',
           'text-halign': 'center',
-          'text-margin-y': 5,
-          'font-size': 8,
+          'text-margin-y': 6,
+          'font-size': 10,
           'font-family': 'Georgia, serif',
           'color': '#2a2a2a',
           'background-color': '#c4bdae',
@@ -203,7 +203,7 @@
           'opacity': 0.5,
           'text-opacity': 0,
           'transition-property': 'background-color border-color border-width opacity text-opacity width height background-image-opacity',
-          'transition-duration': '0.2s',
+          'transition-duration': '0.45s',
           'transition-timing-function': 'ease-in-out'
         }
       },
@@ -217,7 +217,7 @@
           'width': 50,
           'height': 50,
           'font-weight': 'bold',
-          'font-size': 9,
+          'font-size': 12,
           'opacity': 1,
           'text-opacity': 1
         }
@@ -270,7 +270,7 @@
           'width': 0.9,
           'opacity': 0.22,
           'transition-property': 'opacity width line-color',
-          'transition-duration': '0.2s',
+          'transition-duration': '0.45s',
           'transition-timing-function': 'ease-in-out'
         }
       },
