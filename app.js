@@ -171,29 +171,24 @@
     initialLayout = buildLayout(false);
   }
 
-  const cy = cytoscape({
-    container: document.getElementById('cy'),
-    elements,
-    layout: initialLayout,
-    minZoom: 0.2,
-    maxZoom: 3,
-    wheelSensitivity: 0.25,
-    pixelRatio: 'auto',         // match devicePixelRatio → no blur on high-DPI / retina
-    textureOnViewport: false,   // don't rasterize during pan/zoom; keeps text crisp when moving
-    motionBlur: false,
-    hideEdgesOnViewport: false,
-    style: [
-      // Base: used by secondary nodes at rest (dim, small, label hidden)
+  // Stylesheet as a function of the current zoom. Border widths, font sizes,
+  // text margins and edge widths are divided by zoom so they keep a constant
+  // *screen* size regardless of how zoomed in/out we are. Node widths and
+  // heights (i.e. the image area) do scale with zoom, so the images grow and
+  // shrink naturally while the UI ornamentation stays readable.
+  function buildStylesheet(zoom) {
+    const inv = 1 / zoom;
+    return [
       {
         selector: 'node',
         style: {
           'label': 'data(label)',
           'text-wrap': 'wrap',
-          'text-max-width': 140,
+          'text-max-width': 140 * inv,
           'text-valign': 'bottom',
           'text-halign': 'center',
-          'text-margin-y': 6,
-          'font-size': 10,
+          'text-margin-y': 6 * inv,
+          'font-size': 10 * inv,
           'font-family': 'Georgia, serif',
           'color': '#2a2a2a',
           'background-color': '#c4bdae',
@@ -207,22 +202,20 @@
           'transition-timing-function': 'ease-in-out'
         }
       },
-      // Canonical without image (5 copyright cases): full weight, black+gold
       {
         selector: 'node.canonical',
         style: {
           'background-color': '#1c1917',
           'border-color': '#d4a743',
-          'border-width': 3,
+          'border-width': 3 * inv,
           'width': 50,
           'height': 50,
           'font-weight': 'bold',
-          'font-size': 12,
+          'font-size': 12 * inv,
           'opacity': 1,
           'text-opacity': 1
         }
       },
-      // Any node with image: common background settings
       {
         selector: 'node[thumbUrl]',
         style: {
@@ -234,31 +227,28 @@
           'background-color': '#1c1917'
         }
       },
-      // Canonical with image: dominant — big, bright gold border
       {
         selector: 'node[thumbUrl].canonical',
         style: {
           'width': 66,
           'height': 66,
-          'border-width': 4,
+          'border-width': 4 * inv,
           'border-color': '#d4a743',
           'opacity': 1,
           'text-opacity': 1
         }
       },
-      // Secondary with image: clearly smaller, thin muted border, translucent
       {
         selector: 'node[thumbUrl].secondary',
         style: {
           'width': 30,
           'height': 30,
-          'border-width': 1,
+          'border-width': 1 * inv,
           'border-color': '#a39d92',
           'opacity': 0.8,
           'text-opacity': 0
         }
       },
-      // Edges at rest: very subtle, no arrowhead — don't fight for attention
       {
         selector: 'edge',
         style: {
@@ -267,14 +257,13 @@
           'target-arrow-color': 'data(color)',
           'target-arrow-shape': 'none',
           'arrow-scale': 1.1,
-          'width': 0.9,
+          'width': 0.9 * inv,
           'opacity': 0.22,
           'transition-property': 'opacity width line-color',
           'transition-duration': '0.45s',
           'transition-timing-function': 'ease-in-out'
         }
       },
-      // Focused (hovered/pinned) node: full weight + grows slightly
       {
         selector: 'node.highlighted',
         style: {
@@ -282,58 +271,52 @@
           'text-opacity': 1
         }
       },
-      // Secondary node highlighted: grows from 20 → 30, gets color
       {
         selector: 'node.highlighted.secondary',
         style: {
           'background-color': '#6b6458',
           'width': 30,
           'height': 30,
-          'border-width': 1.5,
+          'border-width': 1.5 * inv,
           'border-color': '#4a4639'
         }
       },
-      // Canonical (no image) highlighted: grows from 50 → 58, brighter gold
       {
         selector: 'node.highlighted.canonical',
         style: {
           'width': 58,
           'height': 58,
-          'border-width': 4,
+          'border-width': 4 * inv,
           'border-color': '#e6bb58'
         }
       },
-      // Canonical WITH image highlighted: grows from 66 → 80, bold gold border
       {
         selector: 'node.highlighted[thumbUrl].canonical',
         style: {
           'width': 80,
           'height': 80,
-          'border-width': 5,
+          'border-width': 5 * inv,
           'border-color': '#e6bb58'
         }
       },
-      // Secondary WITH image highlighted: grows from 30 → 46, darker border
       {
         selector: 'node.highlighted[thumbUrl].secondary',
         style: {
           'width': 46,
           'height': 46,
-          'border-width': 1.5,
+          'border-width': 1.5 * inv,
           'border-color': '#4a4639'
         }
       },
-      // Focused edge: fully visible, arrow on, wider, on top
       {
         selector: 'edge.highlighted',
         style: {
           'opacity': 0.9,
-          'width': 2.6,
+          'width': 2.6 * inv,
           'target-arrow-shape': 'triangle',
           'z-index': 20
         }
       },
-      // Ghosted (everything not in focus)
       {
         selector: 'node.ghosted',
         style: {
@@ -346,27 +329,25 @@
         selector: 'edge.ghosted',
         style: {
           'opacity': 0.04,
-          'width': 0.5
+          'width': 0.5 * inv
         }
       },
       {
         selector: 'node:selected',
         style: {
           'border-color': '#dc2626',
-          'border-width': 4
+          'border-width': 4 * inv
         }
       },
       {
         selector: 'edge:selected',
-        style: { 'width': 4, 'opacity': 1 }
+        style: { 'width': 4 * inv, 'opacity': 1 }
       },
-      // Keyboard-navigation focus marker (Tab/Shift+Tab): distinct from the
-      // red 'pinned' selection border so users can see both at once.
       {
         selector: 'node.kb-focus',
         style: {
           'border-color': '#3d82b8',
-          'border-width': 5,
+          'border-width': 5 * inv,
           'border-style': 'double'
         }
       },
@@ -374,12 +355,73 @@
         selector: '.hidden',
         style: { 'display': 'none' }
       }
-    ]
+    ];
+  }
+
+  const cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements,
+    layout: initialLayout,
+    minZoom: 0.2,
+    maxZoom: 3,
+    wheelSensitivity: 0.25,
+    pixelRatio: 'auto',
+    textureOnViewport: false,
+    motionBlur: false,
+    hideEdgesOnViewport: false,
+    userZoomingEnabled: false,  // we handle wheel ourselves for smooth, animated zoom
+    style: buildStylesheet(1)
   });
 
   cy.fit(undefined, 50);
   // Initial layout with animate:false runs synchronously; start bubble motion now
   startBubbleMotion();
+
+  // --- Zoom-invariant UI + smooth wheel zoom ---
+  // Rebuild the stylesheet when zoom changes so borders/text/edges stay
+  // the same *screen* size regardless of magnification (only the image
+  // area scales). Throttled to one rebuild per animation frame so smooth
+  // zoom animations stay fluid.
+  let pendingStyleRefresh = false;
+  function scheduleStyleRefresh() {
+    if (pendingStyleRefresh) return;
+    pendingStyleRefresh = true;
+    requestAnimationFrame(() => {
+      pendingStyleRefresh = false;
+      cy.style(buildStylesheet(cy.zoom()));
+    });
+  }
+  cy.on('zoom', scheduleStyleRefresh);
+  scheduleStyleRefresh(); // apply the zoom=1 baseline cleanly after init
+
+  // Smooth wheel zoom: instead of snapping to the new zoom instantly (the
+  // Cytoscape default), animate the zoom + pan so the transition is gentle.
+  // We also recentre around the mouse pointer so zooming feels natural.
+  cy.container().addEventListener('wheel', evt => {
+    evt.preventDefault();
+    const rect = cy.container().getBoundingClientRect();
+    const rp = { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
+
+    const currentZoom = cy.zoom();
+    // deltaY sign: wheel up (scroll toward user) = deltaY > 0 → zoom out
+    const factor = Math.exp(-evt.deltaY * 0.0015);
+    const newZoom = Math.min(Math.max(currentZoom * factor, cy.minZoom()), cy.maxZoom());
+    if (Math.abs(newZoom - currentZoom) < 1e-4) return;
+
+    // Pan so the graph point under the cursor stays under the cursor
+    const currentPan = cy.pan();
+    const graphX = (rp.x - currentPan.x) / currentZoom;
+    const graphY = (rp.y - currentPan.y) / currentZoom;
+
+    cy.animate({
+      zoom: newZoom,
+      pan: { x: rp.x - graphX * newZoom, y: rp.y - graphY * newZoom }
+    }, {
+      duration: 180,
+      easing: 'ease-out',
+      queue: false
+    });
+  }, { passive: false });
 
   // Expose for debugging from the browser console (e.g. cy.nodes('.canonical').length)
   window.cy = cy;
