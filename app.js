@@ -716,6 +716,7 @@
 
   // Buttons
   document.getElementById('fit-btn').addEventListener('click', () => cy.fit(undefined, 50));
+  document.getElementById('print-btn').addEventListener('click', handlePrintClick);
   document.getElementById('relayout-btn').addEventListener('click', () => {
     if (layoutMode === 'timeline') {
       applyTimelineLayout();
@@ -951,6 +952,140 @@
     if (fsBtn) fsBtn.addEventListener('click', () => openFullscreen(n));
     const img = detail.querySelector('.node-image img');
     if (img) img.addEventListener('click', () => openFullscreen(n));
+  }
+
+  // =======================================================================
+  // Print export: build one fitxa per node in a hidden container, then ask
+  // the browser to print. User saves as PDF from the native print dialog.
+  // =======================================================================
+
+  async function handlePrintClick() {
+    const btn = document.getElementById('print-btn');
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Preparant fitxes...';
+    try {
+      buildPrintContent();
+      await waitForPrintImages();
+      window.print();
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  }
+
+  function waitForPrintImages() {
+    const imgs = document.querySelectorAll('#print-container img');
+    return Promise.all([...imgs].map(img => {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+      return new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+        setTimeout(resolve, 6000); // hard timeout per image
+      });
+    }));
+  }
+
+  function buildPrintContent() {
+    const container = document.getElementById('print-container');
+    container.innerHTML = '';
+
+    // Build per-node edge index (both directions)
+    const connectionsByNode = {};
+    data.edges.forEach(e => {
+      (connectionsByNode[e.source] ||= []).push({ type: e.type, other: e.target, role: 'out', note: e.note });
+      (connectionsByNode[e.target] ||= []).push({ type: e.type, other: e.source, role: 'in',  note: e.note });
+    });
+
+    // Sort: canonical first (by PAU index), then secondary alphabetical by title
+    const sorted = [...data.nodes].sort((a, b) => {
+      if (a.canonical && !b.canonical) return -1;
+      if (!a.canonical && b.canonical) return 1;
+      if (a.canonical && b.canonical) return (a.canonicalIndex || 0) - (b.canonicalIndex || 0);
+      return (a.title || '').localeCompare(b.title || '', 'ca');
+    });
+
+    // Cover page
+    container.insertAdjacentHTML('beforeend', `
+      <section class="print-cover">
+        <h1>Art Map</h1>
+        <p class="lead">Fitxes de les 55 obres PAU 2026 d'Història de l'Art<br>i dels nodes pont del mapa</p>
+        <p class="meta">
+          ${sorted.length} obres · ${data.edges.length} connexions<br>
+          ${new Date().toLocaleDateString('ca-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </p>
+      </section>
+    `);
+
+    // One fitxa per node
+    sorted.forEach(n => {
+      container.insertAdjacentHTML('beforeend', renderPrintFitxa(n, connectionsByNode[n.id] || []));
+    });
+  }
+
+  function renderPrintFitxa(n, conns) {
+    const period = periodById[n.period];
+    const themes = (n.themes || []).map(id => themeById[id]?.label).filter(Boolean);
+    const badge = n.canonical ? `<span class="badge">PAU #${n.canonicalIndex}</span>` : '';
+
+    const imgHtml = n.imageLarge
+      ? `<div class="img-wrap">
+           <img src="${escapeHtml(n.imageLarge)}" alt="">
+           ${n.imageStrategy ? `<div class="img-caption">${escapeHtml(n.imageStrategy)}${n.imageCredit ? ` · ${escapeHtml(n.imageCredit)}` : ''}</div>` : n.imageCredit ? `<div class="img-caption">${escapeHtml(n.imageCredit)}</div>` : ''}
+         </div>`
+      : '';
+
+    const caveatHtml = n.imageCaveat
+      ? `<div class="caveat-box"><strong>Nota:</strong> ${escapeHtml(n.imageCaveat)}</div>`
+      : '';
+
+    const themesHtml = themes.length
+      ? `<div class="themes-line"><strong>Temes:</strong> ${themes.map(escapeHtml).join(' · ')}</div>`
+      : '';
+
+    const cfHtml = (n.counterfactuals || []).length
+      ? `<h3>Preguntes contrafactuals</h3><ul>${n.counterfactuals.map(q => `<li>${escapeHtml(q)}</li>`).join('')}</ul>`
+      : '';
+
+    const connsHtml = conns.length
+      ? `<h3>Connexions (${conns.length})</h3>
+         <ul class="conn-list">${conns.map(c => {
+           const other = nodeById[c.other] || {};
+           const typeLabel = typeById[c.type]?.label || c.type;
+           const arrow = c.role === 'out' ? '→' : '←';
+           const meta = [other.author, other.yearLabel || other.year].filter(Boolean).map(escapeHtml).join(', ');
+           return `<li>
+             <span class="conn-type">${escapeHtml(typeLabel)}</span>
+             <span class="conn-arrow">${arrow}</span>
+             <strong>${escapeHtml(other.title || c.other)}</strong>${meta ? ` (${meta})` : ''}
+             <span class="conn-note">${escapeHtml(c.note || '')}</span>
+           </li>`;
+         }).join('')}</ul>`
+      : '';
+
+    return `
+      <article class="print-fitxa">
+        <header class="fitxa-head">
+          <h1>${escapeHtml(n.title)}${badge}</h1>
+          <p class="author">${escapeHtml(n.author || '—')}</p>
+        </header>
+        ${imgHtml}
+        ${caveatHtml}
+        <div class="meta-grid">
+          <div><span class="k">Any:</span>${escapeHtml(n.yearLabel || n.year || '—')}</div>
+          <div><span class="k">Tècnica:</span>${escapeHtml(n.technique || '—')}</div>
+          <div><span class="k">Període:</span>${escapeHtml(period?.label || n.period || '—')}</div>
+          <div><span class="k">Ubicació:</span>${escapeHtml(n.location || '—')}</div>
+        </div>
+        ${themesHtml}
+        ${n.analysis?.context ? `<h3>Context</h3><p>${escapeHtml(n.analysis.context)}</p>` : ''}
+        ${n.analysis?.formal  ? `<h3>Anàlisi formal</h3><p>${escapeHtml(n.analysis.formal)}</p>`  : ''}
+        ${n.analysis?.meaning ? `<h3>Significat</h3><p>${escapeHtml(n.analysis.meaning)}</p>`     : ''}
+        ${n.analysis?.function? `<h3>Funció</h3><p>${escapeHtml(n.analysis.function)}</p>`        : ''}
+        ${cfHtml}
+        ${connsHtml}
+      </article>
+    `;
   }
 
   function renderEdgeDetail({ type, note, color, src, tgt }) {

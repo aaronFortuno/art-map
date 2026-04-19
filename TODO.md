@@ -23,7 +23,7 @@
     - Per cada eix, identificar els ponts que falten (obres que expliquen transicions o que emmarquen canòniques isolades)
     - Decidir metodologia: proposta manual pedagògica vs. agent automatitzat vs. híbrid
 
-- [ ] **Exportació de fitxa de repàs per node** (PDF imprimible). Per a l'última setmana abans de les PAU.
+- [x] ~~**Exportació de fitxa de repàs per node** (PDF imprimible).~~ Implementat 2026-04-19. Botó *Exportar fitxes (PDF)* a Accions genera un document amb una fitxa per obra (portada + 101 pàgines A4: imatge, metadades, temes, anàlisi completa, contrafactuals i llista de connexions amb direcció i nota). Via `@media print` + `window.print()` — l'usuari tria *Desa com a PDF* al diàleg del navegador. Cap dependència nova.
 
 - [x] ~~**Descàrrega local de les imatges** a `img/` per independitzar-nos de Wikimedia i funcionar offline.~~ Fet el 2026-04-19 via `scripts/download_images.py`: 50 obres descarregades a 1280px (20 MB totals). `data/images.json` apunta a `local_url`; l'app.js cau a Wikimedia només si el fitxer local no hi és.
 

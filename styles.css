@@ -639,3 +639,195 @@ input[type="search"]:focus {
   border-radius: 3px;
   font-family: sans-serif;
 }
+
+/* =====================================================================
+   PRINT STYLES
+   Trigger with the "Exportar fitxes (PDF)" button; user saves as PDF
+   from the browser dialog. One A4 page per artwork; the whole app UI
+   is hidden.
+   ===================================================================== */
+@media print {
+  html, body { background: white !important; }
+
+  /* Hide everything except the print container */
+  body > header,
+  body > .layout,
+  body > #fullscreen,
+  body > .panel-backdrop { display: none !important; }
+
+  #print-container { display: block !important; }
+
+  @page {
+    size: A4;
+    margin: 1.6cm 1.5cm;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+  }
+
+  .print-cover {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 4cm;
+  }
+  .print-cover h1 { font-size: 28pt; font-weight: normal; margin: 0 0 0.3em 0; letter-spacing: 0.04em; }
+  .print-cover .lead { font-size: 14pt; color: #444; font-style: italic; margin-bottom: 2em; }
+  .print-cover .meta { font-size: 10pt; color: #666; }
+
+  .print-fitxa {
+    page-break-after: always;
+    break-inside: avoid-page;
+  }
+  .print-fitxa:last-child { page-break-after: auto; }
+
+  .print-fitxa header.fitxa-head {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 0.4em;
+    margin-bottom: 0.7em;
+  }
+
+  .print-fitxa h1 {
+    margin: 0;
+    font-size: 17pt;
+    font-weight: normal;
+  }
+
+  .print-fitxa .author {
+    margin: 0.15em 0 0 0;
+    font-style: italic;
+    color: #444;
+    font-size: 11pt;
+  }
+
+  .print-fitxa .badge {
+    display: inline-block;
+    font-size: 8.5pt;
+    background: #1a1a1a;
+    color: white;
+    padding: 0.08em 0.55em;
+    vertical-align: middle;
+    margin-left: 0.5em;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .print-fitxa .img-wrap {
+    text-align: center;
+    margin: 0.6em 0 1em 0;
+  }
+
+  .print-fitxa .img-wrap img {
+    max-width: 100%;
+    max-height: 8.5cm;
+    object-fit: contain;
+  }
+
+  .print-fitxa .img-caption {
+    font-size: 8.5pt;
+    color: #666;
+    margin-top: 0.3em;
+    font-style: italic;
+    font-family: Arial, sans-serif;
+  }
+
+  .print-fitxa .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.4em;
+    row-gap: 0.25em;
+    font-size: 9.5pt;
+    margin: 0 0 0.7em 0;
+    padding: 0.5em 0;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .print-fitxa .meta-grid span.k { font-weight: bold; color: #444; margin-right: 0.25em; }
+
+  .print-fitxa .themes-line {
+    font-size: 9pt;
+    color: #555;
+    margin: 0 0 0.9em 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .print-fitxa h3 {
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin: 1em 0 0.25em 0;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    page-break-after: avoid;
+  }
+
+  .print-fitxa p {
+    margin: 0.25em 0;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+  }
+
+  .print-fitxa ul {
+    padding-left: 1.1em;
+    margin: 0.3em 0;
+  }
+
+  .print-fitxa li { margin: 0.18em 0; }
+
+  .print-fitxa .conn-list {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .print-fitxa .conn-list li {
+    font-size: 9.5pt;
+    margin: 0.35em 0;
+    padding-left: 1.2em;
+    position: relative;
+  }
+
+  .print-fitxa .conn-list li::before {
+    content: "·";
+    position: absolute;
+    left: 0.3em;
+    font-weight: bold;
+    color: #888;
+  }
+
+  .print-fitxa .conn-type {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #333;
+  }
+
+  .print-fitxa .conn-arrow { color: #777; margin: 0 0.3em; }
+
+  .print-fitxa .conn-note {
+    color: #555;
+    font-size: 9pt;
+    display: block;
+    margin-top: 0.15em;
+    font-style: italic;
+    padding-left: 0.2em;
+  }
+
+  .print-fitxa .caveat-box {
+    border-left: 3px solid #666;
+    padding: 0.35em 0.7em;
+    margin: 0.5em 0;
+    font-size: 9pt;
+    color: #555;
+    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+  }
+}
+
