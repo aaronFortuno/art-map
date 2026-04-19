@@ -552,59 +552,79 @@
   // or selects another node.
   let expansionState = null; // { centerId, savedBases: Map<id, {x,y}>, targets: Map<id, {x,y}> }
 
-  function expansionRadius(N) {
-    // Enough circumference for N nodes to sit at their hover size (max ~80 px)
-    // with breathing room between them.
-    const nodeMax = 80, gap = 34, minR = 160;
-    return Math.max(minR, N * (nodeMax + gap) / (2 * Math.PI));
-  }
-
+  // Expand the selected node's neighbourhood gently, preserving the original
+  // spatial story as much as possible. Two variants depending on the layout:
+  //
+  //   · Network mode: keep each neighbour's direction from the centre, only
+  //     nudge it outward if it's too close (< minDistance) or pull it inward
+  //     if it's very far (> maxDistance). No equidistant circle.
+  //
+  //   · Timeline mode: preserve X (chronology is the point), but compress the
+  //     vertical spread toward the centre's Y so the 20th-century stack
+  //     becomes legible.
   function expandNeighbourhood(centerNode) {
-    // Timeline layout has deterministic positions; don't fight with it.
-    if (layoutMode === 'timeline') return null;
+    const centerId = centerNode.id();
 
-    // Collapse any previous expansion first (instantly — the new animation will re-layout).
-    if (expansionState && expansionState.centerId !== centerNode.id()) {
+    if (expansionState && expansionState.centerId !== centerId) {
       collapseExpansion(/*animate*/ false);
     }
-    if (expansionState && expansionState.centerId === centerNode.id()) {
+    if (expansionState && expansionState.centerId === centerId) {
       return expansionState.targets;
     }
 
-    const centerId = centerNode.id();
     const neighbours = centerNode.closedNeighborhood().nodes().filter(n => n.id() !== centerId);
-    const N = neighbours.length;
-    if (N === 0) return null;
+    if (neighbours.length === 0) return null;
 
     const centerBase = bubbleState.get(centerId);
     const cx = centerBase?.baseX ?? centerNode.position('x');
     const cy = centerBase?.baseY ?? centerNode.position('y');
 
-    const R = expansionRadius(N);
     const savedBases = new Map();
     const targets = new Map();
     targets.set(centerId, { x: cx, y: cy });
 
-    // Sort neighbours by their current angle around the centre so each one
-    // moves to its "closest" slot in the circle — less chaotic motion.
-    const ordered = [...neighbours.toArray()].sort((a, b) => {
-      const pa = bubbleState.get(a.id()) || { baseX: a.position('x'), baseY: a.position('y') };
-      const pb = bubbleState.get(b.id()) || { baseX: b.position('x'), baseY: b.position('y') };
-      return Math.atan2(pa.baseY - cy, pa.baseX - cx) - Math.atan2(pb.baseY - cy, pb.baseX - cx);
-    });
+    const onTimeline = layoutMode === 'timeline';
+    const minDistance = 140;   // network mode: don't let neighbours cluster closer than this
+    const maxDistance = 320;   // network mode: don't let them be way off-screen either
+    const maxVOffset  = 110;   // timeline mode: max vertical offset of any neighbour
 
-    ordered.forEach((node, i) => {
+    neighbours.forEach(node => {
       const s = bubbleState.get(node.id());
       if (!s) return;
       savedBases.set(node.id(), { x: s.baseX, y: s.baseY });
-      const angle = (i / N) * 2 * Math.PI - Math.PI / 2;
-      const nx = cx + R * Math.cos(angle);
-      const ny = cy + R * Math.sin(angle);
+
+      let nx = s.baseX, ny = s.baseY;
+
+      if (onTimeline) {
+        // Keep X (year); compress Y toward centre's Y.
+        const dy = s.baseY - cy;
+        if (Math.abs(dy) > maxVOffset) {
+          ny = cy + Math.sign(dy) * maxVOffset;
+        }
+      } else {
+        // Keep direction; clamp distance to [minDistance, maxDistance].
+        const dx = s.baseX - cx;
+        const dy = s.baseY - cy;
+        const dist = Math.hypot(dx, dy);
+        let targetDist = dist;
+        if (dist === 0)            targetDist = minDistance;
+        else if (dist < minDistance) targetDist = minDistance;
+        else if (dist > maxDistance) targetDist = maxDistance;
+        if (targetDist !== dist) {
+          const scale = targetDist / (dist || 1);
+          nx = cx + (dist === 0 ? minDistance : dx * scale);
+          ny = cy + (dist === 0 ? 0           : dy * scale);
+        }
+      }
+
+      const changed = (nx !== s.baseX || ny !== s.baseY);
       s.baseX = nx;
       s.baseY = ny;
       targets.set(node.id(), { x: nx, y: ny });
-      node.stop();
-      node.animate({ position: { x: nx, y: ny } }, { duration: 480, easing: 'ease-in-out' });
+      if (changed) {
+        node.stop();
+        node.animate({ position: { x: nx, y: ny } }, { duration: 480, easing: 'ease-in-out' });
+      }
     });
 
     expansionState = { centerId, savedBases, targets };
