@@ -176,7 +176,7 @@
   // *screen* size regardless of how zoomed in/out we are. Node widths and
   // heights (i.e. the image area) do scale with zoom, so the images grow and
   // shrink naturally while the UI ornamentation stays readable.
-  function buildStylesheet(zoom) {
+  function buildStylesheet(zoom, theme = 'light') {
     const inv = 1 / zoom;
     // Partial compensation for node width/height: half of the zoom effect
     // is cancelled so images grow ~50 % as much as they would otherwise.
@@ -185,6 +185,7 @@
     //   zoom=3  → sizeF = 0.67 (screen 40, not 60)
     //   zoom=0.5→ sizeF = 1.5  (screen 15, not 10 — nodes shrink less too)
     const sizeF = 0.5 + 0.5 * inv;
+    const labelColor = theme === 'dark' ? '#e5e0d5' : '#2a2a2a';
     return [
       {
         selector: 'node',
@@ -197,7 +198,7 @@
           'text-margin-y': 6 * inv,
           'font-size': 10 * inv,
           'font-family': 'Georgia, serif',
-          'color': '#2a2a2a',
+          'color': labelColor,
           'background-color': '#c4bdae',
           'border-width': 0,
           'width': 20 * sizeF,
@@ -365,6 +366,15 @@
     ];
   }
 
+  // Theme: 'light' (default) or 'dark'. Restored from localStorage, or
+  // follow the OS preference on first visit.
+  const THEME_KEY = 'artmap.theme.v1';
+  let currentTheme = localStorage.getItem(THEME_KEY);
+  if (!currentTheme) {
+    currentTheme = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.body.classList.toggle('dark-mode', currentTheme === 'dark');
+
   const cy = cytoscape({
     container: document.getElementById('cy'),
     elements,
@@ -377,7 +387,7 @@
     motionBlur: false,
     hideEdgesOnViewport: false,
     userZoomingEnabled: false,  // we handle wheel ourselves for smooth, animated zoom
-    style: buildStylesheet(1)
+    style: buildStylesheet(1, currentTheme)
   });
 
   cy.fit(undefined, 50);
@@ -395,11 +405,26 @@
     pendingStyleRefresh = true;
     requestAnimationFrame(() => {
       pendingStyleRefresh = false;
-      cy.style(buildStylesheet(cy.zoom()));
+      cy.style(buildStylesheet(cy.zoom(), currentTheme));
     });
   }
   cy.on('zoom', scheduleStyleRefresh);
   scheduleStyleRefresh(); // apply the zoom=1 baseline cleanly after init
+
+  // Theme toggle
+  function setTheme(next) {
+    currentTheme = next;
+    localStorage.setItem(THEME_KEY, next);
+    document.body.classList.toggle('dark-mode', next === 'dark');
+    const btn = document.getElementById('theme-toggle');
+    btn.textContent = next === 'dark' ? '☀' : '🌙';
+    btn.title = next === 'dark' ? 'Canviar a mode clar' : 'Canviar a mode fosc';
+    scheduleStyleRefresh();
+  }
+  setTheme(currentTheme);  // sync the button label at init
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
 
   // Smooth wheel zoom: instead of snapping to the new zoom instantly (the
   // Cytoscape default), animate the zoom + pan so the transition is gentle.
