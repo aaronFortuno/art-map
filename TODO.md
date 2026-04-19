@@ -8,9 +8,9 @@ Estat al 2026-04-19. Les 101 fitxes tenen imatge + anàlisi desenvolupada + conn
 
 - [ ] **Reintentar hover-bloom + separació horitzontal al mode cronologia**. Primer intent revertit (commit `047bde3`) per un conflicte entre `node.animate` i el tick de bombolles que feia invisibles els blooms i posava el node "sticky" al ratolí. L'enfocament alternatiu: animar el *bubble base* amb el propi rAF del tick (interpolació progressiva de `baseX`/`baseY`) enlloc d'usar `node.animate`. Sense cyre-escriptura cruada, sense `animatingNodes` set.
 
-- [ ] **Filtres addicionals**: per període i per tema transversal (ara només per tipus de connexió). Implementar com a secció plegable al panell de controls amb *checkboxes*.
+- [x] ~~**Filtres addicionals**: per període i per tema transversal.~~ Fet 2026-04-19: dues seccions plegables al panell de controls amb checkboxes per cada període (ordenat cronològicament) i cada tema (ordenat alfabèticament). Botons Tots/Cap. Els tres grups de filtres (tipus de connexió / període / tema) apliquen amb lògica AND.
 
-- [ ] **Hover a pastilla de període/tema**: ressaltar al graf els nodes corresponents, com un filtre temporal. Complementari al punt anterior.
+- [ ] **Hover a pastilla de període/tema**: ressaltar al graf els nodes corresponents com un filtre temporal (l'usuari apunta el cursor a un període al panell i els seus nodes es realcen). Complement al filtre persistent.
 
 ### Feature gran
 
