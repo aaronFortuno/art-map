@@ -472,6 +472,9 @@ input[type="search"]:focus {
   transition: opacity 0.18s ease-out;
 }
 
+/* Print container: hidden on screen; @media print reveals it */
+#print-container { display: none; }
+
 .detail > * {
   animation: fade-in 0.2s ease-out;
 }
