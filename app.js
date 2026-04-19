@@ -52,6 +52,9 @@
   let bubbleState = new Map();
   let bubbleRaf = null;
   let grabbedId = null;
+  // Nodes currently being animated by cy.animate() — the bubble tick skips
+  // them so it doesn't overwrite the interpolated positions frame by frame.
+  const animatingNodes = new Set();
 
   // Stats
   const canonCount = data.nodes.filter(n => n.canonical).length;
@@ -573,9 +576,18 @@
   //   · Timeline mode: preserve X (chronology); compress Y toward the centre;
   //     then spread horizontally within Y bands so same-era clusters don't
   //     stack on top of each other.
+  // Bloom configuration. targetDist: fixed distance from the centre (in graph
+  // units) at which neighbours are parked — each one keeps its original angle
+  // from the centre, just slides along that ray to the target. This is
+  // noticeable movement on every click regardless of what the cose layout
+  // produced, while staying coherent with the original arrangement.
+  //   - yCompress: in timeline mode, multiply each neighbour's dy from centre
+  //     by this factor so the tall vertical stack becomes readable.
+  //   - maxVY: hard cap on timeline vertical offset after compression.
+  //   - overlapSep: min spacing between neighbours after bloom (collision pass).
   const EXPANSION_STRENGTH = {
-    hover: { minDist: 100, maxDist: 280, maxVY: 80,  overlapSep: 70, duration: 300 },
-    click: { minDist: 140, maxDist: 320, maxVY: 110, overlapSep: 82, duration: 480 }
+    hover: { targetDist: 155, yCompress: 0.60, maxVY: 80,  overlapSep: 72, duration: 300 },
+    click: { targetDist: 200, yCompress: 0.50, maxVY: 110, overlapSep: 85, duration: 460 }
   };
 
   function expandNeighbourhood(centerNode, strength = 'click') {
@@ -611,54 +623,66 @@
     const cfg = EXPANSION_STRENGTH[strength] || EXPANSION_STRENGTH.click;
     const onTimeline = layoutMode === 'timeline';
 
-    // Pass 1 — preliminary targets per neighbour from ORIGINAL bases
+    // Pass 1 — compute preliminary targets from ORIGINAL bases.
     const targets = new Map();
     targets.set(centerId, { x: cx, y: cy });
     neighbours.forEach(node => {
       const orig = savedBases.get(node.id());
       if (!orig) return;
-      let nx = orig.x, ny = orig.y;
+      let nx, ny;
       if (onTimeline) {
-        const dy = orig.y - cy;
-        if (Math.abs(dy) > cfg.maxVY) ny = cy + Math.sign(dy) * cfg.maxVY;
+        // Keep X (year). Compress dy toward centre, then cap at maxVY.
+        nx = orig.x;
+        let dy = (orig.y - cy) * cfg.yCompress;
+        if (Math.abs(dy) > cfg.maxVY) dy = Math.sign(dy) * cfg.maxVY;
+        ny = cy + dy;
       } else {
+        // Always push to targetDist along the neighbour's current angle from
+        // the centre. This gives a clearly visible bloom even when the cose
+        // layout already placed neighbours at reasonable distances.
         const dx = orig.x - cx;
         const dy = orig.y - cy;
         const d  = Math.hypot(dx, dy);
-        let td = d;
-        if (d === 0)               td = cfg.minDist;
-        else if (d < cfg.minDist)  td = cfg.minDist;
-        else if (d > cfg.maxDist)  td = cfg.maxDist;
-        if (td !== d) {
-          const scale = td / (d || 1);
-          nx = cx + (d === 0 ? cfg.minDist : dx * scale);
-          ny = cy + (d === 0 ? 0           : dy * scale);
+        if (d < 0.001) {
+          nx = cx + cfg.targetDist;
+          ny = cy;
+        } else {
+          const scale = cfg.targetDist / d;
+          nx = cx + dx * scale;
+          ny = cy + dy * scale;
         }
       }
       targets.set(node.id(), { x: nx, y: ny });
     });
 
-    // Pass 2 — resolve neighbour-to-neighbour overlaps
+    // Pass 2 — resolve overlaps.
     if (onTimeline) {
       spreadTimelineBands(targets, centerId, cfg.overlapSep);
     } else {
-      resolveOverlaps(targets, centerId, cfg.overlapSep, /*minFromCenter*/ cfg.minDist - 20);
+      resolveOverlaps(targets, centerId, cfg.overlapSep, /*minFromCenter*/ cfg.targetDist - 30);
     }
 
-    // Apply: update bubble bases + animate only the nodes that actually moved
+    // Apply: update bubble bases + animate. Mark nodes as "animating" so the
+    // bubble tick doesn't overwrite the interpolated position every frame.
     targets.forEach((pos, id) => {
       if (id === centerId) return;
       const s = bubbleState.get(id);
       if (!s) return;
-      const moved = (pos.x !== s.baseX || pos.y !== s.baseY);
+      const moved = (Math.abs(pos.x - s.baseX) > 0.5 || Math.abs(pos.y - s.baseY) > 0.5);
       s.baseX = pos.x;
       s.baseY = pos.y;
       if (!moved) return;
       const node = cy.getElementById(id);
-      if (node && !node.empty()) {
-        node.stop();
-        node.animate({ position: pos }, { duration: cfg.duration, easing: 'ease-in-out' });
-      }
+      if (!node || node.empty()) return;
+      animatingNodes.add(id);
+      node.animate(
+        { position: pos },
+        {
+          duration: cfg.duration,
+          easing: 'ease-in-out',
+          complete: () => animatingNodes.delete(id)
+        }
+      );
     });
 
     expansionState = { centerId, strength, savedBases, targets };
@@ -733,10 +757,18 @@
       if (s) { s.baseX = pos.x; s.baseY = pos.y; }
       const node = cy.getElementById(nodeId);
       if (!node || node.empty()) return;
-      node.stop();
       if (animate) {
-        node.animate({ position: pos }, { duration: 480, easing: 'ease-in-out' });
+        animatingNodes.add(nodeId);
+        node.animate(
+          { position: pos },
+          {
+            duration: 460,
+            easing: 'ease-in-out',
+            complete: () => animatingNodes.delete(nodeId)
+          }
+        );
       } else {
+        animatingNodes.delete(nodeId);
         node.position(pos);
       }
     });
@@ -1092,6 +1124,7 @@
     cy.batch(() => {
       bubbleState.forEach((s, id) => {
         if (id === grabbedId) return;
+        if (animatingNodes.has(id)) return;   // cy.animate is driving this node right now
         const n = cy.getElementById(id);
         if (!n || n.empty()) return;
         const dx = Math.sin(t * s.speedX + s.phaseX) * s.ampX;
