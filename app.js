@@ -507,9 +507,15 @@
     }, 60);
   });
 
-  // Click: pin focus + populate detail panel + reflect state in URL
-  cy.on('tap', 'node', evt => {
-    const node = evt.target;
+  // Unified node-selection: used by graph taps, hash deep-links, and
+  // "travel" clicks from the edge detail panel thumbnails.
+  function selectNodeById(nodeId) {
+    const node = cy.getElementById(nodeId);
+    if (!node || node.empty()) return;
+    selectNode(node);
+  }
+
+  function selectNode(node) {
     pinned = true;
     pinnedNodeId = node.id();
     applyFocus(node.closedNeighborhood());
@@ -518,7 +524,10 @@
     openDetailIfMobile();
     closeControlsIfMobile();
     centerOnNode(node);
-  });
+  }
+
+  // Click: pin focus + populate detail panel + reflect state in URL
+  cy.on('tap', 'node', evt => selectNode(evt.target));
 
   cy.on('tap', 'edge', evt => {
     const edge = evt.target;
@@ -610,14 +619,7 @@
     const match = /^#node\/(.+)$/.exec(location.hash);
     if (!match) return;
     const id = decodeURIComponent(match[1]);
-    const node = cy.getElementById(id);
-    if (node.empty()) return;
-    pinned = true;
-    pinnedNodeId = id;
-    applyFocus(node.closedNeighborhood());
-    renderNodeDetail(nodeById[id]);
-    openDetailIfMobile();
-    centerOnNode(node);
+    selectNodeById(id);
   }
 
   // Pan so that `node` sits at the centre of the visible graph area. On mobile,
@@ -1130,21 +1132,26 @@
       ? `<img class="edge-thumb" src="${escapeHtml(tgt.imageThumb)}" alt="${escapeHtml(tgt.title)}" loading="lazy">`
       : '';
 
-    document.getElementById('detail').innerHTML = `
+    const detail = document.getElementById('detail');
+    detail.innerHTML = `
       <div class="edge-header">
-        <div class="edge-work">
+        <button class="edge-work clickable" data-node-id="${escapeHtml(src.id)}" title="Viatja cap a aquesta obra">
           ${srcImg}
           <div><strong>${escapeHtml(src.title)}</strong><br><span class="small">${escapeHtml(src.author || '')} · ${escapeHtml(src.yearLabel || src.year)}</span></div>
-        </div>
+        </button>
         <div class="edge-arrow" style="color:${color}">→</div>
-        <div class="edge-work">
+        <button class="edge-work clickable" data-node-id="${escapeHtml(tgt.id)}" title="Viatja cap a aquesta obra">
           ${tgtImg}
           <div><strong>${escapeHtml(tgt.title)}</strong><br><span class="small">${escapeHtml(tgt.author || '')} · ${escapeHtml(tgt.yearLabel || tgt.year)}</span></div>
-        </div>
+        </button>
       </div>
       <div class="author" style="margin-top: 0.8rem;">Connexió: <strong>${escapeHtml(t.label)}</strong></div>
       <div class="meta" style="font-size: 0.85rem; font-style: italic;">${escapeHtml(t.description)}</div>
       <div class="edge-note" style="border-left-color:${color}">${escapeHtml(note)}</div>
     `;
+
+    detail.querySelectorAll('.edge-work.clickable').forEach(btn => {
+      btn.addEventListener('click', () => selectNodeById(btn.dataset.nodeId));
+    });
   }
 })();

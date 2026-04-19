@@ -446,6 +446,39 @@ input[type="search"]:focus {
   text-align: center;
 }
 
+.edge-work.clickable {
+  /* reset button styles: look like a div but behave like a button */
+  background: transparent;
+  border: 1px solid transparent;
+  color: inherit;
+  font-family: inherit;
+  padding: 0.35rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.edge-work.clickable:hover {
+  background: #efeae0;
+  border-color: #d6cfc0;
+}
+
+.edge-work.clickable:active {
+  transform: scale(0.98);
+}
+
+.edge-work.clickable .edge-thumb {
+  transition: filter 0.15s ease;
+}
+
+.edge-work.clickable:hover .edge-thumb {
+  filter: brightness(1.08);
+}
+
+.edge-work.clickable:focus-visible {
+  outline: 2px solid #b8860b;
+  outline-offset: 2px;
+}
+
 .edge-thumb {
   width: 100%;
   max-width: 130px;
