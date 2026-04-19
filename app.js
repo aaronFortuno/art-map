@@ -204,10 +204,10 @@
         selector: 'node[canonical]',
         style: {
           'background-color': '#1c1917',
-          'border-color': '#b8860b',
-          'border-width': 2,
-          'width': 46,
-          'height': 46,
+          'border-color': '#d4a743',
+          'border-width': 3,
+          'width': 50,
+          'height': 50,
           'font-weight': 'bold',
           'font-size': 9,
           'opacity': 1,
@@ -226,26 +226,26 @@
           'background-color': '#1c1917'
         }
       },
-      // Canonical with image: big + gold border (dominant in the visual hierarchy)
+      // Canonical with image: dominant — big, bright gold border
       {
         selector: 'node[thumbUrl][canonical]',
         style: {
-          'width': 62,
-          'height': 62,
-          'border-width': 3,
-          'border-color': '#b8860b',
+          'width': 66,
+          'height': 66,
+          'border-width': 4,
+          'border-color': '#d4a743',
           'opacity': 1,
           'text-opacity': 1
         }
       },
-      // Secondary with image: smaller, subtle border, slightly translucent at rest
+      // Secondary with image: clearly smaller, thin muted border, translucent
       {
         selector: 'node[thumbUrl]:not([canonical])',
         style: {
-          'width': 34,
-          'height': 34,
-          'border-width': 1.5,
-          'border-color': '#6b6458',
+          'width': 30,
+          'height': 30,
+          'border-width': 1,
+          'border-color': '#a39d92',
           'opacity': 0.8,
           'text-opacity': 0
         }
@@ -274,42 +274,44 @@
           'text-opacity': 1
         }
       },
-      // Secondary node highlighted: grows from 20 → 32, gets color
+      // Secondary node highlighted: grows from 20 → 30, gets color
       {
         selector: 'node.highlighted:not([canonical])',
         style: {
           'background-color': '#6b6458',
-          'width': 32,
-          'height': 32,
+          'width': 30,
+          'height': 30,
           'border-width': 1.5,
           'border-color': '#4a4639'
         }
       },
-      // Canonical (no image) highlighted: grows from 46 → 56
+      // Canonical (no image) highlighted: grows from 50 → 58, brighter gold
       {
         selector: 'node.highlighted[canonical]',
         style: {
-          'width': 56,
-          'height': 56,
-          'border-width': 3
+          'width': 58,
+          'height': 58,
+          'border-width': 4,
+          'border-color': '#e6bb58'
         }
       },
-      // Canonical WITH image highlighted: grows from 62 → 76, bolder border
+      // Canonical WITH image highlighted: grows from 66 → 80, bold gold border
       {
         selector: 'node.highlighted[thumbUrl][canonical]',
         style: {
-          'width': 76,
-          'height': 76,
-          'border-width': 4
+          'width': 80,
+          'height': 80,
+          'border-width': 5,
+          'border-color': '#e6bb58'
         }
       },
-      // Secondary WITH image highlighted: grows from 34 → 52, darker border
+      // Secondary WITH image highlighted: grows from 30 → 46, darker border
       {
         selector: 'node.highlighted[thumbUrl]:not([canonical])',
         style: {
-          'width': 52,
-          'height': 52,
-          'border-width': 2,
+          'width': 46,
+          'height': 46,
+          'border-width': 1.5,
           'border-color': '#4a4639'
         }
       },
