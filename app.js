@@ -460,8 +460,10 @@
   let decorTx = 0, decorTy = 0;
   let decorParallaxPending = false;
   document.addEventListener('mousemove', evt => {
-    decorTx = -((evt.clientX / window.innerWidth - 0.5) * 24);
-    decorTy = -((evt.clientY / window.innerHeight - 0.5) * 18);
+    // Parallax range: ±32 px horizontal, ±22 px vertical (~1 cm on a typical
+    // monitor). Small enough to feel incidental, large enough to be seen.
+    decorTx = -((evt.clientX / window.innerWidth - 0.5) * 32);
+    decorTy = -((evt.clientY / window.innerHeight - 0.5) * 22);
     if (decorParallaxPending) return;
     decorParallaxPending = true;
     requestAnimationFrame(() => {
