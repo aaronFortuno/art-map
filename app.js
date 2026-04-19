@@ -1,3 +1,11 @@
+// Register the service worker so the site works offline once visited.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(err => console.warn('SW registration failed:', err));
+  });
+}
+
 (async function () {
   const [data, imagesData, secondaryImagesData] = await Promise.all([
     fetch('data/seed.json').then(r => r.json()),
