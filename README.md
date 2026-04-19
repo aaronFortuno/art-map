@@ -4,7 +4,9 @@ Xarxa interactiva de les **55 obres** del temari d'Història de l'Art de les PAU
 
 Pensat per a **2n de batxillerat**: en comptes d'estudiar les obres aïlladament, es presenten com una xarxa on cada una dialoga amb el seu precedent, els seus ecos posteriors i les obres coetànies. La idea és que l'alumnat construeixi memòria per *relacions*, no per fitxa.
 
-**Demo**: *pendent del desplegament de GitHub Pages* → `https://aaronfortuno.github.io/art-map/`
+[![Captura de l'Art Map](./docs/screenshot.png)](https://aaronfortuno.github.io/art-map/)
+
+**Demo en línia**: <https://aaronfortuno.github.io/art-map/>
 
 ---
 
