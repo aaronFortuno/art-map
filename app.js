@@ -1,37 +1,48 @@
 (async function () {
-  const [data, imagesData] = await Promise.all([
+  const [data, imagesData, secondaryImagesData] = await Promise.all([
     fetch('data/seed.json').then(r => r.json()),
-    fetch('data/images.json').then(r => r.json())
+    fetch('data/images.json').then(r => r.json()),
+    fetch('data/secondary-images.json').then(r => r.json()).catch(() => ({ images: [] }))
   ]);
 
   const typeById   = Object.fromEntries(data.connectionTypes.map(t => [t.id, t]));
   const themeById  = Object.fromEntries(data.themes.map(t => [t.id, t]));
   const periodById = Object.fromEntries(data.periods.map(p => [p.id, p]));
 
-  // Index images by canonical number
+  // Canonical images (by index 1..55) and secondary images (by node id)
   const imageByIndex = {};
   imagesData.works.forEach(w => {
-    if (!w.image_missing && w.image_url) imageByIndex[w.canonicalIndex] = w;
+    if (w.local_url || (!w.image_missing && w.image_url)) imageByIndex[w.canonicalIndex] = w;
+  });
+
+  const imageByNodeId = {};
+  (secondaryImagesData.images || []).forEach(i => {
+    if (i.local_url) imageByNodeId[i.node_id] = i;
   });
 
   // Enrich nodes with image URLs. Prefer locally-downloaded copies; fall back
   // to Wikimedia Special:FilePath (avoids the direct /thumb/ 429 rejections).
   data.nodes.forEach(n => {
+    let img = null;
     if (n.canonicalIndex && imageByIndex[n.canonicalIndex]) {
-      const img = imageByIndex[n.canonicalIndex];
-      if (img.local_url) {
-        n.imageThumb = img.local_url;   // same-origin, no CORS, no Wikimedia policy concerns
-        n.imageLarge = img.local_url;
-      } else {
-        n.imageThumb = ensureDirectThumb(img.image_url, 800);
-        n.imageLarge = wikimediaResize(img.image_url, 1600);
-      }
-      n.imageCredit   = img.credit;
-      n.imageLicense  = img.license;
-      n.imageWikiPage = img.wikimedia_file_page;
-      n.imageStrategy = img.image_strategy || null;
-      n.imageCaveat   = img.image_caveat || null;
+      img = imageByIndex[n.canonicalIndex];
+    } else if (imageByNodeId[n.id]) {
+      img = imageByNodeId[n.id];
     }
+    if (!img) return;
+
+    if (img.local_url) {
+      n.imageThumb = img.local_url;   // same-origin, no CORS
+      n.imageLarge = img.local_url;
+    } else if (img.image_url) {
+      n.imageThumb = ensureDirectThumb(img.image_url, 800);
+      n.imageLarge = wikimediaResize(img.image_url, 1600);
+    }
+    n.imageCredit   = img.credit;
+    n.imageLicense  = img.license;
+    n.imageWikiPage = img.wikimedia_file_page;
+    n.imageStrategy = img.image_strategy || null;
+    n.imageCaveat   = img.image_caveat || null;
   });
 
   const nodeById = Object.fromEntries(data.nodes.map(n => [n.id, n]));
@@ -157,7 +168,7 @@
           'text-opacity': 1
         }
       },
-      // Canonical with image: larger, image as background
+      // Any node with image: common background settings
       {
         selector: 'node[thumbUrl]',
         style: {
@@ -166,13 +177,31 @@
           'background-fit': 'cover',
           'background-image-opacity': 1,
           'background-clip': 'node',
-          'background-color': '#1c1917',
+          'background-color': '#1c1917'
+        }
+      },
+      // Canonical with image: big + gold border (dominant in the visual hierarchy)
+      {
+        selector: 'node[thumbUrl][canonical]',
+        style: {
           'width': 62,
           'height': 62,
           'border-width': 3,
           'border-color': '#b8860b',
           'opacity': 1,
           'text-opacity': 1
+        }
+      },
+      // Secondary with image: smaller, subtle border, slightly translucent at rest
+      {
+        selector: 'node[thumbUrl]:not([canonical])',
+        style: {
+          'width': 34,
+          'height': 34,
+          'border-width': 1.5,
+          'border-color': '#6b6458',
+          'opacity': 0.8,
+          'text-opacity': 0
         }
       },
       // Edges at rest: very subtle, no arrowhead — don't fight for attention
@@ -219,13 +248,23 @@
           'border-width': 3
         }
       },
-      // Canonical WITH image highlighted: grows from 62 → 76 (overrides [canonical])
+      // Canonical WITH image highlighted: grows from 62 → 76, bolder border
       {
-        selector: 'node.highlighted[thumbUrl]',
+        selector: 'node.highlighted[thumbUrl][canonical]',
         style: {
           'width': 76,
           'height': 76,
           'border-width': 4
+        }
+      },
+      // Secondary WITH image highlighted: grows from 34 → 52, darker border
+      {
+        selector: 'node.highlighted[thumbUrl]:not([canonical])',
+        style: {
+          'width': 52,
+          'height': 52,
+          'border-width': 2,
+          'border-color': '#4a4639'
         }
       },
       // Focused edge: fully visible, arrow on, wider, on top
