@@ -428,6 +428,9 @@
   document.querySelectorAll('input[name="layout-mode"]').forEach(radio => {
     radio.checked = (radio.value === layoutMode);
     radio.addEventListener('change', evt => {
+      // A pending expansion's saved bases refer to old layout positions;
+      // reset without animating so the new layout takes over cleanly.
+      collapseExpansion(false);
       layoutMode = evt.target.value;
       localStorage.setItem(LAYOUT_MODE_KEY, layoutMode);
       if (layoutMode === 'timeline') applyTimelineLayout();
@@ -530,6 +533,8 @@
   }
 
   function selectNode(node) {
+    // Idempotent: clicking the same pinned node is a no-op
+    if (pinnedNodeId === node.id()) return;
     pinned = true;
     pinnedNodeId = node.id();
     applyFocus(node.closedNeighborhood());
@@ -537,7 +542,90 @@
     setHashFor(node.id());
     openDetailIfMobile();
     closeControlsIfMobile();
-    centerOnNode(node);
+    const targets = expandNeighbourhood(node);
+    centerOnNode(node, targets);
+  }
+
+  // --- Temporary "blooming" expansion of the selected node's neighbourhood ---
+  // Pushes direct neighbours out into a circle around the selected node so they
+  // don't overlap. Restores them when the user deselects (taps the background)
+  // or selects another node.
+  let expansionState = null; // { centerId, savedBases: Map<id, {x,y}>, targets: Map<id, {x,y}> }
+
+  function expansionRadius(N) {
+    // Enough circumference for N nodes to sit at their hover size (max ~80 px)
+    // with breathing room between them.
+    const nodeMax = 80, gap = 34, minR = 160;
+    return Math.max(minR, N * (nodeMax + gap) / (2 * Math.PI));
+  }
+
+  function expandNeighbourhood(centerNode) {
+    // Timeline layout has deterministic positions; don't fight with it.
+    if (layoutMode === 'timeline') return null;
+
+    // Collapse any previous expansion first (instantly — the new animation will re-layout).
+    if (expansionState && expansionState.centerId !== centerNode.id()) {
+      collapseExpansion(/*animate*/ false);
+    }
+    if (expansionState && expansionState.centerId === centerNode.id()) {
+      return expansionState.targets;
+    }
+
+    const centerId = centerNode.id();
+    const neighbours = centerNode.closedNeighborhood().nodes().filter(n => n.id() !== centerId);
+    const N = neighbours.length;
+    if (N === 0) return null;
+
+    const centerBase = bubbleState.get(centerId);
+    const cx = centerBase?.baseX ?? centerNode.position('x');
+    const cy = centerBase?.baseY ?? centerNode.position('y');
+
+    const R = expansionRadius(N);
+    const savedBases = new Map();
+    const targets = new Map();
+    targets.set(centerId, { x: cx, y: cy });
+
+    // Sort neighbours by their current angle around the centre so each one
+    // moves to its "closest" slot in the circle — less chaotic motion.
+    const ordered = [...neighbours.toArray()].sort((a, b) => {
+      const pa = bubbleState.get(a.id()) || { baseX: a.position('x'), baseY: a.position('y') };
+      const pb = bubbleState.get(b.id()) || { baseX: b.position('x'), baseY: b.position('y') };
+      return Math.atan2(pa.baseY - cy, pa.baseX - cx) - Math.atan2(pb.baseY - cy, pb.baseX - cx);
+    });
+
+    ordered.forEach((node, i) => {
+      const s = bubbleState.get(node.id());
+      if (!s) return;
+      savedBases.set(node.id(), { x: s.baseX, y: s.baseY });
+      const angle = (i / N) * 2 * Math.PI - Math.PI / 2;
+      const nx = cx + R * Math.cos(angle);
+      const ny = cy + R * Math.sin(angle);
+      s.baseX = nx;
+      s.baseY = ny;
+      targets.set(node.id(), { x: nx, y: ny });
+      node.stop();
+      node.animate({ position: { x: nx, y: ny } }, { duration: 480, easing: 'ease-in-out' });
+    });
+
+    expansionState = { centerId, savedBases, targets };
+    return targets;
+  }
+
+  function collapseExpansion(animate = true) {
+    if (!expansionState) return;
+    expansionState.savedBases.forEach((pos, nodeId) => {
+      const s = bubbleState.get(nodeId);
+      if (s) { s.baseX = pos.x; s.baseY = pos.y; }
+      const node = cy.getElementById(nodeId);
+      if (!node || node.empty()) return;
+      node.stop();
+      if (animate) {
+        node.animate({ position: pos }, { duration: 480, easing: 'ease-in-out' });
+      } else {
+        node.position(pos);
+      }
+    });
+    expansionState = null;
   }
 
   // Click: pin focus + populate detail panel + reflect state in URL
@@ -563,6 +651,7 @@
     if (evt.target === cy) {
       pinned = false;
       pinnedNodeId = null;
+      collapseExpansion();
       if (!searchActive) clearFocus();
       else runSearch(document.getElementById('search-input').value);
       document.getElementById('detail').innerHTML =
@@ -644,10 +733,30 @@
   // avoid extreme zoom-in (isolated nodes) or zoom-out (hub nodes).
   // On mobile the bottom sheet covers ~70% of the viewport, so the "visible"
   // area is just the top ~30% — the target centre shifts up accordingly.
-  function centerOnNode(node) {
+  function centerOnNode(node, overrideTargets = null) {
     if (!node || node.empty()) return;
-    const hood = node.closedNeighborhood();
-    const bbox = hood.boundingBox();
+
+    // If expansion supplied target positions, fit to the "bloomed" bbox rather
+    // than the current (mid-animation) one. Otherwise use the live neighbourhood.
+    let bbox;
+    if (overrideTargets && overrideTargets.size > 0) {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      overrideTargets.forEach(p => {
+        if (p.x < minX) minX = p.x;
+        if (p.y < minY) minY = p.y;
+        if (p.x > maxX) maxX = p.x;
+        if (p.y > maxY) maxY = p.y;
+      });
+      const radius = 42; // approximate max node radius (canonical+image hover)
+      bbox = {
+        x1: minX - radius, y1: minY - radius,
+        x2: maxX + radius, y2: maxY + radius,
+        w:  (maxX - minX) + 2 * radius,
+        h:  (maxY - minY) + 2 * radius
+      };
+    } else {
+      bbox = node.closedNeighborhood().boundingBox();
+    }
 
     const onMobile = isMobile();
     const viewW = cy.width();
@@ -662,7 +771,7 @@
     const padding = 70;
     const fitZoomX = (viewW    - padding * 2) / Math.max(bbox.w, 1);
     const fitZoomY = (visibleH - padding * 2) / Math.max(bbox.h, 1);
-    const targetZoom = Math.min(Math.max(Math.min(fitZoomX, fitZoomY), 0.55), 1.6);
+    const targetZoom = Math.min(Math.max(Math.min(fitZoomX, fitZoomY), 0.45), 1.6);
 
     // Target pan so the bbox centre lands at (centerX, centerY).
     const bboxCx = bbox.x1 + bbox.w / 2;
