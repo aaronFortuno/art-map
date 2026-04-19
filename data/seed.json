@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "0.5.0",
+    "version": "0.6.0",
     "updated": "2026-04-19",
-    "description": "Mapa complet de les 55 obres canoniques PAU 2026 + 46 nodes pont secundaris (101 nodes, 177 arestes). Anàlisi enriquida el 2026-04-19 a 93 nodes (51 canòniques + 42 secundàries); els 8 nodes del clúster Venus queden com a plantilla intacta."
+    "description": "Mapa complet de les 55 obres canoniques PAU 2026 + 46 nodes pont secundaris (101 nodes, 177 arestes). Anàlisi enriquida al 100% dels nodes: pas 1 (2026-04-19) 93 nodes no-Venus; pas 2 (2026-04-19) els 8 del clúster Venus inicial."
   },
   "connectionTypes": [
     {
@@ -553,13 +553,16 @@
         "mite-religio"
       ],
       "analysis": {
-        "context": "Primera gran representació d'Afrodita totalment nua en l'escultura grega. Encarregada pels habitants de Cos però rebutjada; adquirida per Cnidos, on esdevé atracció cultual i turística.",
-        "formal": "Contrapposto suau, gest pudorós de la mà que cobreix el pubis (Venus pudica), hydria al costat com a suport i al·lusió al bany.",
-        "meaning": "Funda l'esquema iconogràfic de la deessa nua: pretext mitològic per mostrar el nu femení idealitzat.",
-        "function": "Culte religiós a Afrodita; alhora objecte de contemplació estètica."
+        "context": "Praxíteles d'Atenes esculpeix la Venus de Cnido cap al 340 aC, ja en la transició del classicisme madur a l'estètica més lírica del segle IV aC, quan la polis clàssica comença a cedir davant les monarquies hel·lenístiques. Segons Plini el Vell, els habitants de l'illa de Cos havien encarregat dues versions de la deessa —una de vestida i una de nua— i van escollir la vestida, horroritzats per la nuesa; els de Cnido compraren la rebutjada i la convertiren en la imatge més visitada del món grec, amb un petit temple circular que permetia admirar-la des de tots costats. L'original en marbre de Paros s'ha perdut; el coneixem per còpies romanes de qualitat desigual, monedes cnidies i descripcions literàries. La decisió de representar Afrodita nua és un gest fundacional: inaugura tota una tradició de mirada masculina sobre el cos femení idealitzat com a pretext mitològic.",
+        "formal": "Figura dempeus de mida natural amb contrapposto suau que descarrega el pes sobre la cama dreta mentre l'esquerra s'insinua endavant, produint una lleu ondulació del tors coneguda com a corba praxiteliana. Afrodita s'acaba de desvestir per al bany ritual: deixa caure la túnica sobre una hydria situada al seu costat, que alhora dissimula el suport escultòric i funciona com a referent narratiu. La mà dreta es porta davant del pubis en el gest que fixarà el tipus iconogràfic de la Venus pudica, mentre l'esquerra sosté la roba. La pell de marbre, poliment treballada amb la tècnica del ganosis per imitar una suavitat quasi cutània, contrasta amb la rugositat del plec tèxtil. El rostre manté la serenitat ideal pròpia del cànon, allunyada de qualsevol emoció individualitzada.",
+        "meaning": "El gest pudorós i el pretext del bany són la coartada que permet introduir el nu femení en un vocabulari escultòric que durant segles havia reservat la nuesa al cos masculí heroic —kouroi, atletes, Dorífor. La mà que amaga alhora assenyala: funciona com a focalitzador visual i com a reconeixement que hi ha un espectador que mira. Aquesta estructura —dona divina nua, conscient de ser mirada, que no retorna la mirada— inaugura una gramàtica de la representació que travessarà el Renaixement venecià fins al 1863. Pedagògicament, aquest és el punt zero de la sèrie que desembocarà en Botticelli, Tizià, Manet i Sherman.",
+        "function": "Imatge de culte d'Afrodita dins un temple circular obert a Cnido; alhora, a la pràctica, peça de fascinació turística, admirada per viatgers des de tot el Mediterrani. La combinació de funció religiosa i atracció estètica és inseparable: el culte a la deessa i la contemplació del cos es reforcen mútuament."
       },
       "counterfactuals": [
-        "Per què la primera nuesa canònica és una deessa i no una dona qualsevol?"
+        "Per què la primera nuesa canònica és una deessa i no una dona qualsevol?",
+        "Què significa que la mà que amaga sigui també la mà que assenyala?",
+        "Com canviaria la història del nu occidental si els habitants de Cos haguessin acceptat la versió nua i els de Cnido haguessin quedat amb la vestida?",
+        "Per què el temple es va dissenyar perquè l'estàtua es pogués veure des de tots costats, i què implica això sobre la relació entre mirada i culte?"
       ]
     },
     {
@@ -1008,13 +1011,16 @@
         "cos-femeni"
       ],
       "analysis": {
-        "context": "Encàrrec del cercle dels Medici, probablement Lorenzo di Pierfrancesco. Context del neoplatonisme florentí.",
-        "formal": "Composició horitzontal, figures gairebé a mida natural, línia fluida, colors clars, fons de bosc fosc.",
-        "meaning": "Al·legoria de la primavera i de l'amor neoplatònic. Venus al centre com a principi ordenador.",
-        "function": "Obra de gabinet privat; programa iconogràfic humanista per al mecenes."
+        "context": "Sandro Botticelli pinta La primavera cap al 1482 per encàrrec del cercle dels Medici, probablement per a Lorenzo di Pierfrancesco, cosí del Magnífic, com a peça d'un gabinet domèstic vinculat possiblement a un casament familiar. La Florència d'aquests anys viu l'apogeu de l'Acadèmia neoplatònica de Marsilio Ficino i de la poesia humanista d'Angelo Poliziano, que reactiven el diàleg entre Plató, la mitologia clàssica i el cristianisme. En aquest marc intel·lectual, els déus pagans no són ídols perillosos sinó al·legories filosòfiques del món. La recuperació de temes mitològics a gran escala, després de segles de predomini iconogràfic cristià, depèn directament d'aquesta legitimació filosòfica. El quadre és una frontissa: prepara el terreny conceptual per al retorn del nu femení clàssic que consumarà El naixement de Venus pocs anys més tard.",
+        "formal": "Tremp i oli sobre taula de grans dimensions (203 x 314 cm) amb una composició horitzontal de vuit figures gairebé a mida natural disposades en fris davant un bosc de tarongers que funciona com a cortina verda fosca. D'esquerra a dreta: Mercuri dissipa els núvols, les tres Gràcies dansen entrellaçades, Venus presideix al centre una mica elevada amb Cupido alat disparant a cegues, Flora escampa flors sobre el prat i, a l'extrem, Cèfir persegueix la nimfa Cloris, que es transforma en Flora davant els nostres ulls. El dibuix privilegia la línia fluida i melòdica per sobre del modelat; les anatomies presenten les característiques estilitzacions botticellianes —colls allargats, espatlles desencaixades, panxes lleument abombades de la moda gòtic-cortès. La paleta és clara i freda, amb una profunditat atmosfèrica deliberadament reduïda.",
+        "meaning": "La lectura neoplatònica ficiniana interpreta l'escena com a al·legoria de la transformació de l'amor sensual en amor espiritual: Cèfir-Cloris-Flora representen la passió terrenal, Venus al centre la mediadora, i les Gràcies-Mercuri l'ascensió cap a l'intel·ligible. Que la deessa pagana ocupi el centre ordenador de la composició i faci un gest quasi de benedicció assimilable a la Mare de Déu no és contradicció sinó programa: Venus Humanitas és compatible amb la cosmologia cristiana si es llegeix com a principi còsmic. Les figures femenines, vestides amb teles translúcides que revelen més del que amaguen, introdueixen un erotisme sublimat que serà vehicle recurrent de la mirada masculina humanista.",
+        "function": "Obra de gabinet privat destinada a una cambra domèstica d'elit, probablement associada a un mobiliari nupcial. No és pintura pública ni devocional: forma part d'una cultura visual de l'estudiolo on la mitologia serveix de material per al pensament i per al plaer estètic del mecenes cultivat."
       },
       "counterfactuals": [
-        "Per què una deessa pagana presideix un quadre en la Florència cristiana?"
+        "Per què una deessa pagana pot presidir un quadre en la Florència cristiana de finals del Quattrocento?",
+        "Què permet la lectura neoplatònica que la lectura literal del mite no permetria?",
+        "Com canvia la nostra interpretació saber que el quadre probablement decorava una cambra nupcial?",
+        "Per què Botticelli tria Flora i no Venus nua com a primera gran recuperació del cos mitològic femení?"
       ],
       "notes": "Node pont. Prepara el terreny iconogràfic i intel·lectual de la Venus."
     },
@@ -1150,14 +1156,16 @@
         "nu-classic"
       ],
       "analysis": {
-        "context": "Florència dels Medici, neoplatonisme (Ficino, Poliziano). Recuperació del nu femení de matriu clàssica després de segles de proscripció medieval.",
-        "formal": "Composició equilibrada i simètrica, línia com a protagonista, modelat suau, paleta freda, perspectiva atmosfèrica poc profunda. Cos idealitzat amb anatomia impossible (coll allargat, espatlla desencaixada).",
-        "meaning": "Naixement de Venus de l'escuma del mar. Lectura neoplatònica: al·legoria del naixement de la bellesa i de l'amor espiritual.",
-        "function": "Encàrrec privat, decoració d'un espai domèstic d'elit; vehicle d'un programa humanista."
+        "context": "Botticelli pinta El naixement de Venus cap al 1485, també per al cercle dels Medici i probablement per al mateix Lorenzo di Pierfrancesco per a qui havia fet La primavera. El context intel·lectual segueix sent el neoplatonisme florentí de Ficino i Poliziano: aquest darrer havia compost unes Stanze per la giostra que recreaven literàriament el naixement d'Afrodita de l'escuma del mar i que Botticelli transforma en imatge. La decisió de pintar una figura femenina completament nua a gran escala té dimensions històriques: després de més de mil anys de proscripció medieval del nu femení —limitat pràcticament a Eva i als condemnats de l'Infern—, Botticelli el reintrodueix com a protagonista d'una escena autònoma. La coartada mitològica i la lectura filosòfica són les condicions de possibilitat d'aquest retorn; sense elles, la imatge seria impensable a la Florència de Savonarola.",
+        "formal": "Tremp sobre tela de grans dimensions (172 x 278 cm), suport menys habitual que la taula i més barat, pensat probablement per a un emplaçament domèstic. Venus emergeix dempeus d'una petxina empesa pel vent de Zèfir i Aura abraçats a l'esquerra, mentre una Hora amb vestit florit li ofereix un mantell a la dreta. La postura cita obertament la Venus púdica clàssica de tradició praxiteliana: una mà cobreix el pit, l'altra, amb els cabells, el pubis. El cos és idealitzat fins a l'anatòmicament impossible —coll llarguíssim, espatlla esquerra desencaixada, repartiment del pes inversemblant— al servei d'una línia ondulada de pura música visual. La paleta freda de blaus, verds i carns pàl·lides i la profunditat atmosfèrica pràcticament abolida subratllen l'ideal sobre el realista.",
+        "meaning": "Venus no neix d'una relació sexual sinó de l'escuma del mar, de manera que el nu es presenta com a puresa originària i no com a seducció. La lectura neoplatònica en fa una al·legoria del naixement de la Bellesa —principi còsmic que ordena el món visible— i de l'Amor espiritual que condueix l'ànima cap a allò diví. La imatge és alhora continuació directa de la Venus de Cnido (gest pudorós, cos idealitzat, pretext mitològic) i una diferència decisiva: ara el mitjà és pintura, es pot reproduir, es pot col·locar en un interior privat i perviu intacta a través de l'estampa, la fotografia i avui l'emoji. Aquesta portabilitat la converteix en la imatge fundacional del nu femení occidental modern.",
+        "function": "Obra de gabinet destinada a un espai domèstic d'elit, probablement una vil·la del cercle Medici a Castello. Mai no fou encarregada per cap institució religiosa ni cívica: és pintura privada per a un mecenes cultivat que en participa dels codis intel·lectuals. El suport de tela, més transportable que la taula, suggereix un ús específicament mobiliari."
       },
       "counterfactuals": [
-        "Per què Venus i no Dànae? Per què el naixement i no un altre episodi del mite?",
-        "Per què tornar al nu femení classicista justament en un context cristià?"
+        "Per què Venus i no Dànae? Què canvia entre el naixement immaculat i la fecundació per Zeus?",
+        "Per què tornar al nu femení classicista justament en una Florència dominada, pocs anys després, pel puritanisme de Savonarola?",
+        "Com funciona la coartada del mite: qui es protegeix, el pintor o l'espectador?",
+        "Què significa que la primera gran dona nua del Renaixement no miri l'espectador i que la primera que sí que el mirarà (Urbino, 1538) ja no sigui una deessa?"
       ],
       "notes": "Node central del veïnat estudiat."
     },
@@ -1237,14 +1245,16 @@
         "mirada-masculina"
       ],
       "analysis": {
-        "context": "Encàrrec del duc Guidobaldo II Della Rovere. Venècia cinquecentesca, colorisme venecià.",
-        "formal": "Nu reclinat en interior domèstic, mirada directa a l'espectador, color càlid i matèric, composició dividida entre espai íntim (llit) i espai social (fons amb servents).",
-        "meaning": "Venus humanitzada, mite esdevingut cos d'alcova.",
-        "function": "Pintura de cambra privada; fixa el model del nu reclinat occidental."
+        "context": "Tizià pinta la Venus d'Urbino el 1538 per encàrrec de Guidobaldo II Della Rovere, futur duc d'Urbino, que en les cartes es refereix al quadre simplement com la donna nuda sense invocar cap deessa. Aquesta indefinició és reveladora: el pretext mitològic que havia justificat la nuesa a Botticelli cedeix progressivament davant d'un gènere nou, el nu reclinat per a cambra privada. Venècia del cinquecento, república mercantil de llarga tradició aristocràtica i circuit editorial i artístic potentíssim, desenvolupa el colorisme venecià —primat del color sobre el dibuix, pinzellada matèrica, sensualitat de la superfície pictòrica— que contrasta amb el disegno florentí-romà. Tizià, pintor oficial de l'emperador Carles V i figura central d'aquesta escola, reprèn i humanitza el tipus del nu jacent que havia assajat Giorgione a la Venus dorment de Dresde (c. 1510) i li dona un gir decisiu: la porta de fora —paisatge— a dins —alcova.",
+        "formal": "Oli sobre tela (119 x 165 cm) amb una composició rigorosament dividida per una cortina vertical fosca que separa l'espai íntim del llit —on jeu la figura— de l'espai social d'un fons on dues criades treuen robes d'un cassone, moble nupcial típicament venecià. El cos nu es reclina en diagonal sobre els coixins blancs, amb les cames creuades i la mà dreta coberta el pubis en un gest que repeteix el de la Venus púdica però que ara, pel context domèstic, esdevé alhora gest pudorós i gest que subratlla. Un petit gosset dorm als peus. La paleta és càlida i matèrica: el to daurat de la pell dialoga amb els vermells dels coixins i de la catifa, i la pinzellada, sense ocultar-se, construeix el cos per masses de llum més que per contorn.",
+        "meaning": "La Venus d'Urbino és una peça frontissa en la genealogia de la mirada masculina. Manté la coartada mitològica —el títol, les flors a la mà, el gos simbòlic de fidelitat— però la decora amb tants signes d'interior burgès-aristocràtic contemporani que la deessa queda radicalment humanitzada i esdevé cos d'alcova. A diferència de la Venus botticelliana, aquesta ens mira fixament: reconeix l'espectador i el situa en una posició explícita de receptor d'una oferta eròtica. La crítica feminista del segle XX ha llegit aquí un dels moments clau de construcció d'un dispositiu de representació que fa del cos femení objecte disponible per a una mirada masculina que el quadre mateix produeix.",
+        "function": "Pintura de cambra destinada a l'alcova privada del duc, probablement amb la funció pràctica d'obra didàctica o eròtica dins el context del matrimoni aristocràtic —algunes lectures l'han relacionada amb la jove esposa de Guidobaldo, Giulia Varano, com a model conjugal. Fixa el tipus del nu reclinat que travessarà l'art occidental fins a Goya, Ingres, Manet i Modigliani."
       },
       "counterfactuals": [
-        "Per què baixem Venus del mar a l'alcova?",
-        "Què canvia quan la deessa mira directament l'espectador?"
+        "Per què baixem Venus del mar a l'alcova i què es guanya o es perd en aquesta domesticació?",
+        "Què canvia quan la deessa mira directament a l'espectador en comptes d'abaixar la mirada?",
+        "Si el duc anomena el quadre simplement donna nuda, qui introdueix la Venus al títol i per què?",
+        "Per què el cassone del fons és central per a la lectura: és decorat o és instrucció matrimonial?"
       ],
       "notes": "Node pont NO canònic però essencial pedagògicament."
     },
@@ -1267,13 +1277,16 @@
         "mirada-masculina"
       ],
       "analysis": {
-        "context": "Versió del Prado, encàrrec de Felip II. Venècia cinquecentesca. Tizià pinta múltiples versions del tema.",
-        "formal": "Nu femení reclinat, contrallum daurat de la pluja de Zeus, contrast entre cos idealitzat i figura de la serventa.",
-        "meaning": "Dànae fecundada per Zeus-pluja d'or. Lectura eròtica; també al·legoria sobre la cobdícia (la criada recollint monedes).",
-        "function": "Pintura de cambra privada ('poesies' per a Felip II)."
+        "context": "Tizià pinta diverses versions del tema de Dànae al llarg de dues dècades; la del Museu del Prado, realitzada cap al 1551-53, és un encàrrec de Felip II i forma part del conjunt de les anomenades poesie, una sèrie de quadres mitològics inspirats en les Metamorfosis d'Ovidi que el pintor envia al príncep i després rei com a exercici pictòric superior. El context és el de la monarquia hispànica en apogeu, amb una cort cultivada que combina una devoció contrarreformista pública amb un consum privat d'imatges mitològiques sensuals. Dànae és la princesa d'Argos tancada pel seu pare Acrisi en una torre de bronze perquè un oracle li havia predit que un net seu el mataria; Zeus penetra a la cambra en forma de pluja d'or i la fecunda. La coartada mitològica aquí és més tensa que mai: permet representar una relació sexual explícita sota l'empara del relat ovidià i del gust reial pel nu venecià.",
+        "formal": "Oli sobre tela (129 x 180 cm) que reprèn l'esquema del nu reclinat però l'obre a una escena narrativa. Dànae jeu a l'esquerra sobre llençols blancs, semiincorporada amb les cames entreobertes i la mirada alçada cap al núvol daurat que descarrega monedes i llampecs sobre ella. A la dreta, en contrast brutal, una criada vella de pell arrugada i expressió avara recull les monedes amb el davantal, introduint una figura pròpia de la picaresca moral contemporània. El colorisme venecià explota aquí al màxim: pinzellada solta i matèrica, contrast lumínic entre la carn daurada i l'or líquid del núvol, atmosfera gairebé tàctil. La cortina vermella de fons tanca l'espai com una escena teatral.",
+        "meaning": "Dànae articula dues lectures imbricades. La primera és eròtica: el pretext mitològic permet mostrar una relació sexual imminent entre la princesa i el déu, amb la postura oberta del cos i la mirada extàtica com a eufemismes transparents. La segona és moral, introduïda per la contrafigura de la vella: la crítica tradicional ha vist en el contrast bellesa jove / lletjor vella una meditació sobre el pas del temps, però sobretot una al·legoria de l'amor venal —l'or que compra— enfront de l'amor suposadament pur. Pedagògicament és significatiu que, just aquí, el mite faci explícita la dimensió transaccional que el llenguatge de la mirada sobre el cos femení ha dissimulat: la pluja d'or és, literalment, diner.",
+        "function": "Pintura de cambra privada per al gabinet reial, dins la categoria de les poesie que Felip II col·leccionava amb discreció en contrast amb la imatge pública piadosa de la monarquia. Les múltiples versions que Tizià fa del tema —Nàpols, Prado, Viena, Hermitage— indiquen un producte d'èxit en un circuit aristocràtic europeu que demana aquest tipus de nu mitològic amb argument."
       },
       "counterfactuals": [
-        "Com canvia el sentit del nu quan el mite inclou una transacció (pluja d'or = diners)?"
+        "Com canvia el sentit del nu quan el mite incorpora explícitament una transacció econòmica —pluja d'or igual a diners?",
+        "Per què Tizià introdueix la criada vella i no deixa la deessa sola amb el déu?",
+        "Què hauria canviat si la mateixa escena l'hagués pintat un artista del cercle papal en comptes del pintor del rei?",
+        "Per què Felip II, defensor públic de la Contrareforma, col·lecciona en privat imatges com aquesta?"
       ]
     },
     {
@@ -1555,13 +1568,16 @@
         "nu-classic"
       ],
       "analysis": {
-        "context": "Rebutjada al Saló oficial; exposada al Saló dels Refusats de 1863. Escàndol majúscul.",
-        "formal": "Composició inspirada en el 'Judici de Paris' (Raimondi sobre Rafael) i en el 'Concert campestre' de Giorgione/Tizià. Dona nua quotidiana en píc-nic amb homes vestits. Llum frontal sense modelat acadèmic.",
-        "meaning": "Subversió del nu mitològic: no és Venus ni Dànae, és una dona contemporània nua al bosc amb dos homes vestits.",
-        "function": "Afirmació d'una nova pintura moderna; crítica al decòrum acadèmic."
+        "context": "Édouard Manet presenta Le déjeuner sur l'herbe, inicialment titulat Le Bain, al Saló oficial de 1863, que el rebutja juntament amb milers d'altres obres. Napoleó III, davant la protesta dels artistes, ordena obrir un Saló dels Refusats paral·lel on l'obra s'exposa i provoca un dels escàndols artístics més sonats del segle. El context és el del Segon Imperi francès, d'una burgesia en plena consolidació que exigeix una pintura decorosa i didàctica, i d'una institució acadèmica —École des Beaux-Arts, Saló, Premi de Roma— que regula el gust oficial. Manet pertany a aquesta mateixa burgesia —família de funcionaris, formació acadèmica amb Thomas Couture— però tria la ruptura des de dins, no des de fora. El quadre cita obertament el Concert campestre de Giorgione/Tizià i el gravat de Marcantonio Raimondi segons Rafael El judici de Paris, estableix doncs un joc erudit amb la tradició que els espectadors formats havien de reconèixer i que la crítica —deliberadament o no— va ignorar.",
+        "formal": "Oli sobre tela de grans dimensions (208 x 264 cm), escala reservada a la pintura d'història acadèmica, cosa que ja és una provocació aplicada a una escena de pícnic. Dos homes vestits amb roba contemporània parisenca —levita, barret— seuen en un clariana de bosc amb una dona completament nua, que mira fixament l'espectador amb un posat que no és ni de vergonya ni de seducció clàssica sinó de quotidianitat indiferent. Al fons, una segona dona semivestida s'inclina sobre una bassa. El modelat acadèmic —la gradació tonal que produeix volum i carnositat— desapareix: Manet pinta el cos de la dona amb llum frontal dura i contrastos plans, de manera que el cos semblava a la crítica de l'època pla i cadavèric. El bodegó de fruites i pa caigut a primer terme és el punt més pictòricament tradicional.",
+        "meaning": "L'escàndol no el produeix la nuesa en si —el Saló oficial exhibia nus mitològics cada any— sinó la combinació d'una dona nua contemporània i reconeixible (la model, Victorine Meurent) amb dos homes vestits a la moda del dia, sense cap coartada mitològica o al·legòrica que naturalitzés la situació. El que durant tres segles havia estat tolerat com a Venus, Dànae o Bany de Diana, es revela ara com el que sempre havia estat: una dona nua exposada davant de la mirada d'homes vestits. Manet no afegeix cap indecència: elimina la coartada. La lectura feminista posterior ha vist aquí el moment en què la maquinària ideològica del nu clàssic queda al descobert.",
+        "function": "Declaració artística programàtica en un Saló paral·lel, adreçada tant a la institució que l'havia rebutjat com al públic que el seguiria. Funcionalment esdevé un manifest fundacional de la modernitat pictòrica, reivindicat pels impressionistes com a cap de pont. Avui al Musée d'Orsay, ocupa el lloc central en el relat canònic del naixement de la pintura moderna."
       },
       "counterfactuals": [
-        "Per què la mateixa postura que a la tradició venecià-clàssica escandalitza ara?"
+        "Per què la mateixa postura compositiva acceptada a la tradició venecià-classicista escandalitza el 1863?",
+        "Què passaria si un dels dos homes estigués també nu i l'altre vestit: l'escàndol canviaria de sentit?",
+        "Com llegim l'escena si pensem que Victorine Meurent, la model, era també pintora professional amb carrera pròpia?",
+        "Per què la crítica del 1863 prefereix parlar de la tècnica plana i no del dispositiu escènic que el quadre denuncia?"
       ]
     },
     {
@@ -1582,13 +1598,16 @@
         "ruptura-academica"
       ],
       "analysis": {
-        "context": "Saló de París de 1865. Escàndol paral·lel al del Déjeuner.",
-        "formal": "Cita directa de la Venus d'Urbino: mateixa composició, mateix gest. Color pla, llum dura i frontal.",
-        "meaning": "El nu mitològic substituït per una prostituta que mira amb desafiament.",
-        "function": "Trencar el decòrum acadèmic; fer visible el que el nu mitològic dissimulava."
+        "context": "Manet pinta Olímpia el 1863, el mateix any que el Déjeuner, però no l'exposa fins al Saló oficial de 1865, on desencadena un escàndol encara més violent: el quadre ha de ser penjat molt amunt i vigilat per guàrdies per protegir-lo dels visitants furiosos. El context és el mateix París del Segon Imperi, amb una institució acadèmica que ja havia digerit malament el Déjeuner i que ara reacciona amb una bel·ligerància que revela fins a quin punt la qüestió tocava una ferida central del dispositiu visual burgès. La cita formal de la Venus d'Urbino és inequívoca i erudita: mateixa postura, mateix gos —aquí substituït per un gat negre amb la cua alçada—, mateixa divisió de l'espai entre l'alcova i una serventa al fons. Però la Venus és ara una cortesana parisenca contemporània, el nom Olympia tenia connotacions de demi-monde, i la criada negra, Laure, introdueix a la superfície allò que la tradició del nu blanc havia sistemàticament esborrat: les relacions colonials i racials sobre les quals s'assentava la burgesia imperial.",
+        "formal": "Oli sobre tela (130 x 190 cm) que reprèn literalment la composició tizianesca però la sotmet a un tractament pictòric radicalment diferent. La figura central no es construeix per modelat gradual sinó per plans de llum i ombra pràcticament plans, amb un perfil gairebé retallat sobre el fons. La mà que a Tizià insinuava i cobria, a Olympia es tanca amb una crispació fermament defensiva: és gest d'aturada, no de pudor. La criada, en segon terme, ofereix un ram de flors —possible enviament d'un client— i contrasta pel color de la pell i per la vestidura amb la frontalitat pàl·lida de la protagonista. La paleta és dura, amb blancs i negres tallants, i la pinzellada renuncia al vernís venecià per una factura seca.",
+        "meaning": "Si el Déjeuner treu la coartada mitològica del nu, Olympia la substitueix explícitament per la seva veritat històrica: la prostituta. La mirada directa i desafiant a l'espectador —ni pudorosa ni invitant— col·loca el visitant del Saló, majoritàriament home burgès, en la posició que el dispositiu de la pintura sempre havia encobert: la del client. L'escàndol es pot llegir com a moment d'auto-reconeixement incòmode. La presència de Laure mereix menció específica: la historiografia tradicional la va tractar com a mer contrapunt cromàtic, però la lectura postcolonial contemporània hi veu una figura amb presència pròpia el tractament de la qual —subordinada, portadora d'ofrena, sense nom al títol tot i tenir-ne a la vida real— inscriu les relacions racials de l'imperialisme francès dins el mateix dispositiu del nu.",
+        "function": "Obra exposada al Saló oficial de 1865 com a declaració pública de ruptura amb el sistema acadèmic des del seu cor institucional. La reacció hostil va consolidar, paradoxalment, la seva posició com a referència dels pintors més joves; Zola la va defensar i esdevingué icona dels Batignolles. Actualment al Musée d'Orsay, s'exposa sovint juntament amb el Déjeuner com a díptic que completa la lectura de la ruptura manetiana."
       },
       "counterfactuals": [
-        "Per què la mateixa postura escandalitza el 1865 i no el 1538?"
+        "Per què la mateixa postura escandalitza el 1865 a París i no el 1538 a Urbino?",
+        "Si Manet no hagués inclòs el gat negre ni la criada, el quadre continuaria funcionant igual?",
+        "Com canvia la nostra lectura si tornem a mirar Olympia posant el focus en Laure i no en la figura blanca del llit?",
+        "Per què la crítica del 1865 parla de brutícia i de lletjor quan en realitat la diferència amb Tizià és sobretot moral i no pictòrica?"
       ],
       "notes": "Node pont NO canònic però pedagògicament essencial (ruptura més literal del cànon del nu)."
     },
@@ -2044,13 +2063,16 @@
         "feminisme"
       ],
       "analysis": {
-        "context": "Nova York final dels 80, ple debat sobre male gaze i construcció de la identitat.",
-        "formal": "Autoretrats disfressada de personatges de la pintura clàssica europea amb pròtesis evidents i il·luminació d'estudi.",
-        "meaning": "La dona pintada sempre és una construcció. Desmuntatge del cànon.",
-        "function": "Art contemporani crític; diàleg directe amb la història de l'art des del feminisme."
+        "context": "Cindy Sherman realitza la sèrie History Portraits entre 1988 i 1990, en bona part a Roma durant una estada prolongada, coincidint amb un moment teòric culminant de la crítica feminista de la imatge —els anys posteriors a l'assaig seminal de Laura Mulvey sobre la male gaze (1975) i en ple desenvolupament dels estudis culturals i dels gender studies anglosaxons. Sherman havia construït la seva carrera amb els Untitled Film Stills (1977-1980), on s'autoretratava com a protagonistes fictícies de pel·lícules inexistents dels anys 50 i 60; amb History Portraits entra directament en diàleg amb la tradició de la pintura europea dels museus: Madones, cortesanes, Judits, madonnes humanistes i reines. El context del mercat també hi compta: són grans fotografies en color d'alta qualitat tècnica, pensades per circular en galeries i fires, no com a documents feministes militants sinó com a peces que interpel·len el circuit mateix que les comercialitza.",
+        "formal": "Fotografies en color de gran format (típicament entorn de 170 x 120 cm) en què l'artista es retrata a si mateixa disfressada amb pròtesis, maquillatges, perruques, robes i atrezzo que citen personatges clarament reconoscibles de la pintura clàssica —nobles holandesos, Madones italianes, figures de nu reclinat, cortesanes cinquecentesques. La il·luminació d'estudi produeix una pell quasi pictòrica, però els artificis no es dissimulen: els pits postissos es veuen postissos, els nassos de làtex delaten la seva condició, les perruques mostren el límit del teixit. El format d'enquadrament imita el retrat pictòric europeu, però la textura fotogràfica i el defecte deliberadament exhibit trenquen la il·lusió que el retrat pictòric buscava sostenir.",
+        "meaning": "La sèrie tanca pedagògicament el cercle que s'havia obert amb la Venus de Cnido. Sherman no denuncia des de fora: s'infiltra dins el dispositiu i el mostra engranatge a engranatge. La dona pintada per Praxíteles, Botticelli, Tizià, Manet sempre havia estat una construcció —una idealització, un pretext, una al·legoria, un cos disponible— pilotada per una mirada masculina que es feia passar per natural. Sherman hi col·loca el seu propi cos disfressat i deixa veure l'engany: els pits són de goma, la bellesa és atrezzo, la figura és a la vegada artista i model, subjecte que mira i objecte mirat. L'efecte és desmuntar la il·lusió sense renunciar a la fascinació visual que aquesta il·lusió produïa.",
+        "function": "Obra de galeria i de museu que circula per les grans fires i col·leccions internacionals des dels anys 90 (MoMA, Metropolitan, Tate, etc.). Funciona pedagògicament com a comentari crític sobre tota la tradició del nu i del retrat femení europeu, i ha entrat als programes universitaris de història de l'art i d'estudis de gènere com a cas d'estudi canònic de la fotografia conceptual feminista."
       },
       "counterfactuals": [
-        "Què queda de la 'bellesa' de Venus quan l'artista la fa visible com a disfressa?"
+        "Què queda de la bellesa de Venus quan l'artista fa visibles les pròtesis i mostra que era tota disfressa?",
+        "Per què la crítica al cànon és més eficaç des de dins (mimetitzant-lo) que des de fora (denunciant-lo)?",
+        "És possible desmuntar la mirada masculina emprant el mateix format —fotografia de gran escala, circuit de galeria— que n'és còmplice?",
+        "Si col·loquem aquesta sèrie al costat de Cnido, Botticelli, Tizià i Manet, quina història explica el conjunt sobre la representació del cos femení a Occident?"
       ],
       "notes": "Node pont NO canònic. Eco feminista que tanca el cercle del nu."
     },
