@@ -98,6 +98,9 @@
   // keeps the same spatial memory across reloads. Versioned to allow schema
   // changes to invalidate older caches.
   const STORAGE_KEY = 'artmap.positions.v2';
+  const LAYOUT_MODE_KEY = 'artmap.layoutMode.v1';
+
+  let layoutMode = localStorage.getItem(LAYOUT_MODE_KEY) || 'network';
 
   function loadSavedPositions() {
     try {
@@ -110,17 +113,60 @@
     try { localStorage.removeItem(STORAGE_KEY); } catch {}
   }
 
+  // Chronological layout: X by year (linear), Y by "lane" to avoid overlap.
+  // Produces a deterministic result — not saved to localStorage.
+  function computeTimelinePositions(nodes) {
+    const sorted = [...nodes].sort((a, b) => (a.year || 0) - (b.year || 0));
+    const years = sorted.map(n => n.year || 0);
+    const minYr = Math.min(...years);
+    const maxYr = Math.max(...years);
+    const range = Math.max(1, maxYr - minYr);
+
+    const width = 2400;
+    const leftPad = 100;
+    const laneH = 95;
+    const minDx = 85;  // horizontal breathing room between neighbours
+
+    const lanes = [];                 // tracks last x in each lane
+    const rawPositions = {};
+    sorted.forEach(n => {
+      const x = leftPad + ((n.year || 0) - minYr) / range * width;
+      let laneIdx = -1;
+      for (let i = 0; i < lanes.length; i++) {
+        if (x - lanes[i] > minDx) { laneIdx = i; break; }
+      }
+      if (laneIdx === -1) { laneIdx = lanes.length; lanes.push(x); }
+      else { lanes[laneIdx] = x; }
+      rawPositions[n.id] = { x, y: laneIdx * laneH };
+    });
+    // Centre vertically around 0
+    const laneCount = lanes.length;
+    const yOffset = -(laneCount - 1) * laneH / 2;
+    Object.values(rawPositions).forEach(p => { p.y += yOffset; });
+    return rawPositions;
+  }
+
   const savedPositions = loadSavedPositions();
-  // Only use saved positions if every current node has a saved entry —
-  // otherwise fall back to cose (e.g., after new nodes were added to seed.json).
-  const usingSavedLayout = !!savedPositions && data.nodes.every(n => savedPositions[n.id]);
+  // Only use saved positions if we're in network mode AND every current node
+  // has a saved entry — otherwise fall back to cose.
+  const usingSavedLayout = layoutMode === 'network'
+    && !!savedPositions
+    && data.nodes.every(n => savedPositions[n.id]);
+
+  let initialLayout;
+  if (layoutMode === 'timeline') {
+    const tp = computeTimelinePositions(data.nodes);
+    initialLayout = { name: 'preset', positions: (node) => tp[node.id()] || { x: 0, y: 0 }, fit: true, padding: 80 };
+  } else if (usingSavedLayout) {
+    initialLayout = { name: 'preset', positions: (node) => savedPositions[node.id()] || { x: 0, y: 0 }, fit: true, padding: 50 };
+  } else {
+    initialLayout = buildLayout(false);
+  }
 
   const cy = cytoscape({
     container: document.getElementById('cy'),
     elements,
-    layout: usingSavedLayout
-      ? { name: 'preset', positions: (node) => savedPositions[node.id()] || { x: 0, y: 0 }, fit: true, padding: 50 }
-      : buildLayout(false),
+    layout: initialLayout,
     minZoom: 0.2,
     maxZoom: 3,
     wheelSensitivity: 0.25,
@@ -315,8 +361,11 @@
   // Initial layout with animate:false runs synchronously; start bubble motion now
   startBubbleMotion();
 
-  // Persist the positions (base, not oscillating) from bubbleState
+  // Persist the positions (base, not oscillating) from bubbleState.
+  // Only active in network mode — timeline positions are deterministic and
+  // recomputed each session.
   function savePositions() {
+    if (layoutMode !== 'network') return;
     try {
       const pos = {};
       bubbleState.forEach((s, id) => { pos[id] = { x: s.baseX, y: s.baseY }; });
@@ -324,6 +373,53 @@
     } catch {}
   }
   savePositions();
+
+  // --- Layout mode toggle ---
+  function applyTimelineLayout() {
+    stopBubbleMotion();
+    const positions = computeTimelinePositions(data.nodes);
+    cy.nodes().forEach(n => {
+      const p = positions[n.id()];
+      if (p) n.animate({ position: p }, { duration: 500, easing: 'ease-in-out' });
+    });
+    setTimeout(() => {
+      cy.fit(undefined, 50);
+      startBubbleMotion();
+    }, 540);
+  }
+
+  function applyNetworkLayout() {
+    stopBubbleMotion();
+    const saved = loadSavedPositions();
+    if (saved && data.nodes.every(n => saved[n.id])) {
+      cy.nodes().forEach(n => {
+        const p = saved[n.id()];
+        if (p) n.animate({ position: p }, { duration: 500, easing: 'ease-in-out' });
+      });
+      setTimeout(() => {
+        cy.fit(undefined, 50);
+        startBubbleMotion();
+      }, 540);
+    } else {
+      const layout = cy.layout(buildLayout(true));
+      layout.on('layoutstop', () => {
+        startBubbleMotion();
+        savePositions();
+      });
+      layout.run();
+    }
+  }
+
+  // Initialize radio state to current mode + wire up change handler
+  document.querySelectorAll('input[name="layout-mode"]').forEach(radio => {
+    radio.checked = (radio.value === layoutMode);
+    radio.addEventListener('change', evt => {
+      layoutMode = evt.target.value;
+      localStorage.setItem(LAYOUT_MODE_KEY, layoutMode);
+      if (layoutMode === 'timeline') applyTimelineLayout();
+      else applyNetworkLayout();
+    });
+  });
 
   // Filter wiring
   filtersEl.querySelectorAll('input').forEach(cb =>
@@ -609,6 +705,10 @@
   // Buttons
   document.getElementById('fit-btn').addEventListener('click', () => cy.fit(undefined, 50));
   document.getElementById('relayout-btn').addEventListener('click', () => {
+    if (layoutMode === 'timeline') {
+      applyTimelineLayout();
+      return;
+    }
     stopBubbleMotion();
     clearSavedPositions();                   // user explicitly wants a fresh arrangement
     const layout = cy.layout(buildLayout(true));
