@@ -52,9 +52,6 @@
   let bubbleState = new Map();
   let bubbleRaf = null;
   let grabbedId = null;
-  // Nodes currently being animated by cy.animate() — the bubble tick skips
-  // them so it doesn't overwrite the interpolated positions frame by frame.
-  const animatingNodes = new Set();
 
   // Stats
   const canonCount = data.nodes.filter(n => n.canonical).length;
@@ -496,24 +493,16 @@
     const id = evt.target.id();
     lastHoveredId = id;
     scheduleHover(() => {
-      if (pinned || searchActive) return;         // state may have changed while we waited
       if (lastHoveredId !== id) return;
       const node = cy.getElementById(id);
-      if (!node.empty()) {
-        applyFocus(node.closedNeighborhood());
-        expandNeighbourhood(node, 'hover');
-      }
+      if (!node.empty()) applyFocus(node.closedNeighborhood());
     }, 40);
   });
   cy.on('mouseout', 'node', () => {
     if (pinned || searchActive) return;
     lastHoveredId = null;
     scheduleHover(() => {
-      if (pinned || searchActive) return;         // don't collapse a click-pinned expansion
-      if (lastHoveredId === null) {
-        clearFocus();
-        collapseExpansion();
-      }
+      if (lastHoveredId === null) clearFocus();
     }, 60);
   });
 
@@ -522,7 +511,6 @@
     const id = 'edge:' + evt.target.id();
     lastHoveredId = id;
     scheduleHover(() => {
-      if (pinned || searchActive) return;
       if (lastHoveredId !== id) return;
       const edge = cy.getElementById(evt.target.id());
       if (!edge.empty()) applyFocus(edge.union(edge.connectedNodes()));
@@ -532,7 +520,6 @@
     if (pinned || searchActive) return;
     lastHoveredId = null;
     scheduleHover(() => {
-      if (pinned || searchActive) return;
       if (lastHoveredId === null) clearFocus();
     }, 60);
   });
@@ -566,37 +553,22 @@
   let expansionState = null; // { centerId, savedBases: Map<id, {x,y}>, targets: Map<id, {x,y}> }
 
   // Expand the selected node's neighbourhood gently, preserving the original
-  // spatial story as much as possible. Two variants depending on the layout
-  // (network/timeline) and two strengths (hover = lighter, click = full).
+  // spatial story as much as possible. Two variants depending on the layout:
   //
   //   · Network mode: keep each neighbour's direction from the centre, only
-  //     nudge it outward if too close or inward if too far. Then a repulsion
-  //     pass ensures neighbours don't overlap each other either.
+  //     nudge it outward if it's too close (< minDistance) or pull it inward
+  //     if it's very far (> maxDistance). No equidistant circle.
   //
-  //   · Timeline mode: preserve X (chronology); compress Y toward the centre;
-  //     then spread horizontally within Y bands so same-era clusters don't
-  //     stack on top of each other.
-  // Bloom configuration. targetDist: fixed distance from the centre (in graph
-  // units) at which neighbours are parked — each one keeps its original angle
-  // from the centre, just slides along that ray to the target. This is
-  // noticeable movement on every click regardless of what the cose layout
-  // produced, while staying coherent with the original arrangement.
-  //   - yCompress: in timeline mode, multiply each neighbour's dy from centre
-  //     by this factor so the tall vertical stack becomes readable.
-  //   - maxVY: hard cap on timeline vertical offset after compression.
-  //   - overlapSep: min spacing between neighbours after bloom (collision pass).
-  const EXPANSION_STRENGTH = {
-    hover: { targetDist: 155, yCompress: 0.60, maxVY: 80,  overlapSep: 72, duration: 300 },
-    click: { targetDist: 200, yCompress: 0.50, maxVY: 110, overlapSep: 85, duration: 460 }
-  };
-
-  function expandNeighbourhood(centerNode, strength = 'click') {
+  //   · Timeline mode: preserve X (chronology is the point), but compress the
+  //     vertical spread toward the centre's Y so the 20th-century stack
+  //     becomes legible.
+  function expandNeighbourhood(centerNode) {
     const centerId = centerNode.id();
 
     if (expansionState && expansionState.centerId !== centerId) {
       collapseExpansion(/*animate*/ false);
     }
-    if (expansionState && expansionState.centerId === centerId && expansionState.strength === strength) {
+    if (expansionState && expansionState.centerId === centerId) {
       return expansionState.targets;
     }
 
@@ -607,147 +579,56 @@
     const cx = centerBase?.baseX ?? centerNode.position('x');
     const cy = centerBase?.baseY ?? centerNode.position('y');
 
-    // Always compute targets from the ORIGINAL bases, not from the current
-    // (possibly mid-animation) positions. This makes hover→click transitions
-    // coherent: the two strengths give different targets from the same origin.
-    const savedBases = (expansionState && expansionState.centerId === centerId)
-      ? expansionState.savedBases
-      : new Map();
-    if (!expansionState || expansionState.centerId !== centerId) {
-      neighbours.forEach(node => {
-        const s = bubbleState.get(node.id());
-        if (s) savedBases.set(node.id(), { x: s.baseX, y: s.baseY });
-      });
-    }
-
-    const cfg = EXPANSION_STRENGTH[strength] || EXPANSION_STRENGTH.click;
-    const onTimeline = layoutMode === 'timeline';
-
-    // Pass 1 — compute preliminary targets from ORIGINAL bases.
+    const savedBases = new Map();
     const targets = new Map();
     targets.set(centerId, { x: cx, y: cy });
+
+    const onTimeline = layoutMode === 'timeline';
+    const minDistance = 140;   // network mode: don't let neighbours cluster closer than this
+    const maxDistance = 320;   // network mode: don't let them be way off-screen either
+    const maxVOffset  = 110;   // timeline mode: max vertical offset of any neighbour
+
     neighbours.forEach(node => {
-      const orig = savedBases.get(node.id());
-      if (!orig) return;
-      let nx, ny;
-      if (onTimeline) {
-        // Keep X (year). Compress dy toward centre, then cap at maxVY.
-        nx = orig.x;
-        let dy = (orig.y - cy) * cfg.yCompress;
-        if (Math.abs(dy) > cfg.maxVY) dy = Math.sign(dy) * cfg.maxVY;
-        ny = cy + dy;
-      } else {
-        // Always push to targetDist along the neighbour's current angle from
-        // the centre. This gives a clearly visible bloom even when the cose
-        // layout already placed neighbours at reasonable distances.
-        const dx = orig.x - cx;
-        const dy = orig.y - cy;
-        const d  = Math.hypot(dx, dy);
-        if (d < 0.001) {
-          nx = cx + cfg.targetDist;
-          ny = cy;
-        } else {
-          const scale = cfg.targetDist / d;
-          nx = cx + dx * scale;
-          ny = cy + dy * scale;
-        }
-      }
-      targets.set(node.id(), { x: nx, y: ny });
-    });
-
-    // Pass 2 — resolve overlaps.
-    if (onTimeline) {
-      spreadTimelineBands(targets, centerId, cfg.overlapSep);
-    } else {
-      resolveOverlaps(targets, centerId, cfg.overlapSep, /*minFromCenter*/ cfg.targetDist - 30);
-    }
-
-    // Apply: update bubble bases + animate. Mark nodes as "animating" so the
-    // bubble tick doesn't overwrite the interpolated position every frame.
-    targets.forEach((pos, id) => {
-      if (id === centerId) return;
-      const s = bubbleState.get(id);
+      const s = bubbleState.get(node.id());
       if (!s) return;
-      const moved = (Math.abs(pos.x - s.baseX) > 0.5 || Math.abs(pos.y - s.baseY) > 0.5);
-      s.baseX = pos.x;
-      s.baseY = pos.y;
-      if (!moved) return;
-      const node = cy.getElementById(id);
-      if (!node || node.empty()) return;
-      animatingNodes.add(id);
-      node.animate(
-        { position: pos },
-        {
-          duration: cfg.duration,
-          easing: 'ease-in-out',
-          complete: () => animatingNodes.delete(id)
+      savedBases.set(node.id(), { x: s.baseX, y: s.baseY });
+
+      let nx = s.baseX, ny = s.baseY;
+
+      if (onTimeline) {
+        // Keep X (year); compress Y toward centre's Y.
+        const dy = s.baseY - cy;
+        if (Math.abs(dy) > maxVOffset) {
+          ny = cy + Math.sign(dy) * maxVOffset;
         }
-      );
+      } else {
+        // Keep direction; clamp distance to [minDistance, maxDistance].
+        const dx = s.baseX - cx;
+        const dy = s.baseY - cy;
+        const dist = Math.hypot(dx, dy);
+        let targetDist = dist;
+        if (dist === 0)            targetDist = minDistance;
+        else if (dist < minDistance) targetDist = minDistance;
+        else if (dist > maxDistance) targetDist = maxDistance;
+        if (targetDist !== dist) {
+          const scale = targetDist / (dist || 1);
+          nx = cx + (dist === 0 ? minDistance : dx * scale);
+          ny = cy + (dist === 0 ? 0           : dy * scale);
+        }
+      }
+
+      const changed = (nx !== s.baseX || ny !== s.baseY);
+      s.baseX = nx;
+      s.baseY = ny;
+      targets.set(node.id(), { x: nx, y: ny });
+      if (changed) {
+        node.stop();
+        node.animate({ position: { x: nx, y: ny } }, { duration: 480, easing: 'ease-in-out' });
+      }
     });
 
-    expansionState = { centerId, strength, savedBases, targets };
+    expansionState = { centerId, savedBases, targets };
     return targets;
-  }
-
-  // In timeline mode: group neighbours into narrow Y bands and space them
-  // evenly along X so same-era clusters (many 20th-century nodes at similar
-  // years) don't stack on top of each other. Preserves left-right order.
-  function spreadTimelineBands(targets, centerId, minXSep) {
-    const entries = [...targets.entries()].filter(([id]) => id !== centerId);
-    const bands = new Map(); // y-band → [{id, pos}]
-    entries.forEach(([id, pos]) => {
-      const key = Math.round(pos.y / 28); // ~28 px band height
-      if (!bands.has(key)) bands.set(key, []);
-      bands.get(key).push({ id, pos });
-    });
-    bands.forEach(group => {
-      if (group.length < 2) return;
-      group.sort((a, b) => a.pos.x - b.pos.x);
-      const midX = (group[0].pos.x + group[group.length - 1].pos.x) / 2;
-      const span = (group.length - 1) * minXSep;
-      const startX = midX - span / 2;
-      group.forEach((g, i) => { g.pos.x = startX + i * minXSep; });
-    });
-  }
-
-  // Iterative pair-wise push-apart with a min-distance floor from the centre.
-  // Doesn't move the centre. Runs a small number of iterations; overlaps of
-  // 101-node neighbourhoods converge in 3-4 iterations in practice.
-  function resolveOverlaps(targets, centerId, minSep, minFromCenter) {
-    const ids = [...targets.keys()].filter(k => k !== centerId);
-    for (let it = 0; it < 8; it++) {
-      let moved = false;
-      for (let i = 0; i < ids.length; i++) {
-        for (let j = i + 1; j < ids.length; j++) {
-          const a = targets.get(ids[i]);
-          const b = targets.get(ids[j]);
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const d  = Math.hypot(dx, dy) || 0.01;
-          if (d < minSep) {
-            const push = (minSep - d) / 2;
-            const ux = dx / d, uy = dy / d;
-            a.x -= ux * push; a.y -= uy * push;
-            b.x += ux * push; b.y += uy * push;
-            moved = true;
-          }
-        }
-      }
-      if (!moved) break;
-    }
-    // Re-enforce minimum distance from the centre
-    const ctr = targets.get(centerId);
-    ids.forEach(id => {
-      const p = targets.get(id);
-      const dx = p.x - ctr.x;
-      const dy = p.y - ctr.y;
-      const d  = Math.hypot(dx, dy);
-      if (d < minFromCenter) {
-        const scale = minFromCenter / (d || 1);
-        p.x = ctr.x + (d === 0 ? minFromCenter : dx * scale);
-        p.y = ctr.y + (d === 0 ? 0 : dy * scale);
-      }
-    });
   }
 
   function collapseExpansion(animate = true) {
@@ -757,37 +638,20 @@
       if (s) { s.baseX = pos.x; s.baseY = pos.y; }
       const node = cy.getElementById(nodeId);
       if (!node || node.empty()) return;
+      node.stop();
       if (animate) {
-        animatingNodes.add(nodeId);
-        node.animate(
-          { position: pos },
-          {
-            duration: 460,
-            easing: 'ease-in-out',
-            complete: () => animatingNodes.delete(nodeId)
-          }
-        );
+        node.animate({ position: pos }, { duration: 480, easing: 'ease-in-out' });
       } else {
-        animatingNodes.delete(nodeId);
         node.position(pos);
       }
     });
     expansionState = null;
   }
 
-  // Cancel any pending hover timer before a tap handler runs — otherwise a
-  // scheduled hover/out callback can fire *after* the tap and overwrite the
-  // click-level state (collapse the just-expanded neighbourhood, demote a
-  // 'click' strength to 'hover', etc.).
-  function cancelHoverTimer() {
-    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
-  }
-
   // Click: pin focus + populate detail panel + reflect state in URL
-  cy.on('tap', 'node', evt => { cancelHoverTimer(); selectNode(evt.target); });
+  cy.on('tap', 'node', evt => selectNode(evt.target));
 
   cy.on('tap', 'edge', evt => {
-    cancelHoverTimer();
     const edge = evt.target;
     pinned = true;
     pinnedNodeId = null;  // edge pin doesn't have a node anchor
@@ -805,7 +669,6 @@
 
   cy.on('tap', evt => {
     if (evt.target === cy) {
-      cancelHoverTimer();
       pinned = false;
       pinnedNodeId = null;
       collapseExpansion();
@@ -1124,7 +987,6 @@
     cy.batch(() => {
       bubbleState.forEach((s, id) => {
         if (id === grabbedId) return;
-        if (animatingNodes.has(id)) return;   // cy.animate is driving this node right now
         const n = cy.getElementById(id);
         if (!n || n.empty()) return;
         const dx = Math.sin(t * s.speedX + s.phaseX) * s.ampX;
