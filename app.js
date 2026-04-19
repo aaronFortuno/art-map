@@ -71,13 +71,19 @@
     filtersEl.appendChild(label);
   });
 
-  // Build Cytoscape elements
+  // Build Cytoscape elements. Canonical-vs-secondary distinction is encoded
+  // as the CSS class 'canonical' (not a data attribute) because class
+  // selectors and :not(.class) are more robust in Cytoscape than attribute
+  // selectors in some configurations.
   const elements = [];
   data.nodes.forEach(n => {
     const d = { id: n.id, label: n.title };
-    if (n.canonical)  d.canonical = true;
     if (n.imageThumb) d.thumbUrl = n.imageThumb;
-    elements.push({ group: 'nodes', data: d });
+    elements.push({
+      group: 'nodes',
+      data: d,
+      classes: n.canonical ? 'canonical' : ''
+    });
   });
   data.edges.forEach((e, i) => {
     elements.push({
@@ -201,7 +207,7 @@
       },
       // Canonical without image (5 copyright cases): full weight, black+gold
       {
-        selector: 'node[canonical]',
+        selector: 'node.canonical',
         style: {
           'background-color': '#1c1917',
           'border-color': '#d4a743',
@@ -228,7 +234,7 @@
       },
       // Canonical with image: dominant — big, bright gold border
       {
-        selector: 'node[thumbUrl][canonical]',
+        selector: 'node[thumbUrl].canonical',
         style: {
           'width': 66,
           'height': 66,
@@ -240,7 +246,7 @@
       },
       // Secondary with image: clearly smaller, thin muted border, translucent
       {
-        selector: 'node[thumbUrl]:not([canonical])',
+        selector: 'node[thumbUrl]:not(.canonical)',
         style: {
           'width': 30,
           'height': 30,
@@ -276,7 +282,7 @@
       },
       // Secondary node highlighted: grows from 20 → 30, gets color
       {
-        selector: 'node.highlighted:not([canonical])',
+        selector: 'node.highlighted:not(.canonical)',
         style: {
           'background-color': '#6b6458',
           'width': 30,
@@ -287,7 +293,7 @@
       },
       // Canonical (no image) highlighted: grows from 50 → 58, brighter gold
       {
-        selector: 'node.highlighted[canonical]',
+        selector: 'node.highlighted.canonical',
         style: {
           'width': 58,
           'height': 58,
@@ -297,7 +303,7 @@
       },
       // Canonical WITH image highlighted: grows from 66 → 80, bold gold border
       {
-        selector: 'node.highlighted[thumbUrl][canonical]',
+        selector: 'node.highlighted[thumbUrl].canonical',
         style: {
           'width': 80,
           'height': 80,
@@ -307,7 +313,7 @@
       },
       // Secondary WITH image highlighted: grows from 30 → 46, darker border
       {
-        selector: 'node.highlighted[thumbUrl]:not([canonical])',
+        selector: 'node.highlighted[thumbUrl]:not(.canonical)',
         style: {
           'width': 46,
           'height': 46,
@@ -439,7 +445,7 @@
       edge.toggleClass('hidden', !activeTypes.has(edge.data('type')));
     });
     cy.nodes().forEach(node => {
-      const isSecondary = !node.data('canonical');
+      const isSecondary = !node.hasClass('canonical');
       node.toggleClass('hidden', !showSecondary && isSecondary);
     });
   }
