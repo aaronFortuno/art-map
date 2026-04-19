@@ -360,6 +360,16 @@
         selector: 'edge:selected',
         style: { 'width': 4, 'opacity': 1 }
       },
+      // Keyboard-navigation focus marker (Tab/Shift+Tab): distinct from the
+      // red 'pinned' selection border so users can see both at once.
+      {
+        selector: 'node.kb-focus',
+        style: {
+          'border-color': '#3d82b8',
+          'border-width': 5,
+          'border-style': 'double'
+        }
+      },
       {
         selector: '.hidden',
         style: { 'display': 'none' }
@@ -856,6 +866,94 @@
     if (evt.key === 'Escape') {
       searchInput.value = '';
       runSearch('');
+      searchInput.blur();
+      evt.preventDefault();
+    }
+  });
+
+  // --- Keyboard navigation ---
+  // Tab / Shift+Tab: cycle through canonical works (blue 'kb-focus' border,
+  //                  independent from the red selection border)
+  // Enter:           select/pin the currently focused canonical
+  // /:               move focus into the search input
+  // Escape:          peel back one layer (search → kb-focus → pin)
+  const canonicalOrdered = data.nodes
+    .filter(n => n.canonical)
+    .sort((a, b) => (a.canonicalIndex || 0) - (b.canonicalIndex || 0));
+  let kbFocusId = null;
+
+  function moveKbFocus(delta) {
+    const idx = kbFocusId ? canonicalOrdered.findIndex(n => n.id === kbFocusId) : -1;
+    let next = (idx + delta) % canonicalOrdered.length;
+    if (next < 0) next += canonicalOrdered.length;
+    if (kbFocusId) {
+      const prev = cy.getElementById(kbFocusId);
+      if (prev && !prev.empty()) prev.removeClass('kb-focus');
+    }
+    kbFocusId = canonicalOrdered[next].id;
+    const node = cy.getElementById(kbFocusId);
+    node.addClass('kb-focus');
+    try {
+      cy.animate({ center: { eles: node } }, { duration: 320, easing: 'ease-in-out' });
+    } catch {}
+  }
+
+  function clearKbFocus() {
+    if (kbFocusId) {
+      const node = cy.getElementById(kbFocusId);
+      if (node && !node.empty()) node.removeClass('kb-focus');
+      kbFocusId = null;
+    }
+  }
+
+  function clearPin() {
+    if (!pinnedNodeId && !pinned) return;
+    pinned = false;
+    pinnedNodeId = null;
+    collapseExpansion();
+    if (!searchActive) clearFocus();
+    clearHash();
+    document.getElementById('detail').innerHTML =
+      '<p class="placeholder">Passa el ratolí per sobre un node per previsualitzar el seu veïnat. Fes clic per fixar-lo i veure\'n la fitxa.</p>';
+  }
+
+  document.addEventListener('keydown', evt => {
+    // If the user is typing in the search box, only Escape is relevant here —
+    // and that's handled on the input itself.
+    if (document.activeElement === searchInput) return;
+
+    // Don't hijack keys while inside other inputs either
+    const tag = document.activeElement?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
+
+    switch (evt.key) {
+      case 'Tab':
+        evt.preventDefault();
+        moveKbFocus(evt.shiftKey ? -1 : 1);
+        break;
+      case 'Enter':
+        if (kbFocusId) {
+          evt.preventDefault();
+          const node = cy.getElementById(kbFocusId);
+          if (node && !node.empty()) selectNode(node);
+        }
+        break;
+      case '/':
+        evt.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+        break;
+      case 'Escape':
+        // Peel back one layer
+        if (searchActive) {
+          searchInput.value = '';
+          runSearch('');
+        } else if (kbFocusId) {
+          clearKbFocus();
+        } else if (pinnedNodeId || pinned) {
+          clearPin();
+        }
+        break;
     }
   });
 
