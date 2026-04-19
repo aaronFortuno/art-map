@@ -20,7 +20,6 @@ Estat al 2026-04-19. Les 101 fitxes tenen imatge + anàlisi desenvolupada + conn
     - Vista detall: clic al hotspot → zoom + text emergent
     - Mode fullscreen: hotspots sempre visibles com a punts clicables
 
-- [ ] **Mode "presentació"**: pantalla projectada amb controls simplificats, fonts del graf més grans, navegació només per clic, bloom més marcat. Per a projector a classe.
 
 ## Contingut
 
