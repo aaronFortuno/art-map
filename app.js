@@ -622,30 +622,42 @@
 
   // Pan so that `node` sits at the centre of the visible graph area. On mobile,
   // the bottom sheet covers ~70% of the screen — we shift the target up so the
-  // active node ends up in the top ~18% of the viewport, still visible above
-  // the sheet.
+  // Fit the node AND its closed neighbourhood into the visible viewport, so
+  // the user always sees the selected work together with its connections.
+  // Zoom is recomputed from the neighbourhood bounding box and capped to
+  // avoid extreme zoom-in (isolated nodes) or zoom-out (hub nodes).
+  // On mobile the bottom sheet covers ~70% of the viewport, so the "visible"
+  // area is just the top ~30% — the target centre shifts up accordingly.
   function centerOnNode(node) {
     if (!node || node.empty()) return;
-    const nPos = node.position();
-    const pan = cy.pan();
-    const zoom = cy.zoom();
-    const W = cy.width();
-    const H = cy.height();
+    const hood = node.closedNeighborhood();
+    const bbox = hood.boundingBox();
 
-    const currentScreenX = nPos.x * zoom + pan.x;
-    const currentScreenY = nPos.y * zoom + pan.y;
+    const onMobile = isMobile();
+    const viewW = cy.width();
+    const viewH = cy.height();
 
-    const targetX = W / 2;
-    const targetY = isMobile() ? H * 0.18 : H / 2;
+    // Usable height: top 30% on mobile, full height on desktop.
+    const visibleH = onMobile ? viewH * 0.30 : viewH;
+    const centerX  = viewW / 2;
+    const centerY  = onMobile ? viewH * 0.15 : viewH / 2;
+
+    // Target zoom so the whole neighbourhood fits with padding; clamped.
+    const padding = 70;
+    const fitZoomX = (viewW    - padding * 2) / Math.max(bbox.w, 1);
+    const fitZoomY = (visibleH - padding * 2) / Math.max(bbox.h, 1);
+    const targetZoom = Math.min(Math.max(Math.min(fitZoomX, fitZoomY), 0.55), 1.6);
+
+    // Target pan so the bbox centre lands at (centerX, centerY).
+    const bboxCx = bbox.x1 + bbox.w / 2;
+    const bboxCy = bbox.y1 + bbox.h / 2;
 
     try {
       cy.animate({
-        pan: {
-          x: pan.x + (targetX - currentScreenX),
-          y: pan.y + (targetY - currentScreenY)
-        }
+        pan:  { x: centerX - bboxCx * targetZoom, y: centerY - bboxCy * targetZoom },
+        zoom: targetZoom
       }, {
-        duration: 400,
+        duration: 500,
         easing: 'ease-in-out'
       });
     } catch {}
