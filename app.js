@@ -716,7 +716,21 @@
 
   // Buttons
   document.getElementById('fit-btn').addEventListener('click', () => cy.fit(undefined, 50));
-  document.getElementById('print-btn').addEventListener('click', handlePrintClick);
+
+  document.getElementById('print-all-btn').addEventListener('click', evt =>
+    runPrint(
+      () => true,
+      { lead: 'Fitxes de les 101 obres del mapa (55 canòniques PAU + 46 nodes pont)' },
+      evt.currentTarget
+    )
+  );
+  document.getElementById('print-pau-btn').addEventListener('click', evt =>
+    runPrint(
+      n => !!n.canonical,
+      { lead: "Fitxes de les 55 obres d'Història de l'Art · PAU 2026 (Catalunya)" },
+      evt.currentTarget
+    )
+  );
   document.getElementById('relayout-btn').addEventListener('click', () => {
     if (layoutMode === 'timeline') {
       applyTimelineLayout();
@@ -930,6 +944,9 @@
         <div><strong>Tècnica:</strong> ${escapeHtml(n.technique || '—')}</div>
         <div><strong>Ubicació:</strong> ${escapeHtml(n.location || '—')}</div>
       </div>
+      <div class="fitxa-toolbar">
+        <button class="node-action btn-print-single" data-node-id="${escapeHtml(n.id)}" title="Genera un PDF només amb aquesta fitxa">📄 Exportar fitxa (PDF)</button>
+      </div>
       ${themes.length
         ? `<div class="themes">${themes.map(t => `<span class="theme-tag">${escapeHtml(t)}</span>`).join('')}</div>`
         : ''}
@@ -952,26 +969,42 @@
     if (fsBtn) fsBtn.addEventListener('click', () => openFullscreen(n));
     const img = detail.querySelector('.node-image img');
     if (img) img.addEventListener('click', () => openFullscreen(n));
+    // Wire up the single-node PDF export
+    const printBtn = detail.querySelector('.btn-print-single');
+    if (printBtn) printBtn.addEventListener('click', () => printSingleNode(n.id, printBtn));
   }
 
   // =======================================================================
   // Print export: build one fitxa per node in a hidden container, then ask
   // the browser to print. User saves as PDF from the native print dialog.
+  //
+  // Three entry points share the same core:
+  //   · "Totes les fitxes (101)"   — from controls panel
+  //   · "Només PAU (55)"           — from controls panel
+  //   · "Exportar aquesta fitxa"   — from the detail panel, per node
+  // They differ only in the filter + optional cover page.
   // =======================================================================
 
-  async function handlePrintClick() {
-    const btn = document.getElementById('print-btn');
-    const originalText = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Preparant fitxes...';
+  async function runPrint(filter, cover, triggerBtn) {
+    const originalText = triggerBtn?.textContent;
+    if (triggerBtn) {
+      triggerBtn.disabled = true;
+      triggerBtn.textContent = 'Preparant...';
+    }
     try {
-      buildPrintContent();
+      buildPrintContent(filter, cover);
       await waitForPrintImages();
       window.print();
     } finally {
-      btn.disabled = false;
-      btn.textContent = originalText;
+      if (triggerBtn) {
+        triggerBtn.disabled = false;
+        triggerBtn.textContent = originalText;
+      }
     }
+  }
+
+  function printSingleNode(nodeId, triggerBtn) {
+    runPrint(n => n.id === nodeId, null, triggerBtn);
   }
 
   function waitForPrintImages() {
@@ -986,38 +1019,38 @@
     }));
   }
 
-  function buildPrintContent() {
+  function buildPrintContent(filter, cover) {
     const container = document.getElementById('print-container');
     container.innerHTML = '';
 
-    // Build per-node edge index (both directions)
+    // Build per-node edge index (both directions) once
     const connectionsByNode = {};
     data.edges.forEach(e => {
       (connectionsByNode[e.source] ||= []).push({ type: e.type, other: e.target, role: 'out', note: e.note });
       (connectionsByNode[e.target] ||= []).push({ type: e.type, other: e.source, role: 'in',  note: e.note });
     });
 
-    // Sort: canonical first (by PAU index), then secondary alphabetical by title
-    const sorted = [...data.nodes].sort((a, b) => {
+    const filtered = data.nodes.filter(filter);
+    const sorted = [...filtered].sort((a, b) => {
       if (a.canonical && !b.canonical) return -1;
       if (!a.canonical && b.canonical) return 1;
       if (a.canonical && b.canonical) return (a.canonicalIndex || 0) - (b.canonicalIndex || 0);
       return (a.title || '').localeCompare(b.title || '', 'ca');
     });
 
-    // Cover page
-    container.insertAdjacentHTML('beforeend', `
-      <section class="print-cover">
-        <h1>Art Map</h1>
-        <p class="lead">Fitxes de les 55 obres PAU 2026 d'Història de l'Art<br>i dels nodes pont del mapa</p>
-        <p class="meta">
-          ${sorted.length} obres · ${data.edges.length} connexions<br>
-          ${new Date().toLocaleDateString('ca-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
-        </p>
-      </section>
-    `);
+    // Cover page only when printing multiple works
+    if (cover && sorted.length > 1) {
+      container.insertAdjacentHTML('beforeend', `
+        <section class="print-cover">
+          <h1>Art Map</h1>
+          <p class="lead">${escapeHtml(cover.lead)}</p>
+          <p class="meta">
+            ${sorted.length} obres · ${new Date().toLocaleDateString('ca-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </p>
+        </section>
+      `);
+    }
 
-    // One fitxa per node
     sorted.forEach(n => {
       container.insertAdjacentHTML('beforeend', renderPrintFitxa(n, connectionsByNode[n.id] || []));
     });
