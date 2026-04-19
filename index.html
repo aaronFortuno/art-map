@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art Map — Mockup</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Art Map</h1>
+    <span class="subtitle">PAU 2026 · Història de l'Art</span>
+    <span class="stats" id="stats"></span>
+  </header>
+
+  <div class="layout">
+    <aside class="panel controls">
+      <section>
+        <h3>Cerca</h3>
+        <input type="search" id="search-input" placeholder="Títol, autor, període, tema..." autocomplete="off">
+        <div id="search-count" class="search-count"></div>
+      </section>
+      <section>
+        <h3>Filtres de connexió</h3>
+        <div id="connection-filters"></div>
+      </section>
+      <section>
+        <h3>Nodes</h3>
+        <label><input type="checkbox" id="toggle-secondary" checked> Mostra obres secundàries</label>
+      </section>
+      <section>
+        <h3>Llegenda</h3>
+        <div class="legend">
+          <div><span class="node-dot canonical"></span> Obra canònica PAU 2026</div>
+          <div><span class="node-dot secondary"></span> Obra secundària (pont pedagògic)</div>
+        </div>
+      </section>
+      <section>
+        <h3>Accions</h3>
+        <button id="fit-btn">Encaixa a la vista</button>
+        <button id="relayout-btn">Reordena</button>
+      </section>
+    </aside>
+
+    <main id="cy"></main>
+
+    <aside class="panel detail" id="detail">
+      <p class="placeholder">Passa el ratolí per sobre un node per previsualitzar el seu veïnat. Fes clic per fixar-lo i veure'n la fitxa.</p>
+    </aside>
+  </div>
+
+  <div id="fullscreen" class="fs-hidden" aria-hidden="true">
+    <button class="fs-close" aria-label="Tancar">&times;</button>
+    <div class="fs-image-wrap">
+      <img id="fs-img" src="" alt="">
+      <figcaption id="fs-caption"></figcaption>
+    </div>
+    <aside class="fs-detail" id="fs-detail"></aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

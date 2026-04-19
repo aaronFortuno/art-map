@@ -1,0 +1,4155 @@
+{
+  "meta": {
+    "version": "0.4.0",
+    "updated": "2026-04-19",
+    "description": "Mapa complet de les 55 obres canoniques PAU 2026 + nodes pont secundaris organitzats per eixos temàtics. La fusió del 2026-04-19 ha afegit 42 nodes secundaris i 93 arestes (perspectiva de gènere, orient-occident, transicions abans cobertes a mitges). Veure secondary-proposals.json per al detall d'eixos."
+  },
+  "connectionTypes": [
+    {
+      "id": "precedent",
+      "label": "Precedent / font",
+      "color": "#6B7280",
+      "description": "Obra anterior que estableix un model iconogràfic, formal o tècnic que la destinació recull."
+    },
+    {
+      "id": "cita",
+      "label": "Cita / reinterpretació",
+      "color": "#2563EB",
+      "description": "Represa explícita de composició, tema o gest d'una obra anterior, sense voluntat de trencar-hi."
+    },
+    {
+      "id": "ruptura",
+      "label": "Ruptura",
+      "color": "#DC2626",
+      "description": "Gest deliberat de trencament amb una tradició o obra anterior (en tema, tècnica, ideologia o recepció)."
+    },
+    {
+      "id": "parentiu",
+      "label": "Parentiu temàtic",
+      "color": "#059669",
+      "description": "Obres coetànies o no que comparteixen tema, mecenatge, cercle o programa iconogràfic sense relació directa d'influència."
+    },
+    {
+      "id": "eco",
+      "label": "Eco contemporani",
+      "color": "#D97706",
+      "description": "Reinterpretació, apropiació crítica o diàleg des de l'art dels segles XX-XXI (incloent publicitat, cinema, cultura visual)."
+    }
+  ],
+  "periods": [
+    {
+      "id": "antic-egipte",
+      "label": "Antic Egipte",
+      "start": -2700,
+      "end": -2200
+    },
+    {
+      "id": "grecia-arcaica",
+      "label": "Grècia arcaica",
+      "start": -700,
+      "end": -480
+    },
+    {
+      "id": "grecia-classica",
+      "label": "Grècia clàssica",
+      "start": -480,
+      "end": -323
+    },
+    {
+      "id": "grecia-hellenistica",
+      "label": "Grècia hel·lenística",
+      "start": -323,
+      "end": -31
+    },
+    {
+      "id": "roma-imperial",
+      "label": "Roma imperial",
+      "start": -27,
+      "end": 476
+    },
+    {
+      "id": "art-bizanti",
+      "label": "Art bizantí",
+      "start": 330,
+      "end": 1453
+    },
+    {
+      "id": "art-islamic",
+      "label": "Art islàmic",
+      "start": 750,
+      "end": 1492
+    },
+    {
+      "id": "romanic",
+      "label": "Romànic",
+      "start": 1000,
+      "end": 1200
+    },
+    {
+      "id": "gotic",
+      "label": "Gòtic",
+      "start": 1140,
+      "end": 1500
+    },
+    {
+      "id": "proto-renaixement",
+      "label": "Proto-Renaixement",
+      "start": 1280,
+      "end": 1400
+    },
+    {
+      "id": "renaixement-flamenc",
+      "label": "Renaixement flamenc",
+      "start": 1400,
+      "end": 1500
+    },
+    {
+      "id": "renaixement-quattrocento",
+      "label": "Renaixement · Quattrocento",
+      "start": 1400,
+      "end": 1500
+    },
+    {
+      "id": "renaixement-cinquecento",
+      "label": "Renaixement · Cinquecento",
+      "start": 1500,
+      "end": 1600
+    },
+    {
+      "id": "barroc",
+      "label": "Barroc",
+      "start": 1600,
+      "end": 1750
+    },
+    {
+      "id": "neoclassicisme",
+      "label": "Neoclassicisme",
+      "start": 1750,
+      "end": 1830
+    },
+    {
+      "id": "romanticisme",
+      "label": "Romanticisme",
+      "start": 1800,
+      "end": 1850
+    },
+    {
+      "id": "realisme",
+      "label": "Realisme",
+      "start": 1840,
+      "end": 1880
+    },
+    {
+      "id": "impressionisme",
+      "label": "Impressionisme",
+      "start": 1860,
+      "end": 1900
+    },
+    {
+      "id": "modernisme",
+      "label": "Modernisme",
+      "start": 1880,
+      "end": 1920
+    },
+    {
+      "id": "avantguardes",
+      "label": "Avantguardes històriques",
+      "start": 1900,
+      "end": 1945
+    },
+    {
+      "id": "moviment-modern-arq",
+      "label": "Moviment modern (arquitectura)",
+      "start": 1920,
+      "end": 1970
+    },
+    {
+      "id": "art-contemporani",
+      "label": "Art contemporani",
+      "start": 1945,
+      "end": 2099
+    },
+    {
+      "id": "roma-republicana",
+      "label": "Roma republicana",
+      "start": -509,
+      "end": -27
+    },
+    {
+      "id": "paleocristia",
+      "label": "Paleocristià",
+      "start": 200,
+      "end": 600
+    },
+    {
+      "id": "prerromanic",
+      "label": "Prerromànic peninsular",
+      "start": 500,
+      "end": 1000
+    },
+    {
+      "id": "postimpressionisme",
+      "label": "Postimpressionisme",
+      "start": 1880,
+      "end": 1910
+    },
+    {
+      "id": "expressionisme",
+      "label": "Expressionisme",
+      "start": 1905,
+      "end": 1933
+    },
+    {
+      "id": "edo-japones",
+      "label": "Japó Edo (ukiyo-e)",
+      "start": 1603,
+      "end": 1868
+    },
+    {
+      "id": "mogol",
+      "label": "Art mogol",
+      "start": 1526,
+      "end": 1757
+    }
+  ],
+  "themes": [
+    {
+      "id": "cos-huma",
+      "label": "El cos humà i el seu cànon"
+    },
+    {
+      "id": "cos-femeni",
+      "label": "Mirada sobre el cos femení"
+    },
+    {
+      "id": "mite-religio",
+      "label": "Mite i religió"
+    },
+    {
+      "id": "culte-mort",
+      "label": "Culte als morts i monumentalitat"
+    },
+    {
+      "id": "poder-politic",
+      "label": "Imatge i poder polític"
+    },
+    {
+      "id": "retrat-identitat",
+      "label": "Retrat i identitat"
+    },
+    {
+      "id": "narrativa-visual",
+      "label": "Narrativa visual i relat"
+    },
+    {
+      "id": "arquitectura-sacra",
+      "label": "Arquitectura sagrada"
+    },
+    {
+      "id": "arquitectura-civil",
+      "label": "Arquitectura civil i domèstica"
+    },
+    {
+      "id": "arquitectura-funeraria",
+      "label": "Arquitectura funerària"
+    },
+    {
+      "id": "llum-color",
+      "label": "Llum, color i tenebrisme"
+    },
+    {
+      "id": "espai-perspectiva",
+      "label": "Espai i perspectiva"
+    },
+    {
+      "id": "naturalesa-realitat",
+      "label": "Naturalesa i realitat"
+    },
+    {
+      "id": "abstraccio",
+      "label": "Abstracció"
+    },
+    {
+      "id": "ruptura-academica",
+      "label": "Ruptura amb l'acadèmia"
+    },
+    {
+      "id": "ready-made",
+      "label": "Ready-made i objecte trobat"
+    },
+    {
+      "id": "patrimoni-catala",
+      "label": "Patrimoni català"
+    },
+    {
+      "id": "dialog-orient-occident",
+      "label": "Diàleg Orient-Occident"
+    },
+    {
+      "id": "mirada-masculina",
+      "label": "Mirada masculina / male gaze"
+    },
+    {
+      "id": "feminisme",
+      "label": "Feminisme i perspectiva de gènere"
+    },
+    {
+      "id": "espiritualitat-mistica",
+      "label": "Espiritualitat i mística"
+    },
+    {
+      "id": "cos-performatiu",
+      "label": "Cos performatiu"
+    },
+    {
+      "id": "nu-classic",
+      "label": "Nu clàssic i tradició"
+    },
+    {
+      "id": "apropiacio-critica",
+      "label": "Apropiació crítica"
+    },
+    {
+      "id": "llenguatge-classic",
+      "label": "Llenguatge clàssic i ordres"
+    },
+    {
+      "id": "mecenatge-femeni",
+      "label": "Mecenatge i autoria femenina"
+    },
+    {
+      "id": "paisatge",
+      "label": "Paisatge i territori"
+    },
+    {
+      "id": "orient-influencia",
+      "label": "Orient com a model (japonisme, orientalisme)"
+    },
+    {
+      "id": "inconscient-somni",
+      "label": "Inconscient, somni i surrealisme"
+    },
+    {
+      "id": "industria-ciutat",
+      "label": "Indústria, ciutat moderna i multitud"
+    }
+  ],
+  "nodeSchema": {
+    "_description": "Esquema de referència d'un node. Veure exemples a 'nodes'.",
+    "fields": {
+      "id": "slug únic (autor-obra)",
+      "title": "títol de l'obra",
+      "author": "autor/a",
+      "year": "any o any aproximat (int, negatiu si aC)",
+      "yearLabel": "etiqueta textual si convé",
+      "period": "id de periods[]",
+      "technique": "tècnica",
+      "location": "ubicació actual",
+      "image": "ruta local a img/... (o null)",
+      "canonical": "true si entra a les 55 de PAU 2026",
+      "canonicalIndex": "número d'ordre a la llista oficial (1-55) o null",
+      "themes": "llista d'ids de themes[]",
+      "analysis": "{ context, formal, meaning, function } — pot ser parcial",
+      "counterfactuals": "preguntes 'per què això i no allò'",
+      "notes": "observacions lliures"
+    }
+  },
+  "edgeSchema": {
+    "_description": "Esquema de referència d'una aresta.",
+    "fields": {
+      "source": "id del node origen",
+      "target": "id del node destí",
+      "type": "id de connectionTypes[]",
+      "note": "explicació breu de la connexió"
+    }
+  },
+  "nodes": [
+    {
+      "id": "piramides-guiza",
+      "title": "Piràmides de Guiza",
+      "author": null,
+      "year": -2560,
+      "yearLabel": "c. 2600-2500 aC",
+      "period": "antic-egipte",
+      "technique": "Arquitectura funerària en pedra calcària i granit",
+      "location": "Guiza, Egipte",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 1,
+      "themes": [
+        "culte-mort",
+        "arquitectura-funeraria",
+        "poder-politic"
+      ],
+      "analysis": {
+        "context": "Antic Imperi egipci. Piràmides de Kheops, Kefren i Micerí. Expressió monumental del poder diví del faraó i de la vida més enllà.",
+        "formal": "Volumetria piramidal de cares triangulars, orientació astronòmica precisa, materials massius.",
+        "meaning": "Escala còsmica de la mort reial; imitació del túmul primordial.",
+        "function": "Tomba-monument del faraó i aparell simbòlic de l'estat."
+      },
+      "counterfactuals": [
+        "Per què una forma tan pura i geomètrica per representar la transcendència?"
+      ]
+    },
+    {
+      "id": "fris-meidum",
+      "title": "Fris de Meidum (mastaba de Nefermaat)",
+      "author": null,
+      "year": -2600,
+      "yearLabel": "c. 2600 aC",
+      "period": "antic-egipte",
+      "technique": "Pintura mural amb pasta pigmentada sobre guix",
+      "location": "Museu Egipci del Caire",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 2,
+      "themes": [
+        "narrativa-visual",
+        "culte-mort"
+      ],
+      "analysis": {
+        "context": "Tomba d'elit del regne antic egipci. Fragments de l'escena dels oques.",
+        "formal": "Composició per registres, frontalitat, policromia plana, precisió descriptiva del detall zoològic.",
+        "meaning": "Provisió màgica per al difunt: la imatge proporciona allò que representa.",
+        "function": "Funció funerària i màgica."
+      },
+      "counterfactuals": [
+        "Què significa pintar animals amb tant de detall en un context de mort?"
+      ]
+    },
+    {
+      "id": "parteno",
+      "title": "Partenó",
+      "author": "Ictinos i Cal·lícrates (arquitectes); Fídies (escultura)",
+      "year": -438,
+      "yearLabel": "447-432 aC",
+      "period": "grecia-classica",
+      "technique": "Arquitectura dòrica en marbre pentèlic",
+      "location": "Acròpolis d'Atenes",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 3,
+      "themes": [
+        "arquitectura-sacra",
+        "llenguatge-classic",
+        "poder-politic"
+      ],
+      "analysis": {
+        "context": "Atenes de Pèricles, apogeu clàssic. Temple dedicat a Atena Partenos.",
+        "formal": "Temple octàstil perípter; correccions òptiques subtils (èntasi, curvatura de l'estilòbat); fris jònic integrat en un edifici dòric.",
+        "meaning": "Encarnació del cànon clàssic i del poder polític d'Atenes.",
+        "function": "Temple, tresor de la lliga de Delos i símbol cívic."
+      },
+      "counterfactuals": [
+        "Per què introduir correccions òptiques imperceptibles en un temple?"
+      ]
+    },
+    {
+      "id": "teatre-epidaure",
+      "title": "Teatre d'Epidaure",
+      "author": "Atribuït a Policlet el Jove",
+      "year": -340,
+      "yearLabel": "s. IV aC",
+      "period": "grecia-classica",
+      "technique": "Arquitectura civil en pedra",
+      "location": "Epidaure, Argòlida",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 4,
+      "themes": [
+        "arquitectura-civil",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Santuari d'Asclepi. Teatre a l'aire lliure per a la representació dramàtica.",
+        "formal": "Semicercle de grades excavades al pendent; koilon perfecte; acústica excepcional.",
+        "meaning": "Espai cívic i ritual grec; democràcia teatral.",
+        "function": "Representacions dramàtiques i cerimònies."
+      },
+      "counterfactuals": [
+        "Com condiciona l'arquitectura la manera de veure i escoltar d'una ciutadania?"
+      ]
+    },
+    {
+      "id": "kore-peplum",
+      "title": "Kore del pèplum",
+      "author": null,
+      "year": -530,
+      "yearLabel": "c. 530 aC",
+      "period": "grecia-arcaica",
+      "technique": "Escultura en marbre policromat",
+      "location": "Museu de l'Acròpoli, Atenes",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 5,
+      "themes": [
+        "cos-huma",
+        "cos-femeni",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Figures femenines votives dipositades a l'Acròpolis abans de la destrucció persa del 480 aC.",
+        "formal": "Frontalitat arcaica, somriure eginenc, vestit pèplum més simple que el quitó; resta de policromia.",
+        "meaning": "Ofrena votiva; estereotip de la joventut femenina idealitzada.",
+        "function": "Exvot al santuari d'Atena."
+      },
+      "counterfactuals": [
+        "Què canvia entre la kore arcaica i el cos clàssic posterior?"
+      ]
+    },
+    {
+      "id": "dorifor-policlet",
+      "title": "Dorífor",
+      "author": "Policlet",
+      "year": -440,
+      "yearLabel": "c. 440 aC (original perdut; còpies romanes)",
+      "period": "grecia-classica",
+      "technique": "Escultura en bronze (original); còpies en marbre",
+      "location": "Còpies a Nàpols (MANN), Minneapolis, etc.",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 6,
+      "themes": [
+        "cos-huma",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Policlet d'Argos escriu el 'Cànon', tractat perdut, del qual el Dorífor és la il·lustració.",
+        "formal": "Contrapposto; equilibri entre cames i braços (quiasme); proporcions modulars.",
+        "meaning": "Encarnació de la mesura, la simetria i el cànon del cos humà clàssic.",
+        "function": "Il·lustració teòrica i model pedagògic d'escola escultòrica."
+      },
+      "counterfactuals": [
+        "Per què el cos ideal s'expressa en la quietud activa del contrapposto?"
+      ]
+    },
+    {
+      "id": "venus-cnido",
+      "title": "Venus de Cnido",
+      "author": "Praxíteles",
+      "year": -340,
+      "yearLabel": "c. 340 aC",
+      "period": "grecia-classica",
+      "technique": "Escultura en marbre (original perdut; conservades còpies romanes)",
+      "location": "Diverses còpies: Museus Vaticans, Museu Nacional Romà, etc.",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 7,
+      "themes": [
+        "cos-femeni",
+        "nu-classic",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Primera gran representació d'Afrodita totalment nua en l'escultura grega. Encarregada pels habitants de Cos però rebutjada; adquirida per Cnidos, on esdevé atracció cultual i turística.",
+        "formal": "Contrapposto suau, gest pudorós de la mà que cobreix el pubis (Venus pudica), hydria al costat com a suport i al·lusió al bany.",
+        "meaning": "Funda l'esquema iconogràfic de la deessa nua: pretext mitològic per mostrar el nu femení idealitzat.",
+        "function": "Culte religiós a Afrodita; alhora objecte de contemplació estètica."
+      },
+      "counterfactuals": [
+        "Per què la primera nuesa canònica és una deessa i no una dona qualsevol?"
+      ]
+    },
+    {
+      "id": "laocoont",
+      "title": "Laocoont i els seus fills",
+      "author": "Agesandre, Polidor i Atenodor de Rodes",
+      "year": -40,
+      "yearLabel": "s. I aC (o còpia romana d'un original de s. II aC)",
+      "period": "grecia-hellenistica",
+      "technique": "Grup escultòric en marbre",
+      "location": "Museus Vaticans, Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 8,
+      "themes": [
+        "cos-huma",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Descobert el 1506 a Roma; la seva troballa impressiona profundament Miquel Àngel. Representa l'episodi virgilià del sacerdot troià atacat per serps.",
+        "formal": "Tensió muscular extrema, diagonals dramàtiques, patetisme barroc avant la lettre.",
+        "meaning": "Dolor heroic; càstig diví; pathos hel·lenístic.",
+        "function": "Escultura d'aparador aristocràtic; model de 'l'art del patetisme'."
+      },
+      "counterfactuals": [
+        "Com passa aquest grup a ser referent per al barroc i el Renaixement a la vegada?"
+      ]
+    },
+    {
+      "id": "panteo-roma",
+      "title": "Panteó",
+      "author": "Adrià (promotor); possiblement Apol·lodor de Damasc",
+      "year": 126,
+      "yearLabel": "c. 118-128 dC",
+      "period": "roma-imperial",
+      "technique": "Arquitectura en opus caementicium (formigó romà) i marbre",
+      "location": "Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 9,
+      "themes": [
+        "arquitectura-sacra",
+        "llenguatge-classic",
+        "espai-perspectiva"
+      ],
+      "analysis": {
+        "context": "Temple dedicat a tots els déus. Reconstrucció adriana sobre el Panteó d'Agrippa.",
+        "formal": "Pòrtic clàssic octàstil + rotonda de 43.3 m de diàmetre amb cúpula de cassetons i òcul.",
+        "meaning": "Imatge cosmològica: el cel sota la cúpula, la llum que entra per l'òcul.",
+        "function": "Temple; model recurrent de planta central cupulada al llarg de la història."
+      },
+      "counterfactuals": [
+        "Per què una única obertura al cim i no finestres laterals?"
+      ]
+    },
+    {
+      "id": "colosseu-roma",
+      "title": "Colosseu (amfiteatre Flavi)",
+      "author": null,
+      "year": 80,
+      "yearLabel": "70-80 dC",
+      "period": "roma-imperial",
+      "technique": "Arquitectura en pedra i formigó romà",
+      "location": "Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 10,
+      "themes": [
+        "arquitectura-civil",
+        "poder-politic",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Encàrrec dels Flavis per als jocs populars. Espectacle i poder.",
+        "formal": "El·lipse monumental, tres ordres superposats (toscà, jònic, corinti) + àtic; aforament ~50.000.",
+        "meaning": "El poder imperial com a espectacle; pa i circ.",
+        "function": "Combats de gladiadors, caceres, drames. Punt d'equilibri entre plaer popular i control polític."
+      },
+      "counterfactuals": [
+        "Què ens diu que una cultura inverteixi tanta pedra en l'espectacle de la violència?"
+      ]
+    },
+    {
+      "id": "august-prima-porta",
+      "title": "August de Prima Porta",
+      "author": null,
+      "year": 15,
+      "yearLabel": "c. 15 dC (còpia d'un original de bronze anterior)",
+      "period": "roma-imperial",
+      "technique": "Escultura en marbre policromat",
+      "location": "Museus Vaticans, Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 11,
+      "themes": [
+        "retrat-identitat",
+        "poder-politic",
+        "cos-huma"
+      ],
+      "analysis": {
+        "context": "Programa propagandístic augustal. Trobat a la vil·la de Lívia.",
+        "formal": "Retrat idealitzat a l'estil del Dorífor: contrapposto, peus nus (heroïtzació). Cuirassa amb relleu narratiu (devolució de l'estendart part); al costat, Cupido sobre un dofí (ascendència de Venus).",
+        "meaning": "August com a heroi classicitzant, descendent diví i defensor del mos maiorum.",
+        "function": "Escultura oficial imperial; vehicle ideològic."
+      },
+      "counterfactuals": [
+        "Per què August, com a emperador real, es presenta amb l'estàtica d'una estàtua grega idealitzada?"
+      ]
+    },
+    {
+      "id": "columna-trajana",
+      "title": "Columna Trajana",
+      "author": "Apol·lodor de Damasc (possible)",
+      "year": 113,
+      "yearLabel": "113 dC",
+      "period": "roma-imperial",
+      "technique": "Relleu narratiu en marbre",
+      "location": "Fòrum de Trajà, Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 12,
+      "themes": [
+        "narrativa-visual",
+        "poder-politic"
+      ],
+      "analysis": {
+        "context": "Commemora les guerres dàcies de Trajà. 30 m d'alçada, 200 m de relleu en espiral.",
+        "formal": "Relat continu en espiral ascendent; composició narrativa per episodis; perspectiva jeràrquica.",
+        "meaning": "Història imperial feta imatge; glorificació del poder militar.",
+        "function": "Monument commemoratiu i urna funerària de Trajà a la base."
+      },
+      "counterfactuals": [
+        "Per què desplegar el relat en vertical si no es pot veure bé des de baix?"
+      ]
+    },
+    {
+      "id": "santa-sofia",
+      "title": "Santa Sofia de Constantinoble",
+      "author": "Antemi de Trales i Isidor de Milet",
+      "year": 537,
+      "yearLabel": "532-537",
+      "period": "art-bizanti",
+      "technique": "Arquitectura en maó, pedra i mosaic",
+      "location": "Istanbul (Turquia)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 13,
+      "themes": [
+        "arquitectura-sacra",
+        "dialog-orient-occident",
+        "espai-perspectiva"
+      ],
+      "analysis": {
+        "context": "Justinià encarrega un edifici que 'superi Salomó'. Catedral bizantina; després mesquita; després museu i de nou mesquita.",
+        "formal": "Gran cúpula sobre petxines, basílica central; llum difusa pels finestrals de la base del tambor.",
+        "meaning": "Síntesi de la basílica romana i la planta central oriental; imatge del cel.",
+        "function": "Catedral cristiana oriental; model arquitectònic de síntesi civilitzacional."
+      },
+      "counterfactuals": [
+        "Com és que un mateix edifici funciona com a catedral, mesquita i museu sense canvis estructurals importants?"
+      ]
+    },
+    {
+      "id": "mesquita-cordova",
+      "title": "Mesquita de Còrdova",
+      "author": null,
+      "year": 786,
+      "yearLabel": "iniciada 786 dC, ampliacions fins s. X",
+      "period": "art-islamic",
+      "technique": "Arquitectura en pedra, maó i marbre",
+      "location": "Còrdova",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 14,
+      "themes": [
+        "arquitectura-sacra",
+        "dialog-orient-occident"
+      ],
+      "analysis": {
+        "context": "Califat omeia de Còrdova. Construïda sobre l'església visigòtica de Sant Vicenç.",
+        "formal": "Bosc de columnes amb dobles arcades de dovelles roges i blanques; quibla i mihrab ricament decorats; hibridació de l'herència clàssica-visigòtica amb l'art islàmic.",
+        "meaning": "Espai sagrat islàmic; afirmació del poder califal.",
+        "function": "Mesquita d'oració; després catedral cristiana (amb capella central del s. XVI)."
+      },
+      "counterfactuals": [
+        "Com dialoga l'espai islàmic amb el cristià dins del mateix edifici?"
+      ]
+    },
+    {
+      "id": "santiago-compostela",
+      "title": "Catedral de Santiago de Compostel·la",
+      "author": null,
+      "year": 1120,
+      "yearLabel": "iniciada 1075; pòrtic de la Glòria 1188",
+      "period": "romanic",
+      "technique": "Arquitectura i escultura romàniques en pedra",
+      "location": "Santiago de Compostel·la",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 15,
+      "themes": [
+        "arquitectura-sacra",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Final del Camí de Sant Jaume. Model d'església de pelegrinatge.",
+        "formal": "Planta de creu llatina, naus amb volta de canó, capçalera amb girola i capelles radials; Pòrtic de la Glòria del Mestre Mateu.",
+        "meaning": "Destinació espiritual; afirmació del cristianisme occidental davant el món islàmic peninsular.",
+        "function": "Catedral de pelegrinatge."
+      },
+      "counterfactuals": [
+        "Per què l'arquitectura romànica inventa la girola?"
+      ]
+    },
+    {
+      "id": "moissac-portalada",
+      "title": "Portalada de Sant Pere de Moissac",
+      "author": null,
+      "year": 1130,
+      "yearLabel": "c. 1115-1130",
+      "period": "romanic",
+      "technique": "Escultura romànica en pedra",
+      "location": "Moissac (França)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 16,
+      "themes": [
+        "arquitectura-sacra",
+        "narrativa-visual",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Cluniac. Timpà amb visió apocalíptica. Obra cabdal de la Via Tolosana cap a Compostel·la.",
+        "formal": "Composició jeràrquica al voltant de Crist en majestat; ancians de l'Apocalipsi amb violes; figures allargades i expressives.",
+        "meaning": "Imatge del judici i de la visió profètica.",
+        "function": "Programa pedagògic i moralitzador per als pelegrins."
+      },
+      "counterfactuals": [
+        "Per què deformar els cossos? És falta d'ofici o decisió ideològica?"
+      ]
+    },
+    {
+      "id": "sant-climent-taull",
+      "title": "Frescos de Sant Climent de Taüll (Pantocràtor)",
+      "author": "Mestre de Taüll (anònim)",
+      "year": 1123,
+      "yearLabel": "consagració 1123",
+      "period": "romanic",
+      "technique": "Pintura mural al fresc",
+      "location": "MNAC, Barcelona",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 17,
+      "themes": [
+        "espiritualitat-mistica",
+        "patrimoni-catala",
+        "arquitectura-sacra"
+      ],
+      "analysis": {
+        "context": "Vall de Boí, Pirineu català. Arrancat i traslladat al MNAC al segle XX per preservar-lo.",
+        "formal": "Crist en majestat dins la màndorla, tetramorf, jerarquia cromàtica, contorns marcats.",
+        "meaning": "Visió teofànica romànica: Déu com a presència transcendent.",
+        "function": "Imatge absidal didàctica i cultual."
+      },
+      "counterfactuals": [
+        "Per què la figura frontal, sense moviment, sense emoció?"
+      ]
+    },
+    {
+      "id": "chartres",
+      "title": "Catedral de Nostra Senyora de Chartres",
+      "author": null,
+      "year": 1220,
+      "yearLabel": "s. XII-XIII (reconstrucció principal 1194-1250)",
+      "period": "gotic",
+      "technique": "Arquitectura i vitralls gòtics",
+      "location": "Chartres (França)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 18,
+      "themes": [
+        "arquitectura-sacra",
+        "llum-color",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Peregrinatge marià; pelegrinatge molt visitat a l'Edat Mitjana.",
+        "formal": "Planta de creu llatina, volta de creueria, arc apuntat, contraforts exteriors que alliberen els murs per als vitralls.",
+        "meaning": "Arquitectura de la llum; lectura teològica de la claror divina.",
+        "function": "Catedral marià; espai de contemplació i pelegrinatge."
+      },
+      "counterfactuals": [
+        "Com canvia la fe quan es pot veure la llum dels vitralls directament?"
+      ]
+    },
+    {
+      "id": "santa-maria-del-mar",
+      "title": "Santa Maria del Mar",
+      "author": "Berenguer de Montagut (mestre d'obres)",
+      "year": 1384,
+      "yearLabel": "1329-1384",
+      "period": "gotic",
+      "technique": "Arquitectura gòtica en pedra",
+      "location": "Barcelona",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 19,
+      "themes": [
+        "arquitectura-sacra",
+        "patrimoni-catala",
+        "espai-perspectiva"
+      ],
+      "analysis": {
+        "context": "Finançada pels gremis de la Ribera, especialment mariners. Símbol de la Barcelona comercial medieval.",
+        "formal": "Gòtic català: tres naus de la mateixa alçada, columnes octogonals molt esveltes, sensació d'unitat espacial diàfana.",
+        "meaning": "Orgull cívic i mercantil; espai racional i despullat.",
+        "function": "Basílica parroquial de la Ribera."
+      },
+      "counterfactuals": [
+        "Per què el gòtic català prefereix l'amplitud a l'alçària?"
+      ]
+    },
+    {
+      "id": "llotja-valencia",
+      "title": "Llotja dels Mercaders de València",
+      "author": "Pere Comte",
+      "year": 1498,
+      "yearLabel": "1482-1548",
+      "period": "gotic",
+      "technique": "Arquitectura civil gòtica en pedra",
+      "location": "València",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 20,
+      "themes": [
+        "arquitectura-civil",
+        "patrimoni-catala"
+      ],
+      "analysis": {
+        "context": "Segle d'or valencià. Centre del comerç a la Corona d'Aragó. Patrimoni de la Humanitat.",
+        "formal": "Gran sala amb columnes helicoidals molt altes, volta de creueria; façana amb gàrgoles i decoració escultòrica.",
+        "meaning": "Temple del comerç; el gòtic adaptat al poder burgès.",
+        "function": "Seu del Consolat del Mar i llotja mercantil."
+      },
+      "counterfactuals": [
+        "Per què utilitzar el llenguatge de la catedral per a un edifici comercial?"
+      ]
+    },
+    {
+      "id": "pou-moises-sluter",
+      "title": "Pou de Moisès (Cartoixa de Champmol)",
+      "author": "Claus Sluter",
+      "year": 1403,
+      "yearLabel": "1395-1406",
+      "period": "gotic",
+      "technique": "Escultura en pedra calcària policromada",
+      "location": "Dijon (França)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 21,
+      "themes": [
+        "narrativa-visual",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Encàrrec de Felip l'Ardit, duc de Borgonya, per a la cartoixa que fundà.",
+        "formal": "Sis profetes monumentals al voltant d'una base hexagonal; volums massius, draperies agudes, individualització dels rostres.",
+        "meaning": "Pre-figuració de Crist; profunditat psicològica inusual per l'època.",
+        "function": "Base escultòrica d'un calvari al claustre cartoixà."
+      },
+      "counterfactuals": [
+        "Què suposa aquesta mena d'individualitat psicològica gairebé un segle abans del Renaixement italià?"
+      ]
+    },
+    {
+      "id": "giotto-scrovegni",
+      "title": "Capella Scrovegni (Capella de l'Arena)",
+      "author": "Giotto di Bondone",
+      "year": 1305,
+      "yearLabel": "1303-1305",
+      "period": "proto-renaixement",
+      "technique": "Pintura al fresc",
+      "location": "Pàdua",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 22,
+      "themes": [
+        "narrativa-visual",
+        "espai-perspectiva",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Encàrrec d'Enrico Scrovegni en expiació de la usura paterna. Cicle complet de la vida de Crist i de Maria.",
+        "formal": "Volums corporals creïbles, espai arquitectònic incipient, emoció continguda als rostres, composició clara per escenes.",
+        "meaning": "Humanització del relat sagrat: Maria i Crist tenen pes, mirada, cos.",
+        "function": "Capella votiva privada amb programa narratiu complet."
+      },
+      "counterfactuals": [
+        "Què fa Giotto que no feia Taüll? Per què és 'proto-Renaixement'?"
+      ]
+    },
+    {
+      "id": "primavera-botticelli",
+      "title": "La primavera",
+      "author": "Sandro Botticelli",
+      "year": 1482,
+      "yearLabel": "c. 1482",
+      "period": "renaixement-quattrocento",
+      "technique": "Tremp sobre taula",
+      "location": "Galleria degli Uffizi, Florència",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "mite-religio",
+        "cos-femeni"
+      ],
+      "analysis": {
+        "context": "Encàrrec del cercle dels Medici, probablement Lorenzo di Pierfrancesco. Context del neoplatonisme florentí.",
+        "formal": "Composició horitzontal, figures gairebé a mida natural, línia fluida, colors clars, fons de bosc fosc.",
+        "meaning": "Al·legoria de la primavera i de l'amor neoplatònic. Venus al centre com a principi ordenador.",
+        "function": "Obra de gabinet privat; programa iconogràfic humanista per al mecenes."
+      },
+      "counterfactuals": [
+        "Per què una deessa pagana presideix un quadre en la Florència cristiana?"
+      ],
+      "notes": "Node pont. Prepara el terreny iconogràfic i intel·lectual de la Venus."
+    },
+    {
+      "id": "arnolfini-van-eyck",
+      "title": "El matrimoni Arnolfini",
+      "author": "Jan van Eyck",
+      "year": 1434,
+      "yearLabel": "1434",
+      "period": "renaixement-flamenc",
+      "technique": "Oli sobre taula",
+      "location": "National Gallery, Londres",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 23,
+      "themes": [
+        "retrat-identitat",
+        "espai-perspectiva",
+        "llum-color"
+      ],
+      "analysis": {
+        "context": "Retrat de Giovanni di Nicolao Arnolfini i la seva muller en un interior burgès a Bruges.",
+        "formal": "Oli amb detall minuciós, tractament mestre de la llum interior, perspectiva empírica, mirall convex al fons que reflecteix l'escena i el pintor ('Johannes de Eyck fuit hic, 1434').",
+        "meaning": "Possiblement certifica l'enllaç; símbols: gosset (fidelitat), espelma encesa, calçat tret (terra sagrat).",
+        "function": "Retrat documental i votiu d'una elit mercantil burgesa."
+      },
+      "counterfactuals": [
+        "Per què pintar un mirall que et fa veure el pintor dins el quadre?"
+      ]
+    },
+    {
+      "id": "bramante-san-pietro",
+      "title": "Capella de San Pietro in Montorio (Tempietto)",
+      "author": "Donato Bramante",
+      "year": 1502,
+      "yearLabel": "1502",
+      "period": "renaixement-cinquecento",
+      "technique": "Arquitectura classicista",
+      "location": "Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 24,
+      "themes": [
+        "arquitectura-sacra",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Martyrium de Sant Pere; iniciativa dels Reis Catòlics.",
+        "formal": "Planta central circular; tholos grec + cúpula romana en miniatura; proporció matemàtica i cànon clàssic.",
+        "meaning": "Manifest del classicisme renaixentista: síntesi grega i romana del temple ideal.",
+        "function": "Capella conmemorativa; model canònic del classicisme renaixentista."
+      },
+      "counterfactuals": [
+        "Per què una capella tan petita es converteix en el manual de l'arquitectura classicista?"
+      ]
+    },
+    {
+      "id": "palladio-rotonda",
+      "title": "Villa Capra (La Rotonda)",
+      "author": "Andrea Palladio",
+      "year": 1571,
+      "yearLabel": "iniciada 1567",
+      "period": "renaixement-cinquecento",
+      "technique": "Arquitectura classicista en maó i pedra",
+      "location": "Vicenza",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 25,
+      "themes": [
+        "arquitectura-civil",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Villa suburbana per a Paolo Almerico. Model del classicisme palladià.",
+        "formal": "Planta central perfectament simètrica; quatre pòrtics jònics idèntics als quatre costats; cúpula central.",
+        "meaning": "Ideal palladià de la vil·la com a temple-casa; harmonia còsmica.",
+        "function": "Residència d'estiu; model propagat pel neoclàssic anglès i americà."
+      },
+      "counterfactuals": [
+        "Per què una casa amb quatre façanes iguals? Què preval, la funció o la idea?"
+      ]
+    },
+    {
+      "id": "donatello-david",
+      "title": "David",
+      "author": "Donatello",
+      "year": 1440,
+      "yearLabel": "c. 1440-1460",
+      "period": "renaixement-quattrocento",
+      "technique": "Escultura en bronze",
+      "location": "Museu del Bargello, Florència",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 26,
+      "themes": [
+        "cos-huma",
+        "poder-politic",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Encàrrec Medici. Primer nu masculí exempt des de l'antiguitat.",
+        "formal": "Contrapposto recuperat, adolescent efebic, barret i botes, Golies decapitat als peus.",
+        "meaning": "Florència com a David davant dels Goliats poderosos; afirmació cívica i humanista.",
+        "function": "Escultura de pati-palau per als Medici; exhibició pública del poder i del gust."
+      },
+      "counterfactuals": [
+        "Per què un David adolescent i nu, i no heroic i armat?"
+      ]
+    },
+    {
+      "id": "venus-botticelli",
+      "title": "El naixement de Venus",
+      "author": "Sandro Botticelli",
+      "year": 1485,
+      "yearLabel": "c. 1485",
+      "period": "renaixement-quattrocento",
+      "technique": "Tremp sobre tela",
+      "location": "Galleria degli Uffizi, Florència",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 27,
+      "themes": [
+        "cos-femeni",
+        "mite-religio",
+        "nu-classic"
+      ],
+      "analysis": {
+        "context": "Florència dels Medici, neoplatonisme (Ficino, Poliziano). Recuperació del nu femení de matriu clàssica després de segles de proscripció medieval.",
+        "formal": "Composició equilibrada i simètrica, línia com a protagonista, modelat suau, paleta freda, perspectiva atmosfèrica poc profunda. Cos idealitzat amb anatomia impossible (coll allargat, espatlla desencaixada).",
+        "meaning": "Naixement de Venus de l'escuma del mar. Lectura neoplatònica: al·legoria del naixement de la bellesa i de l'amor espiritual.",
+        "function": "Encàrrec privat, decoració d'un espai domèstic d'elit; vehicle d'un programa humanista."
+      },
+      "counterfactuals": [
+        "Per què Venus i no Dànae? Per què el naixement i no un altre episodi del mite?",
+        "Per què tornar al nu femení classicista justament en un context cristià?"
+      ],
+      "notes": "Node central del veïnat estudiat."
+    },
+    {
+      "id": "escola-atenes-rafael",
+      "title": "L'escola d'Atenes",
+      "author": "Rafael Sanzio",
+      "year": 1511,
+      "yearLabel": "1509-1511",
+      "period": "renaixement-cinquecento",
+      "technique": "Fresc",
+      "location": "Stanza della Segnatura, Palaus vaticans",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 28,
+      "themes": [
+        "narrativa-visual",
+        "espai-perspectiva",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Encàrrec de Juli II per a la seva biblioteca. Programa sobre Teologia / Filosofia / Poesia / Justícia.",
+        "formal": "Arquitectura classicista monumental, perspectiva lineal centrada, agrupació de filòsofs amb atributs; Plató i Aristòtil al centre.",
+        "meaning": "Apoteosi de la filosofia antiga; síntesi ideal del coneixement.",
+        "function": "Programa iconogràfic papal; celebració del pensament humanista."
+      },
+      "counterfactuals": [
+        "Per què pintar els filòsofs antics amb la fisonomia dels artistes contemporanis (Miquel Àngel, Bramante)?"
+      ]
+    },
+    {
+      "id": "sixtina-volta",
+      "title": "Frescos de la Capella Sixtina (volta)",
+      "author": "Miquel Àngel Buonarroti",
+      "year": 1512,
+      "yearLabel": "1508-1512",
+      "period": "renaixement-cinquecento",
+      "technique": "Fresc",
+      "location": "Museus Vaticans, Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 29,
+      "themes": [
+        "mite-religio",
+        "cos-huma",
+        "narrativa-visual"
+      ],
+      "analysis": {
+        "context": "Encàrrec de Juli II. Miquel Àngel, escultor abans que pintor, s'hi passa 4 anys.",
+        "formal": "Arquitectura pictòrica fingida dividida en 9 escenes del Gènesi, profetes i sibil·les, ignudi als angles. Cossos d'enorme força plàstica.",
+        "meaning": "Creació i caiguda de l'home; genealogia de Crist; unió de l'Antiga i la Nova Aliança.",
+        "function": "Cobertura iconogràfica del lloc del conclave papal."
+      },
+      "counterfactuals": [
+        "Com és que l'escultor fa que la pintura sembli escultura?"
+      ]
+    },
+    {
+      "id": "venus-urbino-tizia",
+      "title": "Venus d'Urbino",
+      "author": "Tizià",
+      "year": 1538,
+      "yearLabel": "1538",
+      "period": "renaixement-cinquecento",
+      "technique": "Oli sobre tela",
+      "location": "Galleria degli Uffizi, Florència",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-femeni",
+        "nu-classic",
+        "mirada-masculina"
+      ],
+      "analysis": {
+        "context": "Encàrrec del duc Guidobaldo II Della Rovere. Venècia cinquecentesca, colorisme venecià.",
+        "formal": "Nu reclinat en interior domèstic, mirada directa a l'espectador, color càlid i matèric, composició dividida entre espai íntim (llit) i espai social (fons amb servents).",
+        "meaning": "Venus humanitzada, mite esdevingut cos d'alcova.",
+        "function": "Pintura de cambra privada; fixa el model del nu reclinat occidental."
+      },
+      "counterfactuals": [
+        "Per què baixem Venus del mar a l'alcova?",
+        "Què canvia quan la deessa mira directament l'espectador?"
+      ],
+      "notes": "Node pont NO canònic però essencial pedagògicament."
+    },
+    {
+      "id": "danae-tizia",
+      "title": "Dànae i la pluja d'or",
+      "author": "Tizià",
+      "year": 1553,
+      "yearLabel": "c. 1551-1553",
+      "period": "renaixement-cinquecento",
+      "technique": "Oli sobre tela",
+      "location": "Museu del Prado, Madrid",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 30,
+      "themes": [
+        "cos-femeni",
+        "mite-religio",
+        "nu-classic",
+        "mirada-masculina"
+      ],
+      "analysis": {
+        "context": "Versió del Prado, encàrrec de Felip II. Venècia cinquecentesca. Tizià pinta múltiples versions del tema.",
+        "formal": "Nu femení reclinat, contrallum daurat de la pluja de Zeus, contrast entre cos idealitzat i figura de la serventa.",
+        "meaning": "Dànae fecundada per Zeus-pluja d'or. Lectura eròtica; també al·legoria sobre la cobdícia (la criada recollint monedes).",
+        "function": "Pintura de cambra privada ('poesies' per a Felip II)."
+      },
+      "counterfactuals": [
+        "Com canvia el sentit del nu quan el mite inclou una transacció (pluja d'or = diners)?"
+      ]
+    },
+    {
+      "id": "borromini-san-carlino",
+      "title": "San Carlo alle Quattro Fontane (San Carlino)",
+      "author": "Francesco Borromini",
+      "year": 1641,
+      "yearLabel": "1638-1641",
+      "period": "barroc",
+      "technique": "Arquitectura barroca en estuc i pedra",
+      "location": "Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 31,
+      "themes": [
+        "arquitectura-sacra",
+        "espai-perspectiva"
+      ],
+      "analysis": {
+        "context": "Encàrrec trinitari. Obra manifest del barroc dinàmic.",
+        "formal": "Planta ovalada complexa, murs ondulats, cúpula amb cassetons de geometria hexagonal-octogonal que es redueixen òpticament.",
+        "meaning": "Espai com a moviment continu; tensió entre l'estructura i la superfície.",
+        "function": "Església conventual d'ordre menor però d'enorme ambició arquitectònica."
+      },
+      "counterfactuals": [
+        "Per què els murs del barroc ja no són plans? Què canvia respecte a Bramante?"
+      ]
+    },
+    {
+      "id": "versalles",
+      "title": "Palau i jardins de Versalles",
+      "author": "Louis Le Vau, Jules Hardouin-Mansart, André Le Nôtre",
+      "year": 1682,
+      "yearLabel": "1661-1710 (fases principals)",
+      "period": "barroc",
+      "technique": "Arquitectura palatina i jardí paisatgístic",
+      "location": "Versalles (França)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 32,
+      "themes": [
+        "arquitectura-civil",
+        "poder-politic",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Lluís XIV concentra la cort a Versalles per controlar l'aristocràcia. Manifest de l'absolutisme.",
+        "formal": "Simetria radial absoluta: eixos que convergeixen al dormitori del rei; jardins ortogonalitzats i dominats per l'home. Galeria dels Miralls.",
+        "meaning": "El rei com a Sol; la natura sotmesa a la geometria.",
+        "function": "Residència reial i seu del govern; espectacle total del poder."
+      },
+      "counterfactuals": [
+        "Per què l'absolutisme necessita que la natura estigui dibuixada?"
+      ]
+    },
+    {
+      "id": "bernini-santa-teresa",
+      "title": "L'èxtasi de santa Teresa (Capella Cornaro)",
+      "author": "Gian Lorenzo Bernini",
+      "year": 1652,
+      "yearLabel": "1647-1652",
+      "period": "barroc",
+      "technique": "Escultura en marbre amb escenografia arquitectònica",
+      "location": "Santa Maria della Vittoria, Roma",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 33,
+      "themes": [
+        "espiritualitat-mistica",
+        "cos-femeni",
+        "arquitectura-sacra"
+      ],
+      "analysis": {
+        "context": "Contrareforma. Bernini integra escultura, arquitectura i il·luminació natural.",
+        "formal": "Santa Teresa en èxtasi amb àngel i dard; draperies mòbils; llum zenital filtrada per rajos de bronze daurat; 'espectadors' a banda i banda (família Cornaro).",
+        "meaning": "Experiència mística amb forta càrrega corpòria; 'divina agonia'.",
+        "function": "Capella funerària familiar amb escenografia teatral."
+      },
+      "counterfactuals": [
+        "Per què la mística es representa amb un cos femení que sembla en èxtasi sensual?"
+      ]
+    },
+    {
+      "id": "caravaggio-mort-verge",
+      "title": "La mort de la Verge",
+      "author": "Caravaggio",
+      "year": 1606,
+      "yearLabel": "c. 1601-1606",
+      "period": "barroc",
+      "technique": "Oli sobre tela",
+      "location": "Museu del Louvre, París",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 34,
+      "themes": [
+        "llum-color",
+        "espiritualitat-mistica",
+        "naturalesa-realitat"
+      ],
+      "analysis": {
+        "context": "Encàrrec rebutjat pels carmelites de Santa Maria della Scala per la representació poc idealitzada de Maria.",
+        "formal": "Tenebrisme: fons fosc, llum dirigida; Maria com a dona morta real, no 'dormida en glòria'.",
+        "meaning": "Dessacralització radical: Maria és cos humà mort.",
+        "function": "Encàrrec religiós; rebutjat precisament pel seu naturalisme."
+      },
+      "counterfactuals": [
+        "Per què escandalitza una Verge que sembla realment morta?"
+      ]
+    },
+    {
+      "id": "rembrandt-anatomia",
+      "title": "La lliçó d'anatomia del Dr. Tulp",
+      "author": "Rembrandt van Rijn",
+      "year": 1632,
+      "yearLabel": "1632",
+      "period": "barroc",
+      "technique": "Oli sobre tela",
+      "location": "Mauritshuis, La Haia",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 35,
+      "themes": [
+        "retrat-identitat",
+        "narrativa-visual",
+        "llum-color"
+      ],
+      "analysis": {
+        "context": "Retrat de grup del gremi de cirurgians d'Amsterdam. Segle d'or neerlandès.",
+        "formal": "Composició piramidal, llum dirigida al cadàver i al llibre, cares individualitzades amb expressions diferents.",
+        "meaning": "Ciència com a espectacle; coneixement com a retrat col·lectiu.",
+        "function": "Retrat corporatiu per a una institució professional."
+      },
+      "counterfactuals": [
+        "Per què un grup de metges vol ser retratat amb un cadàver al mig?"
+      ]
+    },
+    {
+      "id": "meninas-velazquez",
+      "title": "Las meninas (La família de Felip IV)",
+      "author": "Diego Velázquez",
+      "year": 1656,
+      "yearLabel": "1656",
+      "period": "barroc",
+      "technique": "Oli sobre tela",
+      "location": "Museu del Prado, Madrid",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 36,
+      "themes": [
+        "retrat-identitat",
+        "espai-perspectiva",
+        "apropiacio-critica"
+      ],
+      "analysis": {
+        "context": "Cort de Felip IV. Velázquez, pintor de cambra, juga amb la representació mateix del pintar.",
+        "formal": "Espai complex amb diverses perspectives, mirall al fons que reflecteix els reis, autoretrat, la infanta al centre. Pinzellada solta, aèria, atmosfèrica.",
+        "meaning": "Meta-pintura: qui mira, qui és mirat, i qui pinta.",
+        "function": "Retrat reial aparent; en realitat meditació sobre la pintura."
+      },
+      "counterfactuals": [
+        "Qui és el protagonista del quadre? Per què els reis són un reflex al mirall?"
+      ]
+    },
+    {
+      "id": "rodin-pensador",
+      "title": "El pensador",
+      "author": "Auguste Rodin",
+      "year": 1904,
+      "yearLabel": "model 1880; versió monumental 1904",
+      "period": "modernisme",
+      "technique": "Escultura en bronze",
+      "location": "Múltiples còpies: Musée Rodin París, entre altres",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 37,
+      "themes": [
+        "cos-huma",
+        "retrat-identitat"
+      ],
+      "analysis": {
+        "context": "Originalment 'El poeta' dins el projecte 'Les portes de l'Infern' (Dante).",
+        "formal": "Musculatura miquelangelesca, concentració física del pensament; textura superficial expressiva del modelat.",
+        "meaning": "El pensament com a esforç corporal; l'home modern meditant davant l'Infern.",
+        "function": "Escultura autònoma derivada d'un gran programa narratiu."
+      },
+      "counterfactuals": [
+        "Per què el pensament es representa amb una musculatura tan tensa?"
+      ]
+    },
+    {
+      "id": "david-horacis",
+      "title": "El jurament dels Horacis",
+      "author": "Jacques-Louis David",
+      "year": 1784,
+      "yearLabel": "1784",
+      "period": "neoclassicisme",
+      "technique": "Oli sobre tela",
+      "location": "Museu del Louvre, París",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 38,
+      "themes": [
+        "poder-politic",
+        "narrativa-visual",
+        "llenguatge-classic"
+      ],
+      "analysis": {
+        "context": "Pre-revolucionari. Encàrrec reial amb rebuda triomfal al Saló. Exemple cívic romà d'abnegació.",
+        "formal": "Composició rigorosa en tres arcs de medi punt, línies netes, colors sobris, dibuix sobre color; heroi masculí rígid i dona plorosa.",
+        "meaning": "Deure vs. sentiment; virtut republicana.",
+        "function": "Model moral cívic per a la França prerevolucionària."
+      },
+      "counterfactuals": [
+        "Per què la Revolució s'imagina vestida de romana?"
+      ]
+    },
+    {
+      "id": "goya-3-maig",
+      "title": "3 de maig. Els afusellaments a Madrid",
+      "author": "Francisco de Goya",
+      "year": 1814,
+      "yearLabel": "1814",
+      "period": "romanticisme",
+      "technique": "Oli sobre tela",
+      "location": "Museu del Prado, Madrid",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 39,
+      "themes": [
+        "poder-politic",
+        "narrativa-visual",
+        "llum-color",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Encàrrec de Ferran VII després de la Guerra d'Independència. Representa la repressió francesa del 3 de maig de 1808.",
+        "formal": "Protagonista de camisa blanca cridant els braços enlaire, llum dramàtica del fanal al terra; soldats francesos deshumanitzats d'esquena.",
+        "meaning": "Anti-èpica: la guerra com a carnisseria, no com a glòria.",
+        "function": "Encàrrec commemoratiu; s'hi inverteix la lògica heroica."
+      },
+      "counterfactuals": [
+        "Com es pot commemorar una derrota? On queda l'heroisme en Goya?"
+      ]
+    },
+    {
+      "id": "dejeuner-manet",
+      "title": "Le déjeuner sur l'herbe",
+      "author": "Édouard Manet",
+      "year": 1863,
+      "yearLabel": "1863",
+      "period": "realisme",
+      "technique": "Oli sobre tela",
+      "location": "Musée d'Orsay, París",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 40,
+      "themes": [
+        "cos-femeni",
+        "mirada-masculina",
+        "ruptura-academica",
+        "nu-classic"
+      ],
+      "analysis": {
+        "context": "Rebutjada al Saló oficial; exposada al Saló dels Refusats de 1863. Escàndol majúscul.",
+        "formal": "Composició inspirada en el 'Judici de Paris' (Raimondi sobre Rafael) i en el 'Concert campestre' de Giorgione/Tizià. Dona nua quotidiana en píc-nic amb homes vestits. Llum frontal sense modelat acadèmic.",
+        "meaning": "Subversió del nu mitològic: no és Venus ni Dànae, és una dona contemporània nua al bosc amb dos homes vestits.",
+        "function": "Afirmació d'una nova pintura moderna; crítica al decòrum acadèmic."
+      },
+      "counterfactuals": [
+        "Per què la mateixa postura que a la tradició venecià-clàssica escandalitza ara?"
+      ]
+    },
+    {
+      "id": "olimpia-manet",
+      "title": "Olímpia",
+      "author": "Édouard Manet",
+      "year": 1863,
+      "yearLabel": "1863 (exposada 1865)",
+      "period": "realisme",
+      "technique": "Oli sobre tela",
+      "location": "Musée d'Orsay, París",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-femeni",
+        "mirada-masculina",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Saló de París de 1865. Escàndol paral·lel al del Déjeuner.",
+        "formal": "Cita directa de la Venus d'Urbino: mateixa composició, mateix gest. Color pla, llum dura i frontal.",
+        "meaning": "El nu mitològic substituït per una prostituta que mira amb desafiament.",
+        "function": "Trencar el decòrum acadèmic; fer visible el que el nu mitològic dissimulava."
+      },
+      "counterfactuals": [
+        "Per què la mateixa postura escandalitza el 1865 i no el 1538?"
+      ],
+      "notes": "Node pont NO canònic però pedagògicament essencial (ruptura més literal del cànon del nu)."
+    },
+    {
+      "id": "monet-impressio",
+      "title": "Impressió, sol ixent",
+      "author": "Claude Monet",
+      "year": 1872,
+      "yearLabel": "1872",
+      "period": "impressionisme",
+      "technique": "Oli sobre tela",
+      "location": "Musée Marmottan Monet, París",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 41,
+      "themes": [
+        "llum-color",
+        "naturalesa-realitat",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Exposada a la primera mostra impressionista (1874). D'aquest títol neix el nom del moviment (primer pejoratiu).",
+        "formal": "Pinzellada visible, taques de color, abandonament del dibuix acadèmic; captació de l'efecte atmosfèric al port de Le Havre.",
+        "meaning": "Prioritat de la sensació visual sobre el 'tema'; el sol i la boira com a motiu.",
+        "function": "Manifest involuntari d'un nou llenguatge pictòric."
+      },
+      "counterfactuals": [
+        "Què canvia quan el tema d'un quadre deixa de ser important?"
+      ]
+    },
+    {
+      "id": "duchamp-fontaine",
+      "title": "La fontaine",
+      "author": "Marcel Duchamp (atribució discutida a Elsa von Freytag-Loringhoven)",
+      "year": 1917,
+      "yearLabel": "1917",
+      "period": "avantguardes",
+      "technique": "Ready-made: urinari de porcellana signat 'R. Mutt'",
+      "location": "Original perdut; rèpliques autoritzades per l'artista a múltiples museus",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 42,
+      "themes": [
+        "ready-made",
+        "ruptura-academica",
+        "apropiacio-critica",
+        "feminisme"
+      ],
+      "analysis": {
+        "context": "Enviada a la Society of Independent Artists de Nova York, que la rebutja. Coneguda per la fotografia d'Alfred Stieglitz.",
+        "formal": "Urinari industrial invertit, signat amb pseudònim. Mínima transformació material.",
+        "meaning": "Ataca la noció d'obra d'art com a objecte fet per l'artista. Crítica institucional.",
+        "function": "Antiobra; detonador del conceptualisme del s. XX."
+      },
+      "counterfactuals": [
+        "Què fa que un objecte quotidià esdevingui art?",
+        "Què canvia si l'autoria real podria ser d'una dona oblidada?"
+      ]
+    },
+    {
+      "id": "gaudi-pedrera",
+      "title": "Casa Milà (La Pedrera)",
+      "author": "Antoni Gaudí",
+      "year": 1912,
+      "yearLabel": "1906-1912",
+      "period": "modernisme",
+      "technique": "Arquitectura modernista en pedra i ferro forjat",
+      "location": "Barcelona",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 43,
+      "themes": [
+        "arquitectura-civil",
+        "naturalesa-realitat",
+        "patrimoni-catala"
+      ],
+      "analysis": {
+        "context": "Encàrrec del matrimoni Milà-Segimon. Patrimoni de la Humanitat. Gaudí abandona la línia recta.",
+        "formal": "Façana ondulada en pedra calcària, forjats de ferro forjat, estructura portant sobre pilars (sense murs de càrrega), terrat habitable amb xemeneies escultòriques.",
+        "meaning": "Arquitectura orgànica; imitació de formes naturals (paisatge marí, pedra erosionada).",
+        "function": "Edifici d'habitatges burgès que barreja llibertat formal i racionalitat estructural."
+      },
+      "counterfactuals": [
+        "Per què no fa cap paret recta? És caprici o raó constructiva?"
+      ]
+    },
+    {
+      "id": "mies-pavello-alemany",
+      "title": "Pavelló alemany",
+      "author": "Ludwig Mies van der Rohe",
+      "year": 1929,
+      "yearLabel": "1929 (reconstruït 1986)",
+      "period": "moviment-modern-arq",
+      "technique": "Arquitectura moderna amb marbre, ònix, vidre i acer",
+      "location": "Barcelona (Montjuïc)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 44,
+      "themes": [
+        "arquitectura-civil",
+        "abstraccio",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Pavelló alemany per a l'Exposició Internacional de Barcelona de 1929.",
+        "formal": "Planta fluida, murs independents de l'estructura, materials nobles (ònix, marbre, vidre), mobiliari propi (cadira Barcelona).",
+        "meaning": "'Less is more'; manifest racionalista.",
+        "function": "Pavelló protocol·lari; icona del moviment modern."
+      },
+      "counterfactuals": [
+        "Per què un edifici amb zero funció pràctica és considerat un manifest?"
+      ]
+    },
+    {
+      "id": "wright-kaufmann",
+      "title": "Casa Kaufmann (Fallingwater)",
+      "author": "Frank Lloyd Wright",
+      "year": 1939,
+      "yearLabel": "1936-1939",
+      "period": "moviment-modern-arq",
+      "technique": "Arquitectura orgànica amb formigó armat i pedra local",
+      "location": "Pennsilvània (EUA)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 45,
+      "themes": [
+        "arquitectura-civil",
+        "naturalesa-realitat"
+      ],
+      "analysis": {
+        "context": "Casa de cap de setmana per la família Kaufmann. Icona de l'arquitectura orgànica.",
+        "formal": "Voladissos de formigó sobre una cascada natural; integració horitzontal amb el paisatge; materials locals.",
+        "meaning": "Arquitectura que 'escolta' el lloc; habitar la natura sense dominar-la.",
+        "function": "Residència privada convertida en monument arquitectònic."
+      },
+      "counterfactuals": [
+        "Construir sobre una cascada: genialitat o imprudència?"
+      ]
+    },
+    {
+      "id": "boccioni-formes-uniques",
+      "title": "Formes úniques de continuïtat en l'espai",
+      "author": "Umberto Boccioni",
+      "year": 1913,
+      "yearLabel": "1913",
+      "period": "avantguardes",
+      "technique": "Escultura en bronze (foses pòstumes des de 1931)",
+      "location": "Múltiples col·leccions (Tate, MoMA, etc.)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 46,
+      "themes": [
+        "cos-huma",
+        "abstraccio",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Futurisme italià. Boccioni mor jove; manifest escultòric del moviment.",
+        "formal": "Figura antropomorfa en marxa; superfícies que 'flameijen' per captar el moviment; no hi ha contorn estàtic.",
+        "meaning": "Cos dinàmic; velocitat com a bellesa moderna.",
+        "function": "Manifest escultòric futurista."
+      },
+      "counterfactuals": [
+        "Es pot esculpir el moviment sense que l'objecte es mogui?"
+      ]
+    },
+    {
+      "id": "gargallo-profeta",
+      "title": "El profeta (El gran profeta)",
+      "author": "Pablo Gargallo",
+      "year": 1933,
+      "yearLabel": "1933",
+      "period": "avantguardes",
+      "technique": "Escultura en bronze",
+      "location": "Museu Gargallo, Saragossa",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 47,
+      "themes": [
+        "espiritualitat-mistica",
+        "cos-huma",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Últim gran treball de Gargallo. Escultura de plans.",
+        "formal": "Composició de xapes de bronze que suggereix el volum a partir de l'absència: buits que el buit defineix.",
+        "meaning": "Paradoxa del buit com a plenitud; clam profètic.",
+        "function": "Escultura d'avantguarda d'arrel espanyola."
+      },
+      "counterfactuals": [
+        "Com pot un buit representar una figura?"
+      ]
+    },
+    {
+      "id": "bourgeois-maman",
+      "title": "Maman",
+      "author": "Louise Bourgeois",
+      "year": 1999,
+      "yearLabel": "1999 (fusions posteriors)",
+      "period": "art-contemporani",
+      "technique": "Escultura monumental en bronze, acer i marbre",
+      "location": "Exteriors de diversos Guggenheim, inclòs Bilbao",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 48,
+      "themes": [
+        "cos-femeni",
+        "feminisme",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Bourgeois (1911-2010) treballa la memòria materna i el trauma; la seva mare era teixidora.",
+        "formal": "Aranya monumental (9 m d'alçada), potes arquejades, sac amb ous de marbre sota el ventre.",
+        "meaning": "Maternitat complexa: protecció i amenaça. Reivindicació del teixir com a treball d'art.",
+        "function": "Escultura pública; icona del Guggenheim Bilbao."
+      },
+      "counterfactuals": [
+        "Per què una aranya com a homenatge a la mare?"
+      ]
+    },
+    {
+      "id": "kandinsky-composicio-iv",
+      "title": "Composició IV",
+      "author": "Wassily Kandinsky",
+      "year": 1911,
+      "yearLabel": "1911",
+      "period": "avantguardes",
+      "technique": "Oli sobre tela",
+      "location": "Kunstsammlung Nordrhein-Westfalen, Düsseldorf",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 49,
+      "themes": [
+        "abstraccio",
+        "llum-color",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Kandinsky al grup Der Blaue Reiter. Camí cap a l'abstracció.",
+        "formal": "Encara es reconeixen cavalls i llances però molt esquematitzats; color i línia autònoms.",
+        "meaning": "Pintura com a música visual: estats espirituals pures sense referent.",
+        "function": "Manifest pictòric del pas a l'abstracció."
+      },
+      "counterfactuals": [
+        "Per què la primera abstracció encara conserva restes de figures?"
+      ]
+    },
+    {
+      "id": "picasso-guernica",
+      "title": "Guernica",
+      "author": "Pablo Picasso",
+      "year": 1937,
+      "yearLabel": "1937",
+      "period": "avantguardes",
+      "technique": "Oli sobre tela",
+      "location": "Museo Nacional Centro de Arte Reina Sofía, Madrid",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 50,
+      "themes": [
+        "poder-politic",
+        "ruptura-academica",
+        "narrativa-visual"
+      ],
+      "analysis": {
+        "context": "Encàrrec del govern republicà per al Pavelló d'Espanya a l'Exposició de París de 1937, després del bombardeig nazi de Gernika.",
+        "formal": "Monocroma (blanc, negre, gris); cubisme sintètic; composició piramidal; símbols (brau, cavall, bombeta).",
+        "meaning": "Horror de la guerra moderna; no representa l'esdeveniment sinó el seu crit universal.",
+        "function": "Manifest polític; arma ideològica itinerant."
+      },
+      "counterfactuals": [
+        "Per què no pintar el bombardeig tal com va ser, amb avions i cases?"
+      ]
+    },
+    {
+      "id": "pollock-numero-1",
+      "title": "Número 1",
+      "author": "Jackson Pollock",
+      "year": 1950,
+      "yearLabel": "1950",
+      "period": "art-contemporani",
+      "technique": "Esmalt i alumini sobre tela (dripping)",
+      "location": "National Gallery of Art, Washington",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 51,
+      "themes": [
+        "abstraccio",
+        "cos-performatiu",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Expressionisme abstracte americà. Tela a terra; pintor en moviment.",
+        "formal": "All-over: sense focus; dripping, regalim i esquitxada; empremta del gest.",
+        "meaning": "La pintura com a acció, no com a representació; l'obra registra un esdeveniment corporal.",
+        "function": "Afirmació de l'hegemonia artística americana postbèl·lica."
+      },
+      "counterfactuals": [
+        "Per què sense centre? Què guanyem quan perdem la composició tradicional?"
+      ]
+    },
+    {
+      "id": "kahlo-marxisme",
+      "title": "El marxisme sanarà els malalts",
+      "author": "Frida Kahlo",
+      "year": 1954,
+      "yearLabel": "c. 1954",
+      "period": "art-contemporani",
+      "technique": "Oli sobre masonite",
+      "location": "Casa Blava (Museo Frida Kahlo), Coyoacán, Ciutat de Mèxic",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 52,
+      "themes": [
+        "feminisme",
+        "poder-politic",
+        "retrat-identitat"
+      ],
+      "analysis": {
+        "context": "Darrera època de Kahlo, malalta i militant comunista. Pintat poc abans de morir.",
+        "formal": "Autoretrat; mans gegants dels ideòlegs marxistes sostenint Frida, que abandona les crosses.",
+        "meaning": "Ideologia com a cura física; feminitat, dolor i política fusionats.",
+        "function": "Testament polític i personal."
+      },
+      "counterfactuals": [
+        "Es pot separar la identitat personal del compromís polític en Kahlo?"
+      ]
+    },
+    {
+      "id": "gehry-guggenheim-bilbao",
+      "title": "Museu Guggenheim Bilbao",
+      "author": "Frank Gehry",
+      "year": 1997,
+      "yearLabel": "1991-1997",
+      "period": "art-contemporani",
+      "technique": "Arquitectura deconstructivista amb titani, vidre i pedra calcària",
+      "location": "Bilbao",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 53,
+      "themes": [
+        "arquitectura-civil",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Regeneració urbana de Bilbao després de la crisi industrial. 'Efecte Guggenheim'.",
+        "formal": "Volums escultòrics recoberts de titani; formes que només el disseny digital permetia calcular.",
+        "meaning": "Arquitectura com a escultura urbana i icona econòmica.",
+        "function": "Museu d'art contemporani; eina de màrqueting territorial."
+      },
+      "counterfactuals": [
+        "L'edifici com a obra d'art: ajuda o canibalitza la col·lecció que hi ha a dins?"
+      ]
+    },
+    {
+      "id": "abramovic-artist-is-present",
+      "title": "The Artist Is Present",
+      "author": "Marina Abramović",
+      "year": 2010,
+      "yearLabel": "2010",
+      "period": "art-contemporani",
+      "technique": "Performance (736h 30min al MoMA durant 3 mesos)",
+      "location": "MoMA, Nova York (original)",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 54,
+      "themes": [
+        "cos-performatiu",
+        "feminisme",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Retrospectiva al MoMA. Abramović asseguda quieta; visitants es poden seure davant seu.",
+        "formal": "Dispositiu mínim: taula, cadira, mirada. Enorme durada. Documentació fotogràfica i fílmica massiva.",
+        "meaning": "Presència com a obra d'art; l'altre com a co-creador.",
+        "function": "Performance com a medi consolidat al museu."
+      },
+      "counterfactuals": [
+        "Per què mirar a una persona es considera una obra d'art?"
+      ]
+    },
+    {
+      "id": "viola-martyrs",
+      "title": "Martyrs (Earth, Air, Fire, Water)",
+      "author": "Bill Viola",
+      "year": 2014,
+      "yearLabel": "2014",
+      "period": "art-contemporani",
+      "technique": "Videoinstal·lació en quatre pantalles de plasma",
+      "location": "St Paul's Cathedral, Londres",
+      "image": null,
+      "canonical": true,
+      "canonicalIndex": 55,
+      "themes": [
+        "espiritualitat-mistica",
+        "cos-performatiu"
+      ],
+      "analysis": {
+        "context": "Encàrrec de la catedral anglicana. Videoart en context litúrgic.",
+        "formal": "Quatre figures humanes cada una sotmesa a un element (terra, aire, foc, aigua), en moviment ultra-alentit.",
+        "meaning": "Martiri com a prova física que il·lumina espiritualment.",
+        "function": "Peça de devoció contemporània en un espai sagrat històric."
+      },
+      "counterfactuals": [
+        "Què aporta una pantalla a una catedral que no podien aportar retaules i escultures?"
+      ]
+    },
+    {
+      "id": "history-portraits-sherman",
+      "title": "History Portraits (sèrie)",
+      "author": "Cindy Sherman",
+      "year": 1989,
+      "yearLabel": "1988-1990",
+      "period": "art-contemporani",
+      "technique": "Fotografia en color",
+      "location": "Diverses col·leccions (MoMA, Metropolitan, etc.)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-femeni",
+        "apropiacio-critica",
+        "mirada-masculina",
+        "feminisme"
+      ],
+      "analysis": {
+        "context": "Nova York final dels 80, ple debat sobre male gaze i construcció de la identitat.",
+        "formal": "Autoretrats disfressada de personatges de la pintura clàssica europea amb pròtesis evidents i il·luminació d'estudi.",
+        "meaning": "La dona pintada sempre és una construcció. Desmuntatge del cànon.",
+        "function": "Art contemporani crític; diàleg directe amb la història de l'art des del feminisme."
+      },
+      "counterfactuals": [
+        "Què queda de la 'bellesa' de Venus quan l'artista la fa visible com a disfressa?"
+      ],
+      "notes": "Node pont NO canònic. Eco feminista que tanca el cercle del nu."
+    },
+    {
+      "id": "altar-pergam",
+      "title": "Altar de Pèrgam (Gran altar de Zeus)",
+      "author": null,
+      "year": -165,
+      "yearLabel": "c. 180-160 aC",
+      "period": "grecia-hellenistica",
+      "technique": "Arquitectura i relleu escultòric en marbre",
+      "location": "Pergamonmuseum, Berlín",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "narrativa-visual",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Regne de Pèrgam, apogeu de l'escultura hel·lenística. Commemora la victòria sobre els gals.",
+        "formal": "Gran escalinata amb fris gegantomàquic d'1,20 m d'alçada: figures en alt relleu, diagonals, draperies agitades, pathos extrem.",
+        "meaning": "Triomf de l'ordre olímpic sobre el caos; propaganda dinàstica hel·lenística.",
+        "function": "Altar monumental; model del patetisme que arribarà al Laocoont i al barroc."
+      },
+      "counterfactuals": [
+        "Com evoluciona el relleu grec del Partenó, sobri, al fris agitat de Pèrgam?"
+      ],
+      "notes": "Baula essencial entre classicisme i Laocoont."
+    },
+    {
+      "id": "maison-carree",
+      "title": "Maison Carrée de Nîmes",
+      "author": null,
+      "year": -15,
+      "yearLabel": "c. 16 aC",
+      "period": "roma-republicana",
+      "technique": "Arquitectura en pedra calcària",
+      "location": "Nimes (França)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "llenguatge-classic",
+        "poder-politic"
+      ],
+      "analysis": {
+        "context": "Temple dedicat als nets d'August. Model canònic del temple romà republicà-imperial.",
+        "formal": "Pseudoperípter hexàstil corinti, podi alt, accés frontal únic: síntesi etrusca-grega típica romana.",
+        "meaning": "Trasllat de l'ordre grec a la llatinitat, amb èmfasi en l'eix frontal.",
+        "function": "Temple provincial; una de les inspiracions directes del Capitoli de Jefferson."
+      },
+      "counterfactuals": [
+        "Per què Roma reforma el perípter grec posant-hi murs cecs als laterals?"
+      ],
+      "notes": "Baula directa Partenó → Panteó."
+    },
+    {
+      "id": "ara-pacis",
+      "title": "Ara Pacis Augustae",
+      "author": null,
+      "year": -9,
+      "yearLabel": "13-9 aC",
+      "period": "roma-imperial",
+      "technique": "Altar i tancament en marbre amb relleu escultòric",
+      "location": "Museu de l'Ara Pacis, Roma",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "poder-politic",
+        "narrativa-visual",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Senat romà encarrega el monument a la Pau d'August. Programa ideològic complet de la pax augusta.",
+        "formal": "Relleus de processó imperial (estil fris del Partenó) combinats amb al·legories (Tellus) i vegetació decorativa simbòlica.",
+        "meaning": "La pau com a estat mític; dinastia Juli-Clàudia legitimada per cerimònia i natura fecunda.",
+        "function": "Altar cívic; màquina iconogràfica del poder augustal."
+      },
+      "counterfactuals": [
+        "Com és que un monument de pau utilitza l'estètica processional del Partenó?"
+      ]
+    },
+    {
+      "id": "santa-maria-maggiore",
+      "title": "Basílica de Santa Maria Maggiore (mosaics paleocristians)",
+      "author": null,
+      "year": 435,
+      "yearLabel": "432-440",
+      "period": "paleocristia",
+      "technique": "Arquitectura basilical i mosaic parietal",
+      "location": "Roma",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "narrativa-visual",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Basílica romana cristiana del papa Sixt III, construïda després del concili d'Efes (431) que proclama Maria Theotokos.",
+        "formal": "Planta basilical de tradició civil romana adaptada al culte cristià; mosaics de la nau amb escenes del Vell Testament encara amb vocabulari classicitzant.",
+        "meaning": "Cristianització del llenguatge classic: basílica pagana esdevé casa de Déu.",
+        "function": "Esdevé model de basílica mariana romana fins al barroc."
+      },
+      "counterfactuals": [
+        "Per què l'església cristiana triomfant usa la basílica civil i no el temple pagà?"
+      ]
+    },
+    {
+      "id": "sant-apolinar-ravena",
+      "title": "Mosaics de Sant Apol·linar in Classe i San Vitale, Ravenna",
+      "author": null,
+      "year": 547,
+      "yearLabel": "c. 540-560",
+      "period": "art-bizanti",
+      "technique": "Mosaic de tessel·les d'or i vidre",
+      "location": "Ravenna (Itàlia)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "poder-politic",
+        "dialog-orient-occident"
+      ],
+      "analysis": {
+        "context": "Ravenna és capital de l'Exarcat bizantí a Occident sota Justinià. Contemporani de Santa Sofia.",
+        "formal": "Figures frontals, hieratisme, fons d'or que aboleix l'espai; a San Vitale, Justinià i Teodora processionals.",
+        "meaning": "Imatge del poder imperial-sagrat: el governant com a vicari de Crist.",
+        "function": "Programa de cohesió entre esglésies cristianes d'Occident i l'imperi oriental."
+      },
+      "counterfactuals": [
+        "Per què el fons d'or substitueix el paisatge? Què diu això sobre el món representat?"
+      ]
+    },
+    {
+      "id": "sant-joan-penyes",
+      "title": "Sant Miquel de la Cogolla / Sant Joan de la Penya (prerromànic)",
+      "author": null,
+      "year": 900,
+      "yearLabel": "s. IX-X",
+      "period": "prerromanic",
+      "technique": "Arquitectura en pedra seca",
+      "location": "Pirineus",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "patrimoni-catala"
+      ],
+      "analysis": {
+        "context": "Substrat cristià resistent al domini islàmic; monasteris rupestres i preromànics al Pirineu.",
+        "formal": "Naus petites, arcs de ferradura heretats dels visigots, aparell de pedra tosca.",
+        "meaning": "Pre-història del romànic català: persistència cristiana en territori fronterer.",
+        "function": "Refugi monàstic i centre d'evangelització."
+      },
+      "counterfactuals": [
+        "Què queda del món visigot en aquestes esglésies de muntanya?"
+      ]
+    },
+    {
+      "id": "san-miguel-escalada",
+      "title": "San Miguel de Escalada (mossàrab)",
+      "author": null,
+      "year": 913,
+      "yearLabel": "913",
+      "period": "prerromanic",
+      "technique": "Arquitectura en pedra amb arcs de ferradura",
+      "location": "Lleó",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "dialog-orient-occident"
+      ],
+      "analysis": {
+        "context": "Monestir fundat per monjos vinguts de Còrdova; cristians formats en terra islàmica.",
+        "formal": "Basílica de tres naus amb arcs de ferradura califal i capitells reaprofitats.",
+        "meaning": "Cristianisme amb gramàtica arquitectònica islàmica: frontera cultural fèrtil.",
+        "function": "Monestir; exemple clàssic d'arquitectura mossàrab."
+      },
+      "counterfactuals": [
+        "És mossàrab islàmic o mossàrab cristià? Per què la pregunta no té resposta clara?"
+      ]
+    },
+    {
+      "id": "beat-liebana",
+      "title": "Beats de Liébana (miniatures mossàrabs)",
+      "author": "Copistes i il·luminadors monàstics",
+      "year": 950,
+      "yearLabel": "s. X (diverses còpies)",
+      "period": "prerromanic",
+      "technique": "Miniatura sobre pergamí",
+      "location": "Diverses biblioteques (BNE, Morgan Library, etc.)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "narrativa-visual",
+        "espiritualitat-mistica",
+        "dialog-orient-occident"
+      ],
+      "analysis": {
+        "context": "Còpies il·luminades del comentari a l'Apocalipsi de Beatus de Liébana (s. VIII).",
+        "formal": "Paleta intensa (vermell, blau, groc), figures planes, bandes cromàtiques que substitueixen el paisatge; influències islàmiques i visigòtiques.",
+        "meaning": "Apocalipsi com a llibre central del monacat hispànic; imatge com a meditació.",
+        "function": "Llibre monàstic; font iconogràfica dels tímpans romànics."
+      },
+      "counterfactuals": [
+        "Com connecta aquesta paleta mossàrab amb els frescos de Taüll dos segles després?"
+      ]
+    },
+    {
+      "id": "alhambra",
+      "title": "L'Alhambra (Patis dels Lleons i dels Arraians)",
+      "author": null,
+      "year": 1370,
+      "yearLabel": "s. XIII-XIV (dinastia nassarita)",
+      "period": "art-islamic",
+      "technique": "Arquitectura palatina amb guix tallat, ceràmica vidrada i fusta",
+      "location": "Granada",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-civil",
+        "dialog-orient-occident",
+        "poder-politic"
+      ],
+      "analysis": {
+        "context": "Darrer gran palau de l'Islam peninsular, reialme nassarita.",
+        "formal": "Patis amb aigua com a eix, arcs mocàrabs, epigrafia cúfica decorativa, jardins i llum com a matèria arquitectònica.",
+        "meaning": "Paradís com a model palatí: arquitectura que funciona com a metàfora del cel.",
+        "function": "Palau i ciutadella; símbol de l'Andalus final."
+      },
+      "counterfactuals": [
+        "Per què el luxe islàmic es juga tot a la decoració i no a la volumetria?"
+      ]
+    },
+    {
+      "id": "anguissola-autoretrat",
+      "title": "Autoretrat al cavallet (Sofonisba Anguissola)",
+      "author": "Sofonisba Anguissola",
+      "year": 1556,
+      "yearLabel": "c. 1556",
+      "period": "renaixement-cinquecento",
+      "technique": "Oli sobre tela",
+      "location": "Muzeum-Zamek, Łańcut (Polònia)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "retrat-identitat",
+        "mecenatge-femeni",
+        "feminisme"
+      ],
+      "analysis": {
+        "context": "Pintora italiana formada per la noblesa culta cremonesa. Arriba a ser dama d'Isabel de Valois a la cort de Felip II.",
+        "formal": "Autoretrat amb paleta i pinzells; mirada directa; composició sòbria i modesta.",
+        "meaning": "Reivindicació de l'autoria femenina en un gremi clos; dignificació del treball pictòric de la dona.",
+        "function": "Autoretrat de presentació professional; imatge de prestigi cortesà."
+      },
+      "counterfactuals": [
+        "Per què la primera gran pintora europea s'ha de retratar amb el pinzell a la mà?"
+      ]
+    },
+    {
+      "id": "gentileschi-judith",
+      "title": "Judith decapita Holofernes",
+      "author": "Artemisia Gentileschi",
+      "year": 1620,
+      "yearLabel": "1620-1621 (versió dels Uffizi)",
+      "period": "barroc",
+      "technique": "Oli sobre tela",
+      "location": "Galleria degli Uffizi, Florència",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "llum-color",
+        "feminisme",
+        "narrativa-visual",
+        "mite-religio"
+      ],
+      "analysis": {
+        "context": "Després del judici per violació contra Agostino Tassi, Artemisia pinta diverses Judiths en estil caravaggesc radical.",
+        "formal": "Tenebrisme dramàtic; composició a tres figures amb gest físic de força; sang que raja; mans fermes.",
+        "meaning": "Subjectivitat femenina violenta i justiciera; lectura biogràfica gairebé inevitable.",
+        "function": "Encàrrec privat; afirmació professional en un circuit masculí."
+      },
+      "counterfactuals": [
+        "Per què la Judith d'Artemisia sembla saber de què va el tall?"
+      ]
+    },
+    {
+      "id": "leyster-autoretrat",
+      "title": "Autoretrat (Judith Leyster)",
+      "author": "Judith Leyster",
+      "year": 1633,
+      "yearLabel": "c. 1630-1633",
+      "period": "barroc",
+      "technique": "Oli sobre tela",
+      "location": "National Gallery of Art, Washington",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "retrat-identitat",
+        "feminisme",
+        "naturalesa-realitat"
+      ],
+      "analysis": {
+        "context": "Mestra del gremi de Sant Lluc de Haarlem (rara excepció femenina) al segle d'or neerlandès.",
+        "formal": "Pintora girada al cavallet, somriure, paleta i 25 pinzells; vestit elegant però manejable.",
+        "meaning": "Autoretrat que normalitza i humanitza l'ofici; la pintora com a artesana contemporània.",
+        "function": "Carta de presentació professional davant dels clients burgesos."
+      },
+      "counterfactuals": [
+        "Què canvia entre l'autoretrat d'Anguissola i el de Leyster 80 anys després?"
+      ]
+    },
+    {
+      "id": "vigee-marie-antoinette",
+      "title": "Maria Antonieta amb els seus fills",
+      "author": "Élisabeth Vigée Le Brun",
+      "year": 1787,
+      "yearLabel": "1787",
+      "period": "neoclassicisme",
+      "technique": "Oli sobre tela",
+      "location": "Palau de Versalles",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "retrat-identitat",
+        "poder-politic",
+        "mecenatge-femeni"
+      ],
+      "analysis": {
+        "context": "Vigée Le Brun és pintora oficial de la reina just abans de la Revolució. L'obra busca rehabilitar la imatge pública de Maria Antonieta.",
+        "formal": "Composició piramidal d'arrel renaixentista; colors càlids; retrat maternal.",
+        "meaning": "Propaganda monàrquica maternal; gran pintora oficial exiliada amb la Revolució.",
+        "function": "Retrat polític estratègic; exemple d'artista femenina amb carrera internacional."
+      },
+      "counterfactuals": [
+        "Per què la reina de França es fa pintar com una mare burgesa i no com una sobirana absoluta?"
+      ]
+    },
+    {
+      "id": "cezanne-sainte-victoire",
+      "title": "Muntanya Sainte-Victoire (sèrie)",
+      "author": "Paul Cézanne",
+      "year": 1904,
+      "yearLabel": "1890-1906",
+      "period": "postimpressionisme",
+      "technique": "Oli sobre tela",
+      "location": "Diverses col·leccions (Philadelphia, Kunsthaus Zürich, etc.)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "paisatge",
+        "espai-perspectiva",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Cézanne aïllat a la Provença pinta la mateixa muntanya durant dècades; redefineix l'estructura del quadre.",
+        "formal": "Taques geomètriques de color que construeixen el volum, perspectiva múltiple, superfície plana reivindicada.",
+        "meaning": "'Tractar la natura pel cilindre, l'esfera i el con': llavor teòrica del cubisme.",
+        "function": "Reforma radical de la manera de veure que hereten Picasso i Braque."
+      },
+      "counterfactuals": [
+        "Per què Cézanne és 'el pare de tots'? Què deixa per fer a Picasso?"
+      ]
+    },
+    {
+      "id": "van-gogh-camp-blat",
+      "title": "Camps de blat amb volves",
+      "author": "Vincent van Gogh",
+      "year": 1890,
+      "yearLabel": "juliol 1890",
+      "period": "postimpressionisme",
+      "technique": "Oli sobre tela",
+      "location": "Van Gogh Museum, Amsterdam",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "paisatge",
+        "llum-color",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Darreres setmanes de vida a Auvers-sur-Oise.",
+        "formal": "Pinzellada gruixuda, color saturat i complementari, cel baix amenaçant, camí tallat.",
+        "meaning": "Subjectivitat emocional projectada sobre la natura; color com a estat interior.",
+        "function": "Punt de partida directe de l'expressionisme del s. XX."
+      },
+      "counterfactuals": [
+        "Si l'impressionisme pinta la sensació visual, què pinta Van Gogh?"
+      ]
+    },
+    {
+      "id": "morisot-bressol",
+      "title": "El bressol",
+      "author": "Berthe Morisot",
+      "year": 1872,
+      "yearLabel": "1872",
+      "period": "impressionisme",
+      "technique": "Oli sobre tela",
+      "location": "Musée d'Orsay, París",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "retrat-identitat",
+        "feminisme",
+        "llum-color"
+      ],
+      "analysis": {
+        "context": "Morisot, cunyada de Manet, exposa amb els impressionistes des de la primera mostra de 1874.",
+        "formal": "Pinzellada lleugera, paleta clara, escena d'intimitat maternal (la germana amb la filla).",
+        "meaning": "Esfera domèstica com a tema legítim; mirada femenina sobre la maternitat contemporània.",
+        "function": "Manifest discret: una dona impressionista pintant dones."
+      },
+      "counterfactuals": [
+        "Per què la història ha invisibilitzat Morisot mentre enaltia Monet i Renoir?"
+      ]
+    },
+    {
+      "id": "cassatt-banyera",
+      "title": "El bany del nen",
+      "author": "Mary Cassatt",
+      "year": 1893,
+      "yearLabel": "1893",
+      "period": "impressionisme",
+      "technique": "Oli sobre tela",
+      "location": "Art Institute of Chicago",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "retrat-identitat",
+        "feminisme",
+        "orient-influencia"
+      ],
+      "analysis": {
+        "context": "Cassatt, nord-americana instal·lada a París, amiga de Degas. Col·lecciona estampes japoneses.",
+        "formal": "Angle de visió elevat d'arrel ukiyo-e; color pla; línia decorativa; tema domèstic.",
+        "meaning": "Japonisme filtrat per una mirada femenina sobre la criança.",
+        "function": "Pintura moderna amb agenda feminista implícita i diàleg Orient-Occident."
+      },
+      "counterfactuals": [
+        "Què aporta la mirada japonesa a una escena de banyera parisenca?"
+      ]
+    },
+    {
+      "id": "seurat-grande-jatte",
+      "title": "Un diumenge a l'illa de la Grande Jatte",
+      "author": "Georges Seurat",
+      "year": 1886,
+      "yearLabel": "1884-1886",
+      "period": "postimpressionisme",
+      "technique": "Oli sobre tela (puntillisme)",
+      "location": "Art Institute of Chicago",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "industria-ciutat",
+        "llum-color",
+        "espai-perspectiva"
+      ],
+      "analysis": {
+        "context": "Oci de la burgesia parisenca a les illes del Sena. Seurat aplica teories òptiques de Chevreul.",
+        "formal": "Puntillisme: taques puntuals de color pur; composició estàtica gairebé egípcia; figures hieràtiques.",
+        "meaning": "Racionalització científica de la sensació impressionista; sociologia visual de la modernitat.",
+        "function": "Manifest neoimpressionista; obra cabdal del pont cap a l'art del s. XX."
+      },
+      "counterfactuals": [
+        "Per què l'impressionisme, moviment de la llum espontània, desemboca en un mètode tan metòdic?"
+      ]
+    },
+    {
+      "id": "hokusai-onada",
+      "title": "La gran onada de Kanagawa",
+      "author": "Katsushika Hokusai",
+      "year": 1831,
+      "yearLabel": "c. 1831",
+      "period": "edo-japones",
+      "technique": "Estampa xilogràfica ukiyo-e (nishiki-e)",
+      "location": "Diverses còpies (British Museum, Metropolitan, MNAC, etc.)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "paisatge",
+        "orient-influencia",
+        "naturalesa-realitat"
+      ],
+      "analysis": {
+        "context": "Sèrie 'Trenta-sis vistes del mont Fuji'. Hokusai al Japó Edo, tècnica xilogràfica policroma.",
+        "formal": "Composició asimètrica amb gran onada en primer terme i Fuji petit al fons; blau de Prússia importat d'Europa; línia decorativa.",
+        "meaning": "Monumentalització del moment fugaç (mono no aware); humanitat minúscula davant natura.",
+        "function": "Estampa popular japonesa; esdevé, a Europa, font d'inspiració de tot l'impressionisme."
+      },
+      "counterfactuals": [
+        "Per què la pintura occidental triga tants segles a col·locar la natura damunt de l'humà?"
+      ]
+    },
+    {
+      "id": "hiroshige-pluja",
+      "title": "Pluja sobtada sobre el pont de Shin-Ōhashi i Atake",
+      "author": "Utagawa Hiroshige",
+      "year": 1857,
+      "yearLabel": "1857",
+      "period": "edo-japones",
+      "technique": "Estampa xilogràfica ukiyo-e",
+      "location": "Diverses còpies museu",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "paisatge",
+        "orient-influencia"
+      ],
+      "analysis": {
+        "context": "Sèrie 'Cent vistes famoses d'Edo'. Van Gogh en farà una còpia literal al 1887.",
+        "formal": "Plans cromàtics tallats, pluja com a línies negres sobre el paper, pont vist en picat.",
+        "meaning": "Percepció moderna del temps atmosfèric; estampa popular com a mirada urbana.",
+        "function": "Objecte de consum popular a Edo; peça de col·lecció europea des de 1860."
+      },
+      "counterfactuals": [
+        "Què veuen els pintors europeus en una estampa feta per a la classe mitjana japonesa?"
+      ]
+    },
+    {
+      "id": "taj-mahal",
+      "title": "Taj Mahal",
+      "author": "Atribuït a Ustad Ahmad Lahauri",
+      "year": 1653,
+      "yearLabel": "1632-1653",
+      "period": "mogol",
+      "technique": "Arquitectura en marbre blanc amb incrustacions (pietra dura)",
+      "location": "Agra (Índia)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-funeraria",
+        "dialog-orient-occident",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Mausoleu que Shah Jahan dedica a la seva esposa Mumtaz Mahal. Imperi mogol.",
+        "formal": "Planta centralitzada amb cúpula bulbosa, quatre minarets, jardí charbagh reflectint el paradís coranic, eix d'aigua.",
+        "meaning": "Mausoleu i jardí del paradís; síntesi persa, islàmica i hindú.",
+        "function": "Tomba reial; imatge universal de l'arquitectura amorosa."
+      },
+      "counterfactuals": [
+        "Per què la tomba més visitada del món és la d'una dona no governant?"
+      ]
+    },
+    {
+      "id": "picasso-demoiselles",
+      "title": "Les demoiselles d'Avignon",
+      "author": "Pablo Picasso",
+      "year": 1907,
+      "yearLabel": "1907",
+      "period": "avantguardes",
+      "technique": "Oli sobre tela",
+      "location": "MoMA, Nova York",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-femeni",
+        "ruptura-academica",
+        "orient-influencia"
+      ],
+      "analysis": {
+        "context": "Pintat a Barcelona-París. Picasso coneix les màscares africanes del Trocadéro.",
+        "formal": "Cinc figures femenines fragmentades; dues amb cares de màscara africana; perspectiva abolida; espai comprimit.",
+        "meaning": "Ruptura amb el cànon renaixentista del nu; món prostibulari deformat en protocubisme.",
+        "function": "Detonant del cubisme i, indirectament, del Guernica."
+      },
+      "counterfactuals": [
+        "Per què Picasso necessita les màscares africanes per desmuntar el nu occidental?"
+      ]
+    },
+    {
+      "id": "mascara-fang",
+      "title": "Màscara Fang (Gabon)",
+      "author": "Anònim",
+      "year": 1880,
+      "yearLabel": "s. XIX",
+      "period": "avantguardes",
+      "technique": "Escultura en fusta policromada",
+      "location": "Diverses col·leccions etnogràfiques",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "mite-religio",
+        "dialog-orient-occident",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Mascares rituals dels pobles Fang de l'Àfrica central; arriben al col·leccionisme etnogràfic europeu al 1900.",
+        "formal": "Geometrització del rostre, asimetria, estilització màxima.",
+        "meaning": "Funció cultual original; reinterpretades com a 'primitivisme' per les avantguardes.",
+        "function": "Font directa del cubisme i de l'expressionisme alemany."
+      },
+      "counterfactuals": [
+        "Qui són els autors 'anònims' que van canviar la pintura europea? Per què segueixen sense nom?"
+      ]
+    },
+    {
+      "id": "matisse-dansa",
+      "title": "La dansa",
+      "author": "Henri Matisse",
+      "year": 1910,
+      "yearLabel": "1910",
+      "period": "avantguardes",
+      "technique": "Oli sobre tela",
+      "location": "Hermitage, Sant Petersburg",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-huma",
+        "abstraccio",
+        "llum-color"
+      ],
+      "analysis": {
+        "context": "Encàrrec del col·leccionista rus Sergei Xtxúkin. Fauvisme consolidat.",
+        "formal": "Tres colors grans (blau, verd, vermell) i cinc figures encadenades; línia i pla.",
+        "meaning": "Dansa com a pulsió primitiva, cos sense detall psicològic.",
+        "function": "Manifest fauvista; contrapunt cromàtic al cubisme monocrom."
+      },
+      "counterfactuals": [
+        "Per què Matisse i Picasso es disputen el segle amb estratègies oposades (color vs. forma)?"
+      ]
+    },
+    {
+      "id": "brancusi-muse",
+      "title": "La musa adormida",
+      "author": "Constantin Brâncuși",
+      "year": 1910,
+      "yearLabel": "1910",
+      "period": "avantguardes",
+      "technique": "Escultura en marbre i bronze",
+      "location": "Diverses versions (Tate, Centre Pompidou, etc.)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "abstraccio",
+        "cos-huma",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Brâncuși passa pel taller de Rodin i el rebutja. S'instal·la a París amb una poètica radicalment simplificada.",
+        "formal": "Cap ovoide gairebé pur; superfície polida; mínima indicació facial.",
+        "meaning": "L'essencial per sota de la forma; purificació com a via espiritual.",
+        "function": "Pont entre figuració i abstracció escultòrica del s. XX."
+      },
+      "counterfactuals": [
+        "Quant es pot simplificar un cap humà abans de deixar de ser humà?"
+      ]
+    },
+    {
+      "id": "klimt-kiss",
+      "title": "El bes",
+      "author": "Gustav Klimt",
+      "year": 1908,
+      "yearLabel": "1907-1908",
+      "period": "modernisme",
+      "technique": "Oli i pa d'or sobre tela",
+      "location": "Österreichische Galerie Belvedere, Viena",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-femeni",
+        "llum-color",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Secessió vienesa; Klimt és l'altra cara del modernisme centroeuropeu, contemporani de Gaudí.",
+        "formal": "Pa d'or bizantí, abraçada frontal, patrons geomètrics i florals contrastats entre figures.",
+        "meaning": "Erotisme espiritualitzat; retorn modern a l'icona daurada.",
+        "function": "Pintura d'elit vienesa; diàleg amb el japonisme, el bizantí i l'Art Nouveau."
+      },
+      "counterfactuals": [
+        "Per què la modernitat vienesa recupera el pa d'or dels mosaics de Ravenna?"
+      ]
+    },
+    {
+      "id": "dali-persistencia",
+      "title": "La persistència de la memòria",
+      "author": "Salvador Dalí",
+      "year": 1931,
+      "yearLabel": "1931",
+      "period": "avantguardes",
+      "technique": "Oli sobre tela",
+      "location": "MoMA, Nova York",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "inconscient-somni",
+        "naturalesa-realitat",
+        "patrimoni-catala"
+      ],
+      "analysis": {
+        "context": "Surrealisme dalinià; paisatge del cap de Creus. Dalí dins del grup surrealista parisenc de Breton.",
+        "formal": "Rellotges tous, paisatge empordanès, detall hiperrealista al servei de l'irreal.",
+        "meaning": "Temps subjectiu, inconscient freudià, desintegració de les certeses.",
+        "function": "Icona mediàtica del surrealisme; aportació catalana a l'avantguarda."
+      },
+      "counterfactuals": [
+        "Per què Dalí pinta el somni amb tècnica acadèmica?"
+      ]
+    },
+    {
+      "id": "miro-constellacions",
+      "title": "Constel·lacions (sèrie)",
+      "author": "Joan Miró",
+      "year": 1941,
+      "yearLabel": "1940-1941",
+      "period": "avantguardes",
+      "technique": "Gouache i oli sobre paper",
+      "location": "Diverses col·leccions (MoMA, Kimbell, etc.)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "abstraccio",
+        "patrimoni-catala",
+        "inconscient-somni"
+      ],
+      "analysis": {
+        "context": "Miró s'exilia a Normandia i Palma durant la guerra. Les 'Constel·lacions' són una resposta a l'horror bèl·lic.",
+        "formal": "Petits signes (estrelles, ocells, ulls) sobre fons atmosfèric treballat; composicions all-over.",
+        "meaning": "Cosmos íntim que resisteix el caos de la guerra.",
+        "function": "Pont entre surrealisme biomòrfic i expressionisme abstracte americà."
+      },
+      "counterfactuals": [
+        "Per què Miró respon a la guerra amb constel·lacions i no amb denúncia explícita?"
+      ]
+    },
+    {
+      "id": "magritte-pipa",
+      "title": "La traïció de les imatges",
+      "author": "René Magritte",
+      "year": 1929,
+      "yearLabel": "1929",
+      "period": "avantguardes",
+      "technique": "Oli sobre tela",
+      "location": "Los Angeles County Museum of Art",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "inconscient-somni",
+        "apropiacio-critica",
+        "ruptura-academica"
+      ],
+      "analysis": {
+        "context": "Surrealisme belga. Magritte treballa les relacions entre imatge, paraula i objecte.",
+        "formal": "Pipa pintada amb tècnica pulcra i llegenda 'Ceci n'est pas une pipe'.",
+        "meaning": "Crítica del llenguatge i de la representació: la imatge no és la cosa.",
+        "function": "Pont conceptual directe entre Duchamp i l'art conceptual posterior."
+      },
+      "counterfactuals": [
+        "Per què aquest quadre és, alhora, una broma i una teoria del signe?"
+      ]
+    },
+    {
+      "id": "oppenheim-dejuni",
+      "title": "Dejuni cobert de pell (Objecte)",
+      "author": "Meret Oppenheim",
+      "year": 1936,
+      "yearLabel": "1936",
+      "period": "avantguardes",
+      "technique": "Tassa, plat i cullera recoberts de pell de gasela",
+      "location": "MoMA, Nova York",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "ready-made",
+        "feminisme",
+        "inconscient-somni"
+      ],
+      "analysis": {
+        "context": "Oppenheim (22 anys) dins del grup surrealista parisenc, en resposta a un comentari de Picasso.",
+        "formal": "Servei de te recobert de pell: objecte quotidià transformat per una operació mínima.",
+        "meaning": "Fetixisme surrealista; erotisme pertorbador de l'objecte.",
+        "function": "Manifest surrealista d'una dona jove; icona del Dadà-surrealisme femení."
+      },
+      "counterfactuals": [
+        "Què fa que una tassa amb pèl sigui més inquietant que un urinari signat?"
+      ]
+    },
+    {
+      "id": "huguet-consagracio",
+      "title": "Retaule de la Consagració de sant Agustí",
+      "author": "Jaume Huguet",
+      "year": 1480,
+      "yearLabel": "c. 1463-1480",
+      "period": "gotic",
+      "technique": "Tremp i oli sobre taula",
+      "location": "MNAC, Barcelona",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "narrativa-visual",
+        "patrimoni-catala",
+        "espiritualitat-mistica"
+      ],
+      "analysis": {
+        "context": "Encàrrec del gremi dels blanquers. Huguet és el gran pintor del gòtic tardà català.",
+        "formal": "Or de fons, composició jeràrquica, atenció al detall del brocat i de la cara; influència flamenca en els rostres.",
+        "meaning": "Síntesi local del gòtic internacional amb l'eyckià.",
+        "function": "Retaule d'altar major gremial."
+      },
+      "counterfactuals": [
+        "Per què la pintura catalana del 1480 continua posant fons d'or mentre Florència ja treballa amb perspectiva?"
+      ]
+    },
+    {
+      "id": "bermejo-pieta",
+      "title": "Pietat Desplà",
+      "author": "Bartolomé Bermejo",
+      "year": 1490,
+      "yearLabel": "1490",
+      "period": "gotic",
+      "technique": "Oli sobre taula",
+      "location": "Museu de la Catedral, Barcelona",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "espiritualitat-mistica",
+        "llum-color",
+        "patrimoni-catala"
+      ],
+      "analysis": {
+        "context": "Encàrrec de l'ardiaca Lluís Desplà, que apareix al quadre. Bermejo incorpora la tècnica flamenca a Barcelona.",
+        "formal": "Paisatge detallat al fons, tractament minuciós de la llum, rostres individualitzats; oli complet a l'estil de van Eyck.",
+        "meaning": "Pietat intimista en context de transició entre gòtic i Renaixement hispànic.",
+        "function": "Retaule devocional privat."
+      },
+      "counterfactuals": [
+        "Com arriba l'oli flamenc a Catalunya mig segle després de van Eyck?"
+      ]
+    },
+    {
+      "id": "seu-nova-lleida",
+      "title": "Catedral de Girona (nau única gòtica)",
+      "author": "Guillem Bofill i altres",
+      "year": 1417,
+      "yearLabel": "nau principal s. XV",
+      "period": "gotic",
+      "technique": "Arquitectura gòtica en pedra",
+      "location": "Girona",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-sacra",
+        "patrimoni-catala",
+        "espai-perspectiva"
+      ],
+      "analysis": {
+        "context": "Nau única més ampla de l'Europa gòtica (23 m); decisió polèmica validada per consell d'experts el 1417.",
+        "formal": "Una sola nau de 23 m d'amplada, voltada de creueria; rebuig del model de tres naus.",
+        "meaning": "Versió extrema del gòtic català de l'amplada: diafanitat espacial radical.",
+        "function": "Catedral diocesana; rècord tècnic del seu temps."
+      },
+      "counterfactuals": [
+        "Per què la catedral de Girona gosa fer una sola nau quan tothom en fa tres?"
+      ]
+    },
+    {
+      "id": "pisano-pulpit",
+      "title": "Púlpit del baptisteri de Pisa",
+      "author": "Nicola Pisano",
+      "year": 1260,
+      "yearLabel": "1260",
+      "period": "gotic",
+      "technique": "Escultura en marbre",
+      "location": "Baptisteri de Pisa",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "narrativa-visual",
+        "llenguatge-classic",
+        "cos-huma"
+      ],
+      "analysis": {
+        "context": "Pisano treballa amb sarcòfags romans trobats a Pisa. Anticipa el proto-Renaixement.",
+        "formal": "Relleus narratius amb figures clarament classicitzants i drapejats d'arrel romana.",
+        "meaning": "Recuperació de la figura humana amb volum i dignitat abans de Giotto.",
+        "function": "Púlpit; suport de la lectura litúrgica i del programa iconogràfic."
+      },
+      "counterfactuals": [
+        "Si Pisano ja recupera l'antic el 1260, per què no diem que el Renaixement comença aquí?"
+      ]
+    },
+    {
+      "id": "gray-e1027",
+      "title": "Vil·la E-1027",
+      "author": "Eileen Gray",
+      "year": 1929,
+      "yearLabel": "1926-1929",
+      "period": "moviment-modern-arq",
+      "technique": "Arquitectura moderna",
+      "location": "Roquebrune-Cap-Martin (França)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-civil",
+        "feminisme",
+        "mecenatge-femeni"
+      ],
+      "analysis": {
+        "context": "Gray dissenya i construeix ella mateixa la casa per a ella i Jean Badovici. Le Corbusier hi obsessiona i hi pinta murals no autoritzats.",
+        "formal": "Planta oberta, finestres contínues, mobiliari propi integrat; arquitectura modernista amb atenció al cos.",
+        "meaning": "Casa moderna pensada des de l'ús femení i la intimitat; resposta alternativa a les cinc regles corbusianes.",
+        "function": "Residència; manifest domèstic del moviment modern."
+      },
+      "counterfactuals": [
+        "Per què durant dècades s'atribuïa aquesta casa a Le Corbusier i Badovici?"
+      ]
+    },
+    {
+      "id": "bo-bardi-masp",
+      "title": "Museu d'Art de São Paulo (MASP)",
+      "author": "Lina Bo Bardi",
+      "year": 1968,
+      "yearLabel": "1957-1968",
+      "period": "moviment-modern-arq",
+      "technique": "Arquitectura de formigó armat i vidre",
+      "location": "São Paulo",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-civil",
+        "feminisme",
+        "industria-ciutat"
+      ],
+      "analysis": {
+        "context": "Bo Bardi, italiana a São Paulo. Recerca d'una arquitectura moderna sud-americana i socialment útil.",
+        "formal": "Gran caixa de vidre sustentada per quatre pilars de formigó pintats de vermell; sota, plaça pública coberta.",
+        "meaning": "Arquitectura que regala espai públic a la ciutat; museu com a àgora.",
+        "function": "Museu d'art i plaça cívica."
+      },
+      "counterfactuals": [
+        "Per què el museu més icònic del Brasil alibera una plaça enlloc d'ocupar-la?"
+      ]
+    },
+    {
+      "id": "hadid-maxxi",
+      "title": "MAXXI (Museu nacional d'art del s. XXI)",
+      "author": "Zaha Hadid",
+      "year": 2010,
+      "yearLabel": "1998-2010",
+      "period": "art-contemporani",
+      "technique": "Arquitectura deconstructivista de formigó",
+      "location": "Roma",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "arquitectura-civil",
+        "ruptura-academica",
+        "feminisme"
+      ],
+      "analysis": {
+        "context": "Hadid és la primera dona Pritzker (2004). MAXXI al barri romà de Flaminio.",
+        "formal": "Volums longitudinals entrellaçats; recorregut no jeràrquic; formigó continu i llum zenital.",
+        "meaning": "Arquitectura com a flux; rebuig de la planta simètrica monumental.",
+        "function": "Museu d'art contemporani estatal; exemple paradigmàtic de deconstructivisme."
+      },
+      "counterfactuals": [
+        "Per què el museu del s. XXI a Roma no dialoga amb l'antic sinó que l'ignora deliberadament?"
+      ]
+    },
+    {
+      "id": "af-klint-temple",
+      "title": "Pintures per al temple (sèrie dels 'Deu més grans')",
+      "author": "Hilma af Klint",
+      "year": 1907,
+      "yearLabel": "1907",
+      "period": "avantguardes",
+      "technique": "Tremp sobre paper",
+      "location": "Moderna Museet, Estocolm",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "abstraccio",
+        "espiritualitat-mistica",
+        "feminisme"
+      ],
+      "analysis": {
+        "context": "Af Klint realitza pintures abstractes quatre anys abans de Kandinsky, en sessions espiritistes del grup 'Les Cinc'. Prohibeix exposar-les fins 20 anys després de la seva mort.",
+        "formal": "Formes geomètriques i botàniques, colors pastel saturats, sèries sistemàtiques de gran format.",
+        "meaning": "Abstracció com a llenguatge espiritual; visualització de dimensions invisibles.",
+        "function": "Peces d'un 'temple' espiritual que mai es va construir."
+      },
+      "counterfactuals": [
+        "Com canvia la història de l'abstracció si sabem que la inventa una dona quatre anys abans de Kandinsky?"
+      ]
+    },
+    {
+      "id": "hepworth-single-form",
+      "title": "Forma única (Single Form)",
+      "author": "Barbara Hepworth",
+      "year": 1964,
+      "yearLabel": "1961-1964",
+      "period": "art-contemporani",
+      "technique": "Escultura en bronze",
+      "location": "Seu de l'ONU, Nova York",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "abstraccio",
+        "feminisme",
+        "cos-huma"
+      ],
+      "analysis": {
+        "context": "Homenatge a Dag Hammarskjöld. Hepworth al grup de St Ives; escultora internacional britànica.",
+        "formal": "Monòlit bronzí amb forat circular: la 'finestra' foradada és marca de Hepworth.",
+        "meaning": "Pacifisme i diàleg internacional; forma abstracta com a vehicle ètic.",
+        "function": "Escultura pública de la ONU; model d'escultura abstracta cívica."
+      },
+      "counterfactuals": [
+        "Què significa un forat en una escultura? Per què és una signatura formal?"
+      ]
+    },
+    {
+      "id": "moore-reclining",
+      "title": "Figura reclinada (Reclining Figure)",
+      "author": "Henry Moore",
+      "year": 1938,
+      "yearLabel": "diverses versions 1938-70",
+      "period": "avantguardes",
+      "technique": "Escultura en bronze i pedra",
+      "location": "Tate, i múltiples espais públics",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-huma",
+        "cos-femeni",
+        "abstraccio"
+      ],
+      "analysis": {
+        "context": "Moore treballa el nu femení reclinat com a motiu recurrent; influències precolombines i arcaiques.",
+        "formal": "Volums arrodonits, cavitats internes, buit estructural com a part de la figura.",
+        "meaning": "Cos-paisatge; dona com a territori i refugi.",
+        "function": "Escultura pública paradigmàtica del s. XX internacional."
+      },
+      "counterfactuals": [
+        "Per què el nu femení reclinat passa de Venus d'Urbino a figura-paisatge?"
+      ]
+    },
+    {
+      "id": "kusama-infinity",
+      "title": "Infinity Mirrored Room (primera, 1965)",
+      "author": "Yayoi Kusama",
+      "year": 1965,
+      "yearLabel": "1965 (primera; reiterada fins avui)",
+      "period": "art-contemporani",
+      "technique": "Instal·lació amb miralls, llums LED i objectes",
+      "location": "Diverses col·leccions",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "cos-performatiu",
+        "feminisme",
+        "inconscient-somni"
+      ],
+      "analysis": {
+        "context": "Kusama desenvolupa les 'Infinity Rooms' des dels anys 60 a Nova York; al·lucinacions pròpies com a matèria.",
+        "formal": "Cambra recoberta de miralls amb punts lluminosos, experiència immersiva.",
+        "meaning": "Dissolució del jo; al·lucinació com a obra d'art; feminitat psíquica.",
+        "function": "Instal·lació immersiva; esdevé fenomen de xarxes al s. XXI."
+      },
+      "counterfactuals": [
+        "Per què el públic contemporani fa cua per entrar un minut en una experiència estètica?"
+      ]
+    },
+    {
+      "id": "guerrilla-girls-cartell",
+      "title": "Do Women Have To Be Naked To Get Into the Met. Museum?",
+      "author": "Guerrilla Girls",
+      "year": 1989,
+      "yearLabel": "1989",
+      "period": "art-contemporani",
+      "technique": "Cartell imprès i campanya de carrer",
+      "location": "Diverses còpies museístiques (Tate, MoMA)",
+      "image": null,
+      "canonical": false,
+      "canonicalIndex": null,
+      "themes": [
+        "feminisme",
+        "apropiacio-critica",
+        "cos-femeni"
+      ],
+      "analysis": {
+        "context": "Col·lectiu feminista anònim fundat a Nova York el 1985. Dades reals: 5% d'artistes dones, 85% de nus femenins.",
+        "formal": "Odalisca d'Ingres amb cap de goril·la; text acusador; gràfica publicitària.",
+        "meaning": "Denúncia estadística del masclisme museístic.",
+        "function": "Acció d'art públic; apropiació crítica del cànon."
+      },
+      "counterfactuals": [
+        "Quina és la diferència entre una representació canònica i una estadística de col·lecció?"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "piramides-guiza",
+      "target": "parteno",
+      "type": "precedent",
+      "note": "La monumentalitat sacra en pedra com a expressió del poder transcendent travessa cultures."
+    },
+    {
+      "source": "fris-meidum",
+      "target": "columna-trajana",
+      "type": "precedent",
+      "note": "Narrativa per registres: l'esquema egipci pervibra al relat continu romà."
+    },
+    {
+      "source": "fris-meidum",
+      "target": "giotto-scrovegni",
+      "type": "precedent",
+      "note": "Pintura narrativa per registres: el model egipci-romà arriba al cicle cristià medieval."
+    },
+    {
+      "source": "kore-peplum",
+      "target": "dorifor-policlet",
+      "type": "precedent",
+      "note": "De la frontalitat arcaica al contrapposto clàssic: un gir de 80 anys."
+    },
+    {
+      "source": "dorifor-policlet",
+      "target": "venus-cnido",
+      "type": "parentiu",
+      "note": "Cànon masculí i femení del classicisme grec en paral·lel."
+    },
+    {
+      "source": "dorifor-policlet",
+      "target": "laocoont",
+      "type": "precedent",
+      "note": "De la mesura clàssica al pathos hel·lenístic: mateixa matèria, emoció oposada."
+    },
+    {
+      "source": "venus-cnido",
+      "target": "laocoont",
+      "type": "parentiu",
+      "note": "Escola escultòrica grega: la Venus tanca el clàssic, el Laocoont obre l'hel·lenístic."
+    },
+    {
+      "source": "parteno",
+      "target": "teatre-epidaure",
+      "type": "parentiu",
+      "note": "Arquitectura cívica grega clàssica: temple i teatre com a dispositius cívics."
+    },
+    {
+      "source": "parteno",
+      "target": "panteo-roma",
+      "type": "precedent",
+      "note": "L'ordre clàssic grec és apropiat i transformat per Roma."
+    },
+    {
+      "source": "parteno",
+      "target": "david-horacis",
+      "type": "eco",
+      "note": "El neoclassicisme francès torna al llenguatge del Partenó com a virtut republicana."
+    },
+    {
+      "source": "parteno",
+      "target": "mies-pavello-alemany",
+      "type": "eco",
+      "note": "El minimalisme modern revisita la puresa de l'ordre clàssic grec sense columnes clàssiques."
+    },
+    {
+      "source": "panteo-roma",
+      "target": "santa-sofia",
+      "type": "precedent",
+      "note": "La gran cúpula romana inspira Bizanci, que la posa sobre petxines."
+    },
+    {
+      "source": "panteo-roma",
+      "target": "bramante-san-pietro",
+      "type": "precedent",
+      "note": "Planta central cupulada: model romà que el Renaixement fa seu com a temple ideal."
+    },
+    {
+      "source": "panteo-roma",
+      "target": "palladio-rotonda",
+      "type": "precedent",
+      "note": "La rotonda palladiana trasllada el model del Panteó a la vil·la civil."
+    },
+    {
+      "source": "colosseu-roma",
+      "target": "versalles",
+      "type": "parentiu",
+      "note": "Arquitectura del poder com a espectacle: amfiteatre imperial i palau absolutista."
+    },
+    {
+      "source": "august-prima-porta",
+      "target": "arnolfini-van-eyck",
+      "type": "precedent",
+      "note": "Retrat acompanyat d'atributs ideològics: el model imperial arriba a l'elit burgesa flamenca."
+    },
+    {
+      "source": "august-prima-porta",
+      "target": "david-horacis",
+      "type": "cita",
+      "note": "David recupera el model romà per construir la imatge cívica pre-revolucionària."
+    },
+    {
+      "source": "august-prima-porta",
+      "target": "meninas-velazquez",
+      "type": "precedent",
+      "note": "Retrat del poder amb tota la parafernàlia de la cort: hereu del model romà."
+    },
+    {
+      "source": "columna-trajana",
+      "target": "goya-3-maig",
+      "type": "ruptura",
+      "note": "La narrativa imperial glorificadora es converteix en crítica: la història no és heroïca, és carnisseria."
+    },
+    {
+      "source": "columna-trajana",
+      "target": "picasso-guernica",
+      "type": "ruptura",
+      "note": "Columna commemorativa del triomf → Guernica commemora la derrota i el crim. Mateix mitjà, sentit oposat."
+    },
+    {
+      "source": "santa-sofia",
+      "target": "mesquita-cordova",
+      "type": "parentiu",
+      "note": "Arquitectura sacra no occidental en diàleg: cúpules orientals i bosc de columnes islàmic al mateix segle VIII-X."
+    },
+    {
+      "source": "mesquita-cordova",
+      "target": "santiago-compostela",
+      "type": "parentiu",
+      "note": "Convivència ibèrica medieval: l'Islam construeix al sud mentre el cristianisme edifica al nord."
+    },
+    {
+      "source": "santiago-compostela",
+      "target": "moissac-portalada",
+      "type": "parentiu",
+      "note": "Via Tolosana romànica: Moissac és parada de pelegrinatge cap a Compostel·la."
+    },
+    {
+      "source": "santiago-compostela",
+      "target": "chartres",
+      "type": "precedent",
+      "note": "El romànic monumental de pelegrinatge anticipa l'organització espacial del gòtic."
+    },
+    {
+      "source": "moissac-portalada",
+      "target": "sant-climent-taull",
+      "type": "parentiu",
+      "note": "Figuració romànica jeràrquica i simbòlica: escultura i pintura s'acompanyen."
+    },
+    {
+      "source": "sant-climent-taull",
+      "target": "giotto-scrovegni",
+      "type": "ruptura",
+      "note": "Del Pantocràtor transcendent al Déu amb cos: Giotto humanitza el sagrat."
+    },
+    {
+      "source": "chartres",
+      "target": "santa-maria-del-mar",
+      "type": "parentiu",
+      "note": "Gòtic europeu: França 'a l'altura', Catalunya 'a l'amplada'. Mateix llenguatge, preferències oposades."
+    },
+    {
+      "source": "santa-maria-del-mar",
+      "target": "llotja-valencia",
+      "type": "parentiu",
+      "note": "Gòtic civil i religiós a la Corona d'Aragó, compartint solucions constructives."
+    },
+    {
+      "source": "chartres",
+      "target": "llotja-valencia",
+      "type": "parentiu",
+      "note": "Transferència del llenguatge catedralici al gòtic civil."
+    },
+    {
+      "source": "pou-moises-sluter",
+      "target": "donatello-david",
+      "type": "parentiu",
+      "note": "Escultura de transició entre gòtic tardà i Renaixement: individualització i volum."
+    },
+    {
+      "source": "giotto-scrovegni",
+      "target": "arnolfini-van-eyck",
+      "type": "parentiu",
+      "note": "Pintura del 400 al nord i al sud: espai domèstic habitable i figures amb cos real."
+    },
+    {
+      "source": "giotto-scrovegni",
+      "target": "sixtina-volta",
+      "type": "precedent",
+      "note": "Del cicle narratiu padovà al gran programa sixtí: genealogia del fresc italià."
+    },
+    {
+      "source": "donatello-david",
+      "target": "venus-botticelli",
+      "type": "parentiu",
+      "note": "Florència Medici: nu masculí i nu femení ressorgeixen a la mateixa cort."
+    },
+    {
+      "source": "primavera-botticelli",
+      "target": "venus-botticelli",
+      "type": "parentiu",
+      "note": "Mateix autor, mateix cercle mecènic, mateix programa neoplatònic."
+    },
+    {
+      "source": "venus-cnido",
+      "target": "venus-botticelli",
+      "type": "precedent",
+      "note": "La Venus de Cnido funda el model iconogràfic de la deessa nua que Botticelli recupera."
+    },
+    {
+      "source": "venus-cnido",
+      "target": "venus-urbino-tizia",
+      "type": "precedent",
+      "note": "El gest pudorós passa directament de l'escultura clàssica al nu reclinat venecià."
+    },
+    {
+      "source": "venus-botticelli",
+      "target": "venus-urbino-tizia",
+      "type": "cita",
+      "note": "Tizià recull el tema de Venus però la desplaça de l'escena mitològica oberta a l'alcova privada."
+    },
+    {
+      "source": "venus-botticelli",
+      "target": "danae-tizia",
+      "type": "parentiu",
+      "note": "Dues opcions mitològiques en el Renaixement italià: Botticelli tria el naixement diví, Tizià la pluja d'or."
+    },
+    {
+      "source": "venus-urbino-tizia",
+      "target": "danae-tizia",
+      "type": "parentiu",
+      "note": "Tizià reutilitza el seu propi model de nu reclinat venecià i canvia de deessa."
+    },
+    {
+      "source": "venus-urbino-tizia",
+      "target": "olimpia-manet",
+      "type": "ruptura",
+      "note": "Manet cita literalment la composició de Tizià per fer-la saltar: mite → prostituta."
+    },
+    {
+      "source": "danae-tizia",
+      "target": "dejeuner-manet",
+      "type": "ruptura",
+      "note": "Manet trenca amb la tradició del nu mitològic venecià: ja no cal el pretext diví."
+    },
+    {
+      "source": "dejeuner-manet",
+      "target": "olimpia-manet",
+      "type": "parentiu",
+      "note": "Mateix autor, mateix any, mateixa estratègia: nu contemporani sense coartada mitològica."
+    },
+    {
+      "source": "bramante-san-pietro",
+      "target": "palladio-rotonda",
+      "type": "parentiu",
+      "note": "Classicisme renaixentista italià: temple ideal i vil·la ideal com a programes paral·lels."
+    },
+    {
+      "source": "palladio-rotonda",
+      "target": "wright-kaufmann",
+      "type": "eco",
+      "note": "La vil·la palladiana com a arquetip ressona (per contrast o per continuïtat) en la casa moderna americana."
+    },
+    {
+      "source": "palladio-rotonda",
+      "target": "versalles",
+      "type": "parentiu",
+      "note": "Classicisme arquitectònic al servei del poder: de la vil·la privada al palau absolutista."
+    },
+    {
+      "source": "sixtina-volta",
+      "target": "laocoont",
+      "type": "cita",
+      "note": "Miquel Àngel veu el Laocoont el 1506 i en recull el pathos corporal per a la Sixtina."
+    },
+    {
+      "source": "sixtina-volta",
+      "target": "escola-atenes-rafael",
+      "type": "parentiu",
+      "note": "Stanze i Sixtina es pinten en paral·lel al Vaticà de Juli II: dues visions del Renaixement."
+    },
+    {
+      "source": "escola-atenes-rafael",
+      "target": "bramante-san-pietro",
+      "type": "parentiu",
+      "note": "L'arquitectura fingida de Rafael recull el classicisme de Bramante."
+    },
+    {
+      "source": "sixtina-volta",
+      "target": "bernini-santa-teresa",
+      "type": "precedent",
+      "note": "Cossos en tensió i drama espiritual: del Cinquecento italià al barroc romà."
+    },
+    {
+      "source": "laocoont",
+      "target": "bernini-santa-teresa",
+      "type": "precedent",
+      "note": "Pathos hel·lenístic redescobert → drama barroc."
+    },
+    {
+      "source": "caravaggio-mort-verge",
+      "target": "bernini-santa-teresa",
+      "type": "parentiu",
+      "note": "Barroc romà: tenebrisme pictòric i èxtasi escultòric com a cares del mateix programa."
+    },
+    {
+      "source": "caravaggio-mort-verge",
+      "target": "rembrandt-anatomia",
+      "type": "cita",
+      "note": "Tenebrisme caravaggesc travessa Europa i arriba a la Holanda protestant."
+    },
+    {
+      "source": "rembrandt-anatomia",
+      "target": "meninas-velazquez",
+      "type": "parentiu",
+      "note": "Retrat de grup barroc amb mirada a l'espectador; dues grans capitals del s. XVII."
+    },
+    {
+      "source": "caravaggio-mort-verge",
+      "target": "meninas-velazquez",
+      "type": "parentiu",
+      "note": "Naturalisme barroc: Caravaggio obre el camí que recull Velázquez."
+    },
+    {
+      "source": "borromini-san-carlino",
+      "target": "bernini-santa-teresa",
+      "type": "parentiu",
+      "note": "Barroc romà complet: arquitectura dinàmica + escultura teatral."
+    },
+    {
+      "source": "borromini-san-carlino",
+      "target": "gaudi-pedrera",
+      "type": "eco",
+      "note": "Murs ondulats: el barroc anticipa l'arquitectura orgànica moderna."
+    },
+    {
+      "source": "versalles",
+      "target": "david-horacis",
+      "type": "ruptura",
+      "note": "Neoclassicisme com a rebuig del luxe rococó versallès: tornem a Roma."
+    },
+    {
+      "source": "david-horacis",
+      "target": "goya-3-maig",
+      "type": "ruptura",
+      "note": "Neoclassicisme heroic i romanticisme anti-heroic: dues maneres oposades de pintar la història."
+    },
+    {
+      "source": "goya-3-maig",
+      "target": "picasso-guernica",
+      "type": "precedent",
+      "note": "Linatge de la crítica espanyola a la violència d'estat: Goya obre el camí que Picasso radicalitza."
+    },
+    {
+      "source": "dejeuner-manet",
+      "target": "monet-impressio",
+      "type": "parentiu",
+      "note": "Generació parisina que transforma la pintura: del Saló dels Refusats a l'impressionisme."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "kandinsky-composicio-iv",
+      "type": "precedent",
+      "note": "De la sensació a l'abstracció: si el tema ja no importa, el color es pot alliberar del tot."
+    },
+    {
+      "source": "kandinsky-composicio-iv",
+      "target": "pollock-numero-1",
+      "type": "precedent",
+      "note": "Abstracció espiritual europea → abstracció gestual americana."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "boccioni-formes-uniques",
+      "type": "parentiu",
+      "note": "Captació del moviment i del temps: impressionisme pictòric, futurisme escultòric."
+    },
+    {
+      "source": "boccioni-formes-uniques",
+      "target": "gargallo-profeta",
+      "type": "parentiu",
+      "note": "Escultura d'avantguarda que abandona la massa clàssica."
+    },
+    {
+      "source": "rodin-pensador",
+      "target": "boccioni-formes-uniques",
+      "type": "ruptura",
+      "note": "Del modelat tardoromàntic al dinamisme futurista."
+    },
+    {
+      "source": "dorifor-policlet",
+      "target": "rodin-pensador",
+      "type": "eco",
+      "note": "Cos masculí musculós del cànon clàssic ressona encara, ja amb subjectivitat moderna."
+    },
+    {
+      "source": "donatello-david",
+      "target": "rodin-pensador",
+      "type": "parentiu",
+      "note": "Nu masculí heroic: del Renaixement florentí al modernisme parisenc."
+    },
+    {
+      "source": "dejeuner-manet",
+      "target": "duchamp-fontaine",
+      "type": "precedent",
+      "note": "Manet desmunta l'acadèmia; Duchamp desmunta la noció d'obra d'art sencera."
+    },
+    {
+      "source": "duchamp-fontaine",
+      "target": "abramovic-artist-is-present",
+      "type": "eco",
+      "note": "Del ready-made al cos present: l'artista com a obra."
+    },
+    {
+      "source": "duchamp-fontaine",
+      "target": "pollock-numero-1",
+      "type": "parentiu",
+      "note": "El gest/la decisió com a obra: Duchamp des del concepte, Pollock des del cos."
+    },
+    {
+      "source": "gaudi-pedrera",
+      "target": "mies-pavello-alemany",
+      "type": "ruptura",
+      "note": "Dues Barcelones consecutives: modernisme orgànic (1910) vs. racionalisme alemany (1929)."
+    },
+    {
+      "source": "mies-pavello-alemany",
+      "target": "wright-kaufmann",
+      "type": "parentiu",
+      "note": "Moviment modern: racionalisme europeu i organicisme americà com a dues branques."
+    },
+    {
+      "source": "wright-kaufmann",
+      "target": "gehry-guggenheim-bilbao",
+      "type": "parentiu",
+      "note": "Arquitectura americana que fa conversar l'edifici amb el paisatge, del bosc a la ria urbana."
+    },
+    {
+      "source": "gaudi-pedrera",
+      "target": "gehry-guggenheim-bilbao",
+      "type": "parentiu",
+      "note": "Formes sinuoses i volum escultòric: Gaudí amb pedra, Gehry amb titani."
+    },
+    {
+      "source": "mies-pavello-alemany",
+      "target": "gehry-guggenheim-bilbao",
+      "type": "ruptura",
+      "note": "'Less is more' vs. explosió formal: el deconstructivisme trenca amb l'ortodòxia moderna."
+    },
+    {
+      "source": "bernini-santa-teresa",
+      "target": "viola-martyrs",
+      "type": "eco",
+      "note": "Experiència mística transmediada: del marbre dramàtic al video en sagrat anglicà."
+    },
+    {
+      "source": "caravaggio-mort-verge",
+      "target": "viola-martyrs",
+      "type": "eco",
+      "note": "Llum dramàtica sobre el cos sagrat: del tenebrisme barroc al videoart contemporani."
+    },
+    {
+      "source": "venus-botticelli",
+      "target": "history-portraits-sherman",
+      "type": "eco",
+      "note": "Sherman reinterpreta el cànon clàssic (Venus incloses) per mostrar-ne el caràcter construït."
+    },
+    {
+      "source": "dejeuner-manet",
+      "target": "history-portraits-sherman",
+      "type": "eco",
+      "note": "La crítica de Manet al cànon troba continuïtat a Sherman, que ja no necessita l'escàndol sinó la disfressa."
+    },
+    {
+      "source": "venus-urbino-tizia",
+      "target": "history-portraits-sherman",
+      "type": "eco",
+      "note": "El nu reclinat venecià com a disfressa exhibida: Sherman tanca el cercle del male gaze."
+    },
+    {
+      "source": "bourgeois-maman",
+      "target": "abramovic-artist-is-present",
+      "type": "parentiu",
+      "note": "Art contemporani en femení al tombant de segle: cos maternal i cos performatiu."
+    },
+    {
+      "source": "kahlo-marxisme",
+      "target": "bourgeois-maman",
+      "type": "parentiu",
+      "note": "Autorepresentació i dolor com a matèria artística femenina del segle XX."
+    },
+    {
+      "source": "kahlo-marxisme",
+      "target": "picasso-guernica",
+      "type": "parentiu",
+      "note": "Art polític del s. XX: el gran mural internacional i l'ex-vot polític íntim."
+    },
+    {
+      "source": "history-portraits-sherman",
+      "target": "abramovic-artist-is-present",
+      "type": "parentiu",
+      "note": "Cos femení performat davant del cànon: fotografia i performance com a estratègies pròximes."
+    },
+    {
+      "source": "parteno",
+      "target": "altar-pergam",
+      "type": "ruptura",
+      "note": "Del fris processional serè del Partenó al pathos convuls del fris gegantomàquic de Pèrgam."
+    },
+    {
+      "source": "altar-pergam",
+      "target": "laocoont",
+      "type": "precedent",
+      "note": "L'escola de Pèrgam consolida el llenguatge del patetisme que culmina en el Laocoont."
+    },
+    {
+      "source": "parteno",
+      "target": "maison-carree",
+      "type": "precedent",
+      "note": "L'ordre grec arriba a la província romana via temples republicans."
+    },
+    {
+      "source": "maison-carree",
+      "target": "panteo-roma",
+      "type": "precedent",
+      "note": "Del temple frontal romà provincial al gran temple imperial de planta centralitzada."
+    },
+    {
+      "source": "maison-carree",
+      "target": "bramante-san-pietro",
+      "type": "precedent",
+      "note": "El Renaixement mira els temples romans petits com a models canònics reproduïbles."
+    },
+    {
+      "source": "august-prima-porta",
+      "target": "ara-pacis",
+      "type": "parentiu",
+      "note": "Mateix programa propagandístic augustal: estàtua i altar coordinats."
+    },
+    {
+      "source": "ara-pacis",
+      "target": "columna-trajana",
+      "type": "precedent",
+      "note": "Relleu processional imperial: d'Ara Pacis a Trajà, mateixa retòrica narrativa."
+    },
+    {
+      "source": "panteo-roma",
+      "target": "santa-maria-maggiore",
+      "type": "precedent",
+      "note": "L'arquitectura romana és l'eina amb què el cristianisme construeix les seves primeres basíliques."
+    },
+    {
+      "source": "santa-maria-maggiore",
+      "target": "santa-sofia",
+      "type": "precedent",
+      "note": "Del paleocristià occidental a la gran síntesi bizantina oriental."
+    },
+    {
+      "source": "santa-maria-maggiore",
+      "target": "sant-apolinar-ravena",
+      "type": "parentiu",
+      "note": "Occident paleocristià i bizantí en diàleg al s. V-VI."
+    },
+    {
+      "source": "sant-apolinar-ravena",
+      "target": "santa-sofia",
+      "type": "parentiu",
+      "note": "Doble capital de l'imperi justinià: Ravenna i Constantinoble comparteixen programa."
+    },
+    {
+      "source": "sant-apolinar-ravena",
+      "target": "sant-climent-taull",
+      "type": "precedent",
+      "note": "Hieratisme bizantí i fons atemporal: llavor visual del romànic."
+    },
+    {
+      "source": "sant-joan-penyes",
+      "target": "santiago-compostela",
+      "type": "precedent",
+      "note": "Del petit prerromànic pirinenc al gran romànic de pelegrinatge."
+    },
+    {
+      "source": "san-miguel-escalada",
+      "target": "santiago-compostela",
+      "type": "precedent",
+      "note": "Baula mossàrab que permet entendre el canvi a Compostel·la."
+    },
+    {
+      "source": "mesquita-cordova",
+      "target": "san-miguel-escalada",
+      "type": "parentiu",
+      "note": "Arcs de ferradura califal exportats a l'art cristià del nord."
+    },
+    {
+      "source": "beat-liebana",
+      "target": "sant-climent-taull",
+      "type": "precedent",
+      "note": "Paleta intensa i figuració plana: el Beat és font iconogràfica del romànic català."
+    },
+    {
+      "source": "beat-liebana",
+      "target": "moissac-portalada",
+      "type": "precedent",
+      "note": "L'iconografia apocalíptica del Beat alimenta els tímpans romànics europeus."
+    },
+    {
+      "source": "mesquita-cordova",
+      "target": "alhambra",
+      "type": "precedent",
+      "note": "Del califat cordovès a l'última afirmació nassarita: dos cims de l'art islàmic peninsular."
+    },
+    {
+      "source": "alhambra",
+      "target": "gaudi-pedrera",
+      "type": "eco",
+      "note": "Gaudí estudia l'Alhambra i adapta la seva concepció orgànica i ornamental de l'espai."
+    },
+    {
+      "source": "alhambra",
+      "target": "santa-maria-del-mar",
+      "type": "parentiu",
+      "note": "Arquitectures coetànies d'Ibèria: gòtic català i palau nassarita construeixen dos mons paral·lels."
+    },
+    {
+      "source": "venus-urbino-tizia",
+      "target": "anguissola-autoretrat",
+      "type": "parentiu",
+      "note": "Renaixement tardà italià: dona representada (Tizià) i dona representant (Anguissola) al mateix segle."
+    },
+    {
+      "source": "anguissola-autoretrat",
+      "target": "meninas-velazquez",
+      "type": "precedent",
+      "note": "Anguissola serveix a la cort de Felip II; un segle més tard Velázquez hi treballa i hi fa autoretrat."
+    },
+    {
+      "source": "caravaggio-mort-verge",
+      "target": "gentileschi-judith",
+      "type": "precedent",
+      "note": "Tenebrisme caravaggesc reapropiat per una pintora: mateixa llum, altra subjectivitat."
+    },
+    {
+      "source": "gentileschi-judith",
+      "target": "bernini-santa-teresa",
+      "type": "parentiu",
+      "note": "Dos cossos femenins barrocs en clímax extrem: agressora justiciera i mística extàtica."
+    },
+    {
+      "source": "rembrandt-anatomia",
+      "target": "leyster-autoretrat",
+      "type": "parentiu",
+      "note": "Segle d'or neerlandès: retrat d'ofici masculí (cirurgians) i autoretrat d'ofici femení (pintora)."
+    },
+    {
+      "source": "anguissola-autoretrat",
+      "target": "leyster-autoretrat",
+      "type": "parentiu",
+      "note": "Dues pintores que imposen la figura femenina al cavallet, a Itàlia i als Països Baixos."
+    },
+    {
+      "source": "leyster-autoretrat",
+      "target": "vigee-marie-antoinette",
+      "type": "parentiu",
+      "note": "Tradició de pintores professionals europees que culmina a les corts pre-revolucionàries."
+    },
+    {
+      "source": "vigee-marie-antoinette",
+      "target": "david-horacis",
+      "type": "parentiu",
+      "note": "Dues visions oposades de França 1784-1787: cort que s'acaba i virtut republicana que arriba."
+    },
+    {
+      "source": "gentileschi-judith",
+      "target": "kahlo-marxisme",
+      "type": "parentiu",
+      "note": "Auto-representació i dolor com a matèria: Gentileschi al segle XVII, Kahlo al XX."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "morisot-bressol",
+      "type": "parentiu",
+      "note": "Mateix any (1872), mateix cercle impressionista, temes divergents."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "cassatt-banyera",
+      "type": "parentiu",
+      "note": "Impressionisme tardà en femení i amb inflexió japonista."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "seurat-grande-jatte",
+      "type": "ruptura",
+      "note": "La sensació pura de Monet passa a mètode científic a Seurat."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "cezanne-sainte-victoire",
+      "type": "ruptura",
+      "note": "Cézanne abandona la dissolució atmosfèrica per reconstruir el volum estructural."
+    },
+    {
+      "source": "monet-impressio",
+      "target": "van-gogh-camp-blat",
+      "type": "ruptura",
+      "note": "Del color com a sensació òptica al color com a emoció."
+    },
+    {
+      "source": "cezanne-sainte-victoire",
+      "target": "picasso-guernica",
+      "type": "precedent",
+      "note": "Cézanne funda la geometrització que Picasso portarà al cubisme i al Guernica."
+    },
+    {
+      "source": "van-gogh-camp-blat",
+      "target": "kandinsky-composicio-iv",
+      "type": "precedent",
+      "note": "Color emocional autònom: llavor directa de l'expressionisme i l'abstracció."
+    },
+    {
+      "source": "seurat-grande-jatte",
+      "target": "kandinsky-composicio-iv",
+      "type": "precedent",
+      "note": "Racionalització de la pintura com a ciència del color: obre la porta a l'autonomia cromàtica."
+    },
+    {
+      "source": "morisot-bressol",
+      "target": "cassatt-banyera",
+      "type": "parentiu",
+      "note": "Dues impressionistes sobre la infància com a tema legítim."
+    },
+    {
+      "source": "hokusai-onada",
+      "target": "monet-impressio",
+      "type": "precedent",
+      "note": "Les estampes japoneses entren a Europa als 1860 i redefineixen la composició del paisatge."
+    },
+    {
+      "source": "hokusai-onada",
+      "target": "van-gogh-camp-blat",
+      "type": "precedent",
+      "note": "Van Gogh col·lecciona i copia Hokusai; línia i color pla n'arriben directament."
+    },
+    {
+      "source": "hiroshige-pluja",
+      "target": "van-gogh-camp-blat",
+      "type": "cita",
+      "note": "Van Gogh còpia literalment Hiroshige el 1887 abans dels camps de blat."
+    },
+    {
+      "source": "hokusai-onada",
+      "target": "cassatt-banyera",
+      "type": "precedent",
+      "note": "Picat, color pla i línia: Cassatt digereix l'ukiyo-e en clau domèstica occidental."
+    },
+    {
+      "source": "hiroshige-pluja",
+      "target": "monet-impressio",
+      "type": "parentiu",
+      "note": "Dues maneres gairebé coetànies de pintar l'atmosfera com a tema."
+    },
+    {
+      "source": "piramides-guiza",
+      "target": "taj-mahal",
+      "type": "parentiu",
+      "note": "Dos sepulcres monumentals que funden civilitzacions visuals: Egipte i el món mogol."
+    },
+    {
+      "source": "alhambra",
+      "target": "taj-mahal",
+      "type": "parentiu",
+      "note": "Dos cims palatins islàmics: jardí nassarita mediterrani i charbagh indià."
+    },
+    {
+      "source": "panteo-roma",
+      "target": "taj-mahal",
+      "type": "parentiu",
+      "note": "Cúpula i planta central en dos universos tipològics: temple romà i mausoleu mogol."
+    },
+    {
+      "source": "mascara-fang",
+      "target": "picasso-demoiselles",
+      "type": "precedent",
+      "note": "Les màscares Fang del Trocadéro són font directa de les Demoiselles."
+    },
+    {
+      "source": "venus-cnido",
+      "target": "picasso-demoiselles",
+      "type": "ruptura",
+      "note": "Les Demoiselles trenquen frontalment el cànon del nu femení que Cnido havia fundat."
+    },
+    {
+      "source": "dejeuner-manet",
+      "target": "picasso-demoiselles",
+      "type": "precedent",
+      "note": "Manet desmunta el nu mitològic; Picasso desmunta el cos representat."
+    },
+    {
+      "source": "cezanne-sainte-victoire",
+      "target": "picasso-demoiselles",
+      "type": "precedent",
+      "note": "Geometrització de Cézanne + màscares africanes = cubisme."
+    },
+    {
+      "source": "picasso-demoiselles",
+      "target": "picasso-guernica",
+      "type": "precedent",
+      "note": "Sense Demoiselles (i el cubisme) no és pensable Guernica: mateixa sintaxi formal, tres dècades després."
+    },
+    {
+      "source": "matisse-dansa",
+      "target": "picasso-demoiselles",
+      "type": "parentiu",
+      "note": "Dues avantguardes parisenques coetànies en competència: color alliberat vs. forma fragmentada."
+    },
+    {
+      "source": "matisse-dansa",
+      "target": "kandinsky-composicio-iv",
+      "type": "parentiu",
+      "note": "Fauvisme i Der Blaue Reiter: color autònom com a llenguatge."
+    },
+    {
+      "source": "rodin-pensador",
+      "target": "brancusi-muse",
+      "type": "ruptura",
+      "note": "Brâncuși passa per Rodin i rebutja el modelat expressiu per l'essencialitat geomètrica."
+    },
+    {
+      "source": "brancusi-muse",
+      "target": "gargallo-profeta",
+      "type": "parentiu",
+      "note": "Escultura d'avantguarda que redefineix la figura des de la síntesi formal."
+    },
+    {
+      "source": "brancusi-muse",
+      "target": "boccioni-formes-uniques",
+      "type": "parentiu",
+      "note": "Dues respostes radicals a Rodin el 1910-13: purificació estàtica vs. dinamisme."
+    },
+    {
+      "source": "klimt-kiss",
+      "target": "sant-apolinar-ravena",
+      "type": "cita",
+      "note": "Klimt beu directament de l'or mosaic bizantí: 1400 anys de salt iconogràfic."
+    },
+    {
+      "source": "klimt-kiss",
+      "target": "gaudi-pedrera",
+      "type": "parentiu",
+      "note": "Modernisme europeu coetani: Viena i Barcelona, dues capitals del decorativisme simbolista."
+    },
+    {
+      "source": "duchamp-fontaine",
+      "target": "magritte-pipa",
+      "type": "precedent",
+      "note": "Del ready-made dadaista al joc conceptual sobre el signe: mateixa crítica a la representació."
+    },
+    {
+      "source": "duchamp-fontaine",
+      "target": "oppenheim-dejuni",
+      "type": "precedent",
+      "note": "L'operació dadaista sobre l'objecte quotidià esdevé dispositiu surrealista."
+    },
+    {
+      "source": "dali-persistencia",
+      "target": "miro-constellacions",
+      "type": "parentiu",
+      "note": "Dos surrealistes catalans amb estratègies oposades: hiperrealisme oníric vs. signes biomòrfics."
+    },
+    {
+      "source": "dali-persistencia",
+      "target": "magritte-pipa",
+      "type": "parentiu",
+      "note": "Surrealisme amb tècnica acadèmica: Dalí i Magritte com a cara 'figurativa' del moviment."
+    },
+    {
+      "source": "miro-constellacions",
+      "target": "pollock-numero-1",
+      "type": "precedent",
+      "note": "All-over biomòrfic de Miró com a llavor directa del dripping de Pollock."
+    },
+    {
+      "source": "oppenheim-dejuni",
+      "target": "bourgeois-maman",
+      "type": "precedent",
+      "note": "Art d'objecte femení pertorbador: Oppenheim obre el camí que Bourgeois desplega."
+    },
+    {
+      "source": "dali-persistencia",
+      "target": "picasso-guernica",
+      "type": "parentiu",
+      "note": "Dos catalans/espanyols a l'avantguarda dels anys 30: surrealisme i cubisme polític."
+    },
+    {
+      "source": "kahlo-marxisme",
+      "target": "dali-persistencia",
+      "type": "parentiu",
+      "note": "Surrealisme internacional: Breton considera Kahlo surrealista, Dalí n'és l'exponent oficial."
+    },
+    {
+      "source": "santa-maria-del-mar",
+      "target": "seu-nova-lleida",
+      "type": "parentiu",
+      "note": "Dues obres del gòtic català de l'amplada: basílica de Barcelona i rècord de nau de Girona."
+    },
+    {
+      "source": "chartres",
+      "target": "seu-nova-lleida",
+      "type": "ruptura",
+      "note": "Gòtic francès vertical vs. gòtic català horitzontal: decisions tipològiques oposades."
+    },
+    {
+      "source": "arnolfini-van-eyck",
+      "target": "bermejo-pieta",
+      "type": "precedent",
+      "note": "L'oli flamenc arriba a Barcelona via Bermejo mig segle després de van Eyck."
+    },
+    {
+      "source": "arnolfini-van-eyck",
+      "target": "huguet-consagracio",
+      "type": "parentiu",
+      "note": "Pintura gòtica internacional al 400: van Eyck al nord i Huguet a Barcelona."
+    },
+    {
+      "source": "bermejo-pieta",
+      "target": "huguet-consagracio",
+      "type": "parentiu",
+      "note": "Dues cares del gòtic tardà català: or tradicional i oli naturalista."
+    },
+    {
+      "source": "sant-climent-taull",
+      "target": "huguet-consagracio",
+      "type": "parentiu",
+      "note": "Tres segles de pintura religiosa catalana: del Pantocràtor al retaule gremial."
+    },
+    {
+      "source": "giotto-scrovegni",
+      "target": "pisano-pulpit",
+      "type": "parentiu",
+      "note": "El proto-Renaixement té dos pares: un pintor (Giotto) i un escultor (Pisano)."
+    },
+    {
+      "source": "pisano-pulpit",
+      "target": "donatello-david",
+      "type": "precedent",
+      "note": "Recuperació del cànon clàssic en escultura: de Pisano a Donatello hi ha un segle i mig."
+    },
+    {
+      "source": "mies-pavello-alemany",
+      "target": "gray-e1027",
+      "type": "parentiu",
+      "note": "Dues obres del moviment modern del 1929: mateixa gramàtica, autories i funcions oposades."
+    },
+    {
+      "source": "wright-kaufmann",
+      "target": "gray-e1027",
+      "type": "parentiu",
+      "note": "Dues respostes domèstiques al moviment modern: arquitecte masculí canònic i arquitecta dona oblidada."
+    },
+    {
+      "source": "gray-e1027",
+      "target": "bo-bardi-masp",
+      "type": "parentiu",
+      "note": "Arquitectura moderna feta per dones: d'Europa al Brasil."
+    },
+    {
+      "source": "mies-pavello-alemany",
+      "target": "bo-bardi-masp",
+      "type": "ruptura",
+      "note": "Del pavelló protocol·lari europeu a l'arquitectura-plaça pública brasilera."
+    },
+    {
+      "source": "gehry-guggenheim-bilbao",
+      "target": "hadid-maxxi",
+      "type": "parentiu",
+      "note": "Dues icones del gir escultòric del museu contemporani; autoria masculina i femenina."
+    },
+    {
+      "source": "bo-bardi-masp",
+      "target": "hadid-maxxi",
+      "type": "parentiu",
+      "note": "Dues arquitectes mestres reconegudes pòstumament pel cànon."
+    },
+    {
+      "source": "af-klint-temple",
+      "target": "kandinsky-composicio-iv",
+      "type": "precedent",
+      "note": "Af Klint pinta abstracció quatre anys abans que Kandinsky, sense que Kandinsky ho sàpiga."
+    },
+    {
+      "source": "af-klint-temple",
+      "target": "bourgeois-maman",
+      "type": "parentiu",
+      "note": "Dos programes artístics femenins que combinen espiritualitat i simbolisme orgànic."
+    },
+    {
+      "source": "rodin-pensador",
+      "target": "moore-reclining",
+      "type": "ruptura",
+      "note": "Del nu musculós tardoromàntic al cos-paisatge abstracte."
+    },
+    {
+      "source": "moore-reclining",
+      "target": "hepworth-single-form",
+      "type": "parentiu",
+      "note": "Moore i Hepworth: dos polars de l'escultura britànica del XX."
+    },
+    {
+      "source": "gargallo-profeta",
+      "target": "moore-reclining",
+      "type": "parentiu",
+      "note": "Escultura figurativa radicalment simplificada: tradicions paral·leles."
+    },
+    {
+      "source": "brancusi-muse",
+      "target": "hepworth-single-form",
+      "type": "precedent",
+      "note": "Síntesi formal brancusiana portada a l'escultura cívica femenina anglesa."
+    },
+    {
+      "source": "moore-reclining",
+      "target": "venus-urbino-tizia",
+      "type": "eco",
+      "note": "El nu femení reclinat venecià, reinterpretat en clau de cos-paisatge abstracte."
+    },
+    {
+      "source": "kusama-infinity",
+      "target": "pollock-numero-1",
+      "type": "ruptura",
+      "note": "De l'all-over pictòric al all-over immersiu: l'espai englobant substitueix la tela."
+    },
+    {
+      "source": "kusama-infinity",
+      "target": "abramovic-artist-is-present",
+      "type": "parentiu",
+      "note": "Art femení immersiu: la presència del públic (Abramović) i la dissolució del jo (Kusama)."
+    },
+    {
+      "source": "guerrilla-girls-cartell",
+      "target": "venus-urbino-tizia",
+      "type": "eco",
+      "note": "Cita explícita del nu canònic europeu per denunciar el seu paper institucional."
+    },
+    {
+      "source": "guerrilla-girls-cartell",
+      "target": "dejeuner-manet",
+      "type": "eco",
+      "note": "La crítica de Manet al cànon del nu desemboca en la crítica estadística del museu."
+    },
+    {
+      "source": "guerrilla-girls-cartell",
+      "target": "history-portraits-sherman",
+      "type": "parentiu",
+      "note": "Dues estratègies feministes coetànies del 1989: paròdia fotogràfica i acció gràfica."
+    },
+    {
+      "source": "guerrilla-girls-cartell",
+      "target": "duchamp-fontaine",
+      "type": "eco",
+      "note": "Crítica institucional: del ready-made anònim al col·lectiu anònim."
+    }
+  ]
+}

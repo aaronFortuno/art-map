@@ -1,0 +1,314 @@
+{
+  "meta": {
+    "created": "2026-04-18",
+    "description": "Alternative image strategies for 5 copyrighted works; pedagogical use context under LPI Art. 32 Spain (batxillerat / high school art history tool). Priorities: (1) free license of original, (2) free license of replica, (3) free contextual image, (4) museum open access, (5) gigapixel/educational platforms, (6) educational exception reproduction.",
+    "works_examined": 5,
+    "works_with_free_option": 4,
+    "works_needing_educational_exception": 1,
+    "jurisdictional_note": "Tool is for Spanish/Catalan high school use. EU copyright is life+70. Key finding: Frida Kahlo (d. 1954) entered EU public domain on 1 Jan 2025. Picasso (d. 1973) remains in copyright in EU until 1 Jan 2044. Pollock (d. 1956) remains in copyright in EU until 1 Jan 2027. Abramović (b. 1946, alive) and Viola (d. 2024) remain in copyright. Spanish FoP (LPI Art. 35.2) covers works permanently in public thoroughfares but its application to 2D murals is legally unsettled; Wikimedia Commons in practice hosts photos of the Gernika ceramic mural under CC-BY-SA.",
+    "fallback_policy": "Where no free/PD image is available, use low-resolution educational-exception reproduction (LPI Art. 32) captioned 'Ús educatiu · LPI Art. 32 · No redistribuïble' with full credit."
+  },
+  "works": [
+    {
+      "canonicalIndex": 50,
+      "title": "Guernica",
+      "original_author": "Pablo Picasso",
+      "original_year": 1937,
+      "original_location": "Museo Reina Sofía, Madrid",
+      "copyright_in_EU_until": "2043-12-31",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 2 — Ceramic mural replica (Gernika town)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Guernica_Gernikara.JPG",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Guernica_Gernikara.JPG",
+          "license": "CC BY 3.0",
+          "credit": "Joaquín / Wikimedia Commons (photo of the 1997 ceramic mural 'Guernica Gernikara' by José Marí Ximénez & the Royo brothers, Gernika-Lumo)",
+          "fidelity_to_original": "mitjana",
+          "caveat": "Reprodueix fidelment el Guernica però és una cerámica de 1997 instal·lada a l'espai públic de Gernika. Cal indicar que és una reproducció ceràmica i no l'original a l'oli. Potencial zona grisa legal: la LPI Art. 35.2 espanyola permet la reproducció d'obres permanentment ubicades a vies públiques; Commons ho tracta com lliure.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 2 — Alternative photo of the ceramic mural",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Mural_del_Gernika.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Mural_del_Gernika.jpg",
+          "license": "CC BY-SA 3.0 / GFDL (dual)",
+          "credit": "Papamanila / Wikimedia Commons (photo 2009 del mural ceràmic de Gernika)",
+          "fidelity_to_original": "mitjana",
+          "caveat": "Mateixes consideracions que l'opció 1. Alternativa si es prefereix CC BY-SA.",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 5 — Reina Sofía 'Rethinking Guernica' gigapixel (educational platform)",
+          "image_url": "https://guernica.museoreinasofia.es/gigapixel/en/",
+          "source_page": "https://guernica.museoreinasofia.es/en",
+          "license": "© Museo Reina Sofía — 'Some rights reserved'. No explicit CC. Usable under LPI Art. 32 educational exception.",
+          "credit": "Pablo Picasso, Guernica, 1937. © Sucesión Pablo Picasso, VEGAP, Madrid. Imatge: Museo Nacional Centro de Arte Reina Sofía (projecte Rethinking Guernica).",
+          "fidelity_to_original": "alta",
+          "caveat": "No és imatge lliure: cal enllaçar al visor (no descarregar ni redistribuir la imatge). Recomanable com a 'Veure en alta resolució' amb iframe o enllaç extern. Ideal per a consulta pedagògica d'alta fidelitat.",
+          "recommended": true
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 3 — Contextual photo of the bombed town of Guernica 1937",
+          "image_url": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-H25224,_Guernica,_Ruinen.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/Category:Bombing_of_Guernica",
+          "license": "CC BY-SA 3.0 DE (Deutsches Bundesarchiv)",
+          "credit": "Bundesarchiv, Bild 183-H25224 / autor desconegut / CC-BY-SA 3.0",
+          "fidelity_to_original": "baixa",
+          "caveat": "No és el quadre: és la ciutat destruïda. Útil com a imatge complementària de context històric.",
+          "recommended": false
+        },
+        {
+          "rank": 5,
+          "strategy": "Tier 6 — Educational exception reproduction (LPI Art. 32)",
+          "image_url": "https://www.museoreinasofia.es/en/collections/artwork/guernica",
+          "source_page": "https://www.museoreinasofia.es/en/collections/artwork/guernica",
+          "license": "LPI Art. 32 — ús educatiu amb atribució",
+          "credit": "Pablo Picasso, Guernica, 1937, oli sobre tela, 349×776 cm. Museo Reina Sofía, Madrid. © Sucesión Pablo Picasso, VEGAP.",
+          "fidelity_to_original": "alta",
+          "caveat": "Emprar únicament baixa resolució (≤800px), amb peu de foto 'Ús educatiu · LPI Art. 32 · No redistribuïble'. Darrer recurs si es vol una reproducció directa.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Primary: ceramic mural (CC BY 3.0) as hero image + link to Reina Sofía gigapixel for high-fidelity study. If the project needs an exact reproduction inline, fall back to rank 5 with educational-exception caption."
+    },
+    {
+      "canonicalIndex": 51,
+      "title": "Número 1 (Lavender Mist)",
+      "original_author": "Jackson Pollock",
+      "original_year": 1950,
+      "original_location": "National Gallery of Art, Washington, D.C.",
+      "copyright_in_EU_until": "2026-12-31",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Installation photo (work visible on gallery wall with visitor)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Regarding_Lavender_Mist.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Regarding_Lavender_Mist.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "Ned Hartley / Wikimedia Commons — 'Regarding Lavender Mist', National Gallery of Art, 2013",
+          "fidelity_to_original": "alta",
+          "caveat": "La fotografia és lliure (CC BY-SA 4.0) però l'obra retratada segueix sota copyright de Pollock-Krasner Foundation / ARS fins 2027 a la UE. Commons la tracta com a foto vàlida per de minimis/documentació museística (inclou un visitant observant). Bona solució legal: es reprodueix el quadre com a part d'una escena documentada, no com a reproducció aïllada.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Contextual: Jackson Pollock by Hans Namuth (1951)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Jackson_Pollock_by_Hans_Namuth.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Jackson_Pollock_by_Hans_Namuth.jpg",
+          "license": "Public Domain (US) — publicat 1957 a Evergreen Review sense renovació de copyright",
+          "credit": "Hans Namuth, Jackson Pollock, 1951 (Evergreen Review núm. 3)",
+          "fidelity_to_original": "baixa",
+          "caveat": "És una foto icònica de Pollock a l'estudi pintant amb la tècnica del 'dripping' — mateix estil i època que Lavender Mist. Excel·lent per il·lustrar el mètode. Als EUA és PD; als països amb regla de vida+70 podria seguir protegida (Namuth m. 1990). Per a ús educatiu a Espanya, combinable amb invocació LPI Art. 32.",
+          "recommended": true
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 4 — NGA collection page (image restringida)",
+          "image_url": "https://www.nga.gov/artworks/55819-number-1-1950-lavender-mist",
+          "source_page": "https://www.nga.gov/artworks/55819-number-1-1950-lavender-mist",
+          "license": "NGA: 'image not available' per obres amb copyright de tercers. No forma part d'Open Access.",
+          "credit": "Jackson Pollock, Number 1, 1950 (Lavender Mist), 1950. National Gallery of Art, Washington, Ailsa Mellon Bruce Fund. © 2026 Pollock-Krasner Foundation / ARS, NY.",
+          "fidelity_to_original": "alta",
+          "caveat": "El NGA NO ofereix la imatge en obert perquè Pollock encara té copyright. Només es pot enllaçar a la fitxa, no allotjar la imatge.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 6 — Educational exception reproduction (LPI Art. 32)",
+          "image_url": "https://www.wikiart.org/en/jackson-pollock/number-1-lavender-mist-1950-1",
+          "source_page": "https://www.wikiart.org/en/jackson-pollock/number-1-lavender-mist-1950-1",
+          "license": "LPI Art. 32 — ús educatiu amb atribució. WikiArt allotja la imatge però no és llicència lliure.",
+          "credit": "Jackson Pollock, Number 1, 1950 (Lavender Mist), 1950, oli, esmalt i alumini sobre tela, 221×300 cm. National Gallery of Art, Washington. © 2026 Pollock-Krasner Foundation / ARS, NY.",
+          "fidelity_to_original": "alta",
+          "caveat": "Emprar només baixa resolució amb peu 'Ús educatiu · LPI Art. 32 · No redistribuïble'.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Primary: installation photo 'Regarding Lavender Mist' (CC BY-SA 4.0) as hero — it legitimately shows the painting in a free-licensed documentary image. Complement with Hans Namuth Pollock-at-work portrait to teach the technique. If an uncropped reproduction is required, use rank 4 under LPI Art. 32."
+    },
+    {
+      "canonicalIndex": 52,
+      "title": "El marxisme sanarà els malalts",
+      "original_author": "Frida Kahlo",
+      "original_year": 1954,
+      "original_location": "Museo Frida Kahlo (Casa Azul), Coyoacán, Mèxic",
+      "copyright_in_EU_until": "2024-12-31",
+      "public_domain_note": "ATENCIÓ — Canvi legal important: Frida Kahlo (m. 13 juliol 1954) va entrar al domini públic a la UE l'1 de gener de 2025 (regla vida+70). A Mèxic està al domini públic des de 1979 (vida+25 en aquell moment). Als EUA la situació és més complexa. Per a un ús educatiu a Catalunya / Espanya, l'obra ara es considera de domini públic.",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 1 — Reproducció directa (domini públic a la UE des de 2025)",
+          "image_url": "https://artsandculture.google.com/asset/marxism-will-give-health-to-the-ill/HAElPPnYYlxEWA",
+          "source_page": "https://artsandculture.google.com/asset/marxism-will-give-health-to-the-ill/HAElPPnYYlxEWA",
+          "license": "Obra original: Domini Públic a la UE (des de l'1 gener 2025). Imatge concreta de Google Arts & Culture: sense llicència explícita CC; cal atribuir Museo Frida Kahlo.",
+          "credit": "Frida Kahlo, El marxismo dará salud a los enfermos, c. 1954, oli sobre masonita, 76×61 cm. Museo Frida Kahlo (Casa Azul), Coyoacán, Mèxic. Imatge via Google Arts & Culture.",
+          "fidelity_to_original": "alta",
+          "caveat": "L'obra subjacent és ara de domini públic a Espanya/UE. Compte: (a) la Frida Kahlo Corporation manté marques registrades sobre el nom 'Frida Kahlo' (rellevant per a ús comercial; no per a ús educatiu amb atribució); (b) Wikimedia Commons encara no ha pujat aquest quadre (gener 2025 és recent, Commons sol ser prudent amb el rule of the shorter term respecte Mèxic); (c) si voleu evitar qualsevol risc, utilitzar imatge a baixa resolució. La nostra recomanació: feu captura de la imatge Google Arts & Culture en baixa resolució, atribuïu el Museo Frida Kahlo, i afegiu la nota legal que l'obra és ara de domini públic a la UE.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Fotografia de Frida Kahlo contextual (domini públic)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/Category:Frida_Kahlo",
+          "license": "Public Domain",
+          "credit": "Guillermo Kahlo, Frida Kahlo, 1932. Wikimedia Commons.",
+          "fidelity_to_original": "baixa",
+          "caveat": "Només com a imatge complementària del perfil biogràfic. No mostra l'obra.",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 3 — Casa Azul (Museo Frida Kahlo) exterior",
+          "image_url": "https://commons.wikimedia.org/wiki/Category:Casa_Azul",
+          "source_page": "https://commons.wikimedia.org/wiki/Category:Casa_Azul",
+          "license": "Diverses CC BY / CC BY-SA",
+          "credit": "Wikimedia Commons (diversos autors)",
+          "fidelity_to_original": "baixa",
+          "caveat": "Ubicació on es troba actualment el quadre. Només complementària.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Primary: reproducció directa com a hero image, aprofitant que l'obra és ara de domini públic a la UE. Afegiu nota editorial: 'Obra al domini públic a la UE des de l'1 de gener de 2025 (Frida Kahlo, m. 1954). Imatge: Museo Frida Kahlo, Coyoacán.' Si es vol ser extra-prudent, baixa resolució (≤800px) amb invocació també de LPI Art. 32."
+    },
+    {
+      "canonicalIndex": 54,
+      "title": "The Artist Is Present",
+      "original_author": "Marina Abramović",
+      "original_year": 2010,
+      "original_location": "MoMA, Nova York (performance)",
+      "copyright_in_EU_until": "Encara viva (b. 1946); copyright actiu + 70 anys post-mortem",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Installation photo del performance (CC BY 2.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Marina_Abramovi%C4%87_The_Artist_Is_Present_%284616780675%29.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Marina_Abramovi%C4%87_The_Artist_Is_Present_(4616780675).jpg",
+          "license": "CC BY 2.0",
+          "credit": "Antonio Zugaldia / Wikimedia Commons, 9 maig 2010 — Marina Abramović durant 'The Artist Is Present' al MoMA",
+          "fidelity_to_original": "alta",
+          "caveat": "El performance és efímer i l'essència mateixa de l'obra és 'estar present'. Qualsevol fotografia documental és, alhora, testimoni fidel d'un moment del performance. Aquesta imatge és exactament el que els espectadors van viure. Llicència CC BY 2.0 permet ús comercial i educatiu amb atribució.",
+          "recommended": true
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Installation photo alternativa (CC BY-SA 3.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/ArtistIsPresent.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:ArtistIsPresent.jpg",
+          "license": "CC BY-SA 3.0 / GFDL",
+          "credit": "Shelby Lessig / Wikimedia Commons, 17 març 2010",
+          "fidelity_to_original": "alta",
+          "caveat": "Alternativa si es prefereix CC BY-SA. Dimensions grans (4752×3168).",
+          "recommended": false
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 3 — Portrait de l'artista durant el performance (CC BY-SA 3.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Marina_abramovic_2010_01.JPG",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Marina_abramovic_2010_01.JPG",
+          "license": "CC BY-SA 3.0 / GFDL",
+          "credit": "Thousandrobots / Wikimedia Commons, abril 2010",
+          "fidelity_to_original": "alta",
+          "caveat": "Primer pla de l'artista al MoMA durant 'The Artist Is Present'.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 4 — MoMA Flickr oficial (álbum Portraits)",
+          "image_url": "https://www.flickr.com/photos/themuseumofmodernart/albums/72157623741486824/",
+          "source_page": "https://www.moma.org/calendar/exhibitions/964",
+          "license": "Flickr compte oficial MoMA — no hi ha llicència CC per defecte (cal verificar foto a foto). Marco Anelli manté drets dels retrats.",
+          "credit": "© Marco Anelli / MoMA",
+          "fidelity_to_original": "alta",
+          "caveat": "Només enllaç extern; no allotjar. Útil per 'veure més' al recurs educatiu.",
+          "recommended": false
+        }
+      ],
+      "best_recommendation_rank": 1,
+      "fallback_plan": "Primary: Antonio Zugaldia photo (CC BY 2.0) — és la solució més neta perquè a) està en llicència oberta comercial-friendly; b) un performance és per definició un esdeveniment documentat per les seves fotografies; c) l'autoria del performance (Abramović) ha de ser sempre atribuïda al peu d'imatge. Cap necessitat de caure en l'excepció educativa."
+    },
+    {
+      "canonicalIndex": 55,
+      "title": "Martyrs and Mary (Martyrs: Earth, Air, Fire, Water)",
+      "original_author": "Bill Viola (amb Kira Perov)",
+      "original_year": 2014,
+      "original_location": "St Paul's Cathedral, Londres (préstec Tate)",
+      "copyright_in_EU_until": "Bill Viola (m. 12 juliol 2024) — copyright fins a 31 desembre 2094",
+      "options": [
+        {
+          "rank": 1,
+          "strategy": "Tier 3 — Exposició Uffizi mostra Bill Viola (context artístic)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Uffizi_Bill_Viola_mostra_Firenze.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:Uffizi_Bill_Viola_mostra_Firenze.jpg",
+          "license": "CC BY-SA 4.0",
+          "credit": "Nicola Quirico / Wikimedia Commons, 8 març 2017 — Cartell de l'exposició de Bill Viola a la Galleria degli Uffizi",
+          "fidelity_to_original": "baixa",
+          "caveat": "No mostra Martyrs; mostra un cartell promocional d'una exposició de Bill Viola. Útil només com a imatge contextual de l'artista.",
+          "recommended": false
+        },
+        {
+          "rank": 2,
+          "strategy": "Tier 3 — Retrat de l'artista Bill Viola (CC BY-SA 2.0)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/BillViola.jpg",
+          "source_page": "https://commons.wikimedia.org/wiki/File:BillViola.jpg",
+          "license": "CC BY-SA 2.0",
+          "credit": "Jean-Baptiste Labrune / Wikimedia Commons — retrat de Bill Viola",
+          "fidelity_to_original": "baixa",
+          "caveat": "Només retrat de l'artista. No mostra Martyrs. Útil com a imatge de perfil biogràfic acompanyant el text.",
+          "recommended": true
+        },
+        {
+          "rank": 3,
+          "strategy": "Tier 3 — St Paul's Cathedral interior (espai on es troba l'obra)",
+          "image_url": "https://commons.wikimedia.org/wiki/Category:Interior_of_St_Paul%27s_Cathedral",
+          "source_page": "https://commons.wikimedia.org/wiki/Category:Interior_of_St_Paul%27s_Cathedral",
+          "license": "Diverses CC BY / CC BY-SA",
+          "credit": "Wikimedia Commons — interior de la Catedral de St Paul, Londres",
+          "fidelity_to_original": "baixa",
+          "caveat": "Mostra el context espacial on s'exhibeix Martyrs (quire aisle). No es veu l'obra pròpiament, però situa físicament l'espectador.",
+          "recommended": false
+        },
+        {
+          "rank": 4,
+          "strategy": "Tier 6 — Educational exception reproduction (LPI Art. 32) a partir de Tate o St Paul's",
+          "image_url": "https://www.tate.org.uk/art/artists/bill-viola-2333/bill-viola-martyrs-earth-air-fire-water",
+          "source_page": "https://www.stpauls.co.uk/martyrs-and-mary-by-bill-viola",
+          "license": "© Bill Viola Studio — reproducció autoritzada només sota LPI Art. 32",
+          "credit": "Bill Viola & Kira Perov, Martyrs (Earth, Air, Fire, Water), 2014, four-panel color HD video installation. Tate, préstec a St Paul's Cathedral, Londres. © Bill Viola Studio. Foto: Peter Mallet.",
+          "fidelity_to_original": "alta",
+          "caveat": "Emprar només baixa resolució (≤800px), una sola captura d'un dels quatre panells o el conjunt. Peu obligatori: 'Ús educatiu · LPI Art. 32 · No redistribuïble'. Aquesta és l'única manera de mostrar l'obra real al recurs docent.",
+          "recommended": true
+        }
+      ],
+      "best_recommendation_rank": 4,
+      "fallback_plan": "Aquesta és l'única obra del conjunt on NO hi ha imatge lliure de l'obra real. Recomanació doble: (a) usar una captura a baixa resolució sota LPI Art. 32 amb atribució completa al peu com a imatge principal; (b) acompanyar-la del retrat CC BY-SA de Bill Viola (rank 2) a la secció biogràfica. La videoinstal·lació és, per naturalesa, difícil de capturar en una imatge fixa; això facilita l'argumentació d'ús educatiu limitat."
+    }
+  ],
+  "summary_by_tier": {
+    "tier_1_free_original": ["Frida Kahlo — entrada al domini públic UE 2025"],
+    "tier_2_free_replica": ["Guernica — mural ceràmic Gernika CC BY 3.0"],
+    "tier_3_free_contextual": ["Lavender Mist — photo amb visitant CC BY-SA 4.0", "The Artist Is Present — photos performance CC BY 2.0 i CC BY-SA 3.0", "Martyrs — retrat de Viola CC BY-SA 2.0 (complementari)"],
+    "tier_4_museum_open_access": [],
+    "tier_5_gigapixel_platforms": ["Guernica — Rethinking Guernica del Reina Sofía (enllaç, no descàrrega)"],
+    "tier_6_educational_exception_only": ["Martyrs (Bill Viola) — única obra sense cap alternativa lliure directa"]
+  },
+  "implementation_notes": {
+    "attribution_template": "Peu d'imatge estàndard: '[Autor de l'obra], [Títol], [Any], [Ubicació actual]. Foto: [autor foto] / [font] / [llicència]. [Si escau:] Obra al domini públic o Ús educatiu · LPI Art. 32.'",
+    "caption_examples": {
+      "guernica": "Pablo Picasso, Guernica, 1937, Museo Reina Sofía. Reproducció ceràmica a Gernika (1997, J. M. Ximénez i germans Royo). Foto: Joaquín / Wikimedia Commons / CC BY 3.0.",
+      "lavender_mist": "Jackson Pollock, Number 1, 1950 (Lavender Mist), 1950, National Gallery of Art, Washington. Foto: Ned Hartley / Wikimedia Commons / CC BY-SA 4.0. © 2026 Pollock-Krasner Foundation / ARS, NY.",
+      "kahlo": "Frida Kahlo, El marxisme sanarà els malalts, c. 1954, Museo Frida Kahlo (Casa Azul), Coyoacán. Obra al domini públic a la UE des de l'1 gener 2025.",
+      "abramovic": "Marina Abramović, The Artist Is Present, 2010, MoMA, Nova York. Foto: Antonio Zugaldia / Wikimedia Commons / CC BY 2.0. © Marina Abramović.",
+      "viola": "Bill Viola & Kira Perov, Martyrs (Earth, Air, Fire, Water), 2014, St Paul's Cathedral, Londres. © Bill Viola Studio. Ús educatiu · LPI Art. 32 · No redistribuïble."
+    },
+    "resolution_guidance": "Per a imatges sota LPI Art. 32 limitar ≤ 800px en costat major. Per a imatges lliures (CC) pot pujar-se la resolució que ofereixi la font, però assegurar càrrega responsive per al web.",
+    "verification_date": "2026-04-18 — totes les URLs verificades via WebFetch contra Wikimedia Commons i fonts oficials."
+  }
+}
