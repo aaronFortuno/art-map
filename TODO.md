@@ -4,6 +4,10 @@
 
 ### Funcionalitats
 
+- [ ] **Interpolació de transicions in-flight**: quan el ratolí travessa diversos nodes ràpidament, cada canvi de classe `.highlighted`/`.ghosted` talla la transició anterior i salta instantàniament al nou estat en comptes d'interpolar des de l'estat actual. En un desplaçament llarg (8-10 nodes tocats) se n'acumulen 8-10 salts abruptes — visualment molest. A investigar: opcions de Cytoscape per interpolar canvis mid-animation, debounce del focus (esperar ~50 ms abans d'aplicar), o moure la capa de ghost/highlight a un overlay fora de Cytoscape amb CSS transitions estàndard.
+
+- [ ] **Durada de transicions a 400-500 ms**: un cop resolt el problema anterior, augmentar la `transition-duration` per fer el moviment més agradable (ara són 200 ms perquè el salt instantani als 200 ms és menys ofensiu que si fossin 500 ms).
+
 - [ ] **Hotspots sobre les imatges**. Marcar punts d'interès (coordenades H-V relatives a la imatge) amb text associat per guiar l'atenció dels alumnes a detalls concrets (p. ex., la mà pudorosa de la Venus de Cnido, el mirall dels Arnolfini, la bombeta del Guernica, la criada negra de l'Olímpia).
     - Requerirà un mode "admin" a la interfície per dibuixar i editar els punts in situ
     - Extensió del JSON per node: `hotspots: [{ x, y, title, description, zoom? }]` (x,y entre 0 i 1 respecte a la imatge)
@@ -27,7 +31,7 @@
 
 - [x] ~~**Deep linking per URL**~~ Implementat 2026-04-19. Format `#node/<id>` (p. ex., `https://aaronfortuno.github.io/art-map/#node/venus-botticelli`). Obre la fitxa, fixa el node i hi centra la vista amb animació. `history.replaceState` evita contaminar l'historial; `hashchange` gestiona navegació back/forward. El hash es neteja en clicar al fons o en seleccionar una aresta.
 
-- [ ] **Responsive / mode tableta**: el layout actual de 3 columnes no funciona per sota de ~1100 px. Pensar com col·lapsar el panell de controls i fer el detall com a drawer.
+- [x] ~~**Responsive / mode tableta**~~ Primera iteració feta 2026-04-19: breakpoint a 1200 px (columnes més estretes) i a 900 px (graf a pantalla completa; controls com a drawer esquerre via botó hamburguesa; detall com a bottom sheet que s'obre auto en clicar node/aresta; *backdrop* semitransparent amb clic per tancar). Fullscreen modal també s'apila verticalment en pantalles petites. Falta testar a iPad/Chromebook reals i polir detalls (possiblement mida de fonts al graf).
 
 - [ ] **Navegació per teclat**: Tab entre nodes canònics, Enter per fixar, fletxes per moure's entre veïns.
 
@@ -39,7 +43,7 @@
 
 - [ ] **Afegir imatges als 42 nodes secundaris** (ara es veuen com a bombolles grises sense imatge). Podem reutilitzar el script `scripts/download_images.py` adaptat, o delegar-ho a un agent com vam fer amb els 50 canònics.
 
-- [ ] **Integrar les alternatives d'imatge per a les 5 sota copyright** (fitxer `data/copyright-alternatives.json`). L'agent del 2026-04-19 va trobar: #50 Guernica (mural ceràmic Gernika CC BY), #51 Pollock (foto CC BY-SA a la NGA), #52 Kahlo (**ja és PD a la UE des del 2025-01-01!**), #54 Abramović (foto Zugaldia CC BY), #55 Viola (l'única que necessita excepció educativa LPI Art. 32).
+- [x] ~~**Integrar les alternatives d'imatge per a les 5 sota copyright**~~ Fet el 2026-04-19 via `scripts/download_copyright_alternatives.py`: 4 amb llicència lliure (Guernica mural ceràmic CC BY, Pollock in-situ a NGA CC BY-SA, Kahlo retrat PD, Abramović CC BY) + Viola amb retrat contextual. Cada node canònic afectat té `image_strategy` i `image_caveat` visibles al panell i al fullscreen.
 
 - [ ] **Enriquir l'anàlisi** (context, formal, significat, funció) per a cada una de les 55 obres. Ara la majoria tenen només resum breu; el clúster Venus té l'anàlisi completa com a plantilla.
 

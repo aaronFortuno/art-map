@@ -352,6 +352,8 @@
     applyFocus(node.closedNeighborhood());
     renderNodeDetail(nodeById[node.id()]);
     setHashFor(node.id());
+    openDetailIfMobile();
+    closeControlsIfMobile();
   });
 
   cy.on('tap', 'edge', evt => {
@@ -366,6 +368,8 @@
       tgt: nodeById[e.target]
     });
     clearHash();
+    openDetailIfMobile();
+    closeControlsIfMobile();
   });
 
   cy.on('tap', evt => {
@@ -377,6 +381,52 @@
       document.getElementById('detail').innerHTML =
         '<p class="placeholder">Passa el ratolí per sobre un node per previsualitzar el seu veïnat. Fes clic per fixar-lo i veure\'n la fitxa.</p>';
       clearHash();
+      closeDetailDrawer();
+      closeControlsIfMobile();
+    }
+  });
+
+  // --- Responsive drawer behaviour (<900px) ---
+  const controlsEl = document.querySelector('.controls');
+  const detailEl   = document.querySelector('.detail');
+  const backdropEl = document.getElementById('panel-backdrop');
+  const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+
+  function syncBackdrop() {
+    const anyOpen = controlsEl.classList.contains('panel-open')
+                 || detailEl.classList.contains('panel-open');
+    backdropEl.classList.toggle('visible', anyOpen && isMobile());
+  }
+
+  function openDetailIfMobile() {
+    if (isMobile()) detailEl.classList.add('panel-open');
+    syncBackdrop();
+  }
+  function closeDetailDrawer() {
+    detailEl.classList.remove('panel-open');
+    syncBackdrop();
+  }
+  function closeControlsIfMobile() {
+    if (isMobile()) controlsEl.classList.remove('panel-open');
+    syncBackdrop();
+  }
+
+  document.getElementById('controls-toggle').addEventListener('click', () => {
+    controlsEl.classList.toggle('panel-open');
+    syncBackdrop();
+  });
+  backdropEl.addEventListener('click', () => {
+    controlsEl.classList.remove('panel-open');
+    detailEl.classList.remove('panel-open');
+    syncBackdrop();
+  });
+
+  // Drawers that become panels on viewport resize should lose their transforms
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      controlsEl.classList.remove('panel-open');
+      detailEl.classList.remove('panel-open');
+      backdropEl.classList.remove('visible');
     }
   });
 

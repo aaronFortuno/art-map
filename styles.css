@@ -14,9 +14,44 @@ header {
   background: #1c1917;
   color: #f7f5f0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem;
   border-bottom: 3px solid #b8860b;
+}
+
+.hamburger {
+  display: none;
+  background: transparent;
+  border: 1px solid #6b6458;
+  color: #f7f5f0;
+  font-family: sans-serif;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.35rem 0.65rem;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: #b8860b;
+}
+
+.panel-backdrop {
+  display: none;
+  position: fixed;
+  inset: 52px 0 0 0;
+  background: rgba(14, 13, 12, 0.55);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.panel-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 header h1 {
@@ -53,6 +88,81 @@ header .stats {
 
 .controls { border-right: 1px solid #e5e0d5; }
 .detail   { border-left: 1px solid #e5e0d5; }
+
+/* Medium screens: tighten columns */
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 200px 1fr 380px;
+  }
+}
+
+/* Small screens (tablets portrait, phones): graph full width, panels become drawers */
+@media (max-width: 900px) {
+  .hamburger { display: inline-block; }
+  .panel-backdrop { display: block; }
+
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  header .subtitle,
+  header .stats {
+    font-size: 0.72rem;
+  }
+
+  header .stats { display: none; }
+
+  .controls {
+    position: fixed;
+    top: 52px;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    width: min(320px, 88vw);
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .controls.panel-open {
+    transform: translateX(0);
+  }
+
+  .detail {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: 70vh;
+    z-index: 50;
+    transform: translateY(100%);
+    transition: transform 0.28s ease;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+    border-left: none;
+    border-top: 1px solid #e5e0d5;
+  }
+
+  .detail.panel-open {
+    transform: translateY(0);
+  }
+
+  /* Fullscreen modal: stack vertically on small screens */
+  #fullscreen {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .fs-close {
+    right: 0.8rem;
+    top: 0.8rem;
+  }
+
+  .fs-detail {
+    max-height: 35vh;
+  }
+}
 
 .panel section { margin-bottom: 1.4rem; }
 
