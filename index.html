@@ -30,6 +30,7 @@
     <h1>Art Map</h1>
     <span class="subtitle">PAU 2026 · Història de l'Art</span>
     <span class="stats" id="stats"></span>
+    <button id="help-toggle" class="help-toggle" title="Guia ràpida (dreceres, modes, consells)" aria-label="Ajuda">?</button>
     <button id="theme-toggle" class="theme-toggle" title="Canvia entre mode clar i fosc" aria-label="Canviar tema">🌙</button>
     <button id="presentation-toggle" class="pres-toggle" title="Prepara una seqüència d'obres per a una presentació guiada">Mode presentació</button>
   </header>
@@ -118,6 +119,85 @@
       <button id="pres-prev" class="pres-nav-btn" title="Anterior (←)">‹</button>
       <span class="pres-counter" id="pres-counter">1 / 1</span>
       <button id="pres-next" class="pres-nav-btn" title="Següent (→ o Espai)">›</button>
+    </div>
+  </div>
+
+  <div id="help-modal" class="help-hidden" aria-hidden="true" role="dialog" aria-labelledby="help-title">
+    <button id="help-close" class="help-close" aria-label="Tancar ajuda">×</button>
+    <div class="help-content">
+      <h2 id="help-title">Guia ràpida</h2>
+
+      <section>
+        <h3>Explora el mapa</h3>
+        <ul>
+          <li><strong>Passar el ratolí</strong> sobre un node ressalta el seu veïnat i atenua la resta.</li>
+          <li><strong>Clicar</strong> un node el fixa: obre la fitxa al panell i empeny els veïns cap enfora (<em>blooming</em>) per llegir-los millor.</li>
+          <li><strong>Clicar el fons</strong> del mapa desfixa.</li>
+          <li><strong>Roda del ratolí</strong>: zoom suau amb el cursor com a pivot. Les vores i les etiquetes queden a la mateixa mida; només creix la imatge.</li>
+          <li><strong>Arrossegar</strong> un node el mou. La posició es desa automàticament.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Disposició</h3>
+        <ul>
+          <li><strong>Xarxa (força)</strong>: els nodes es col·loquen per repulsió. Les posicions es desen entre recàrregues.</li>
+          <li><strong>Cronologia</strong>: X per any, Y per carril. En seleccionar un node, els veïns del seu segle es comprimeixen verticalment per llegir-se sense encavalcar-se.</li>
+          <li>El botó <strong>Reordena</strong> genera una nova disposició en mode xarxa.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Filtres i cerca</h3>
+        <ul>
+          <li><strong>Cerca</strong>: filtra en calent per títol, autor, any, període o tema mentre escrius.</li>
+          <li><strong>Tipus de connexió</strong>: 5 categories (precedent, cita, ruptura, parentiu, eco). Marca/desmarca per amagar arestes.</li>
+          <li><strong>Períodes i temes</strong>: amaguen nodes fora de la selecció. Caixes plegables al panell esquerre.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Fitxa d'un node</h3>
+        <ul>
+          <li><strong>Ampliar</strong> sobre la imatge obre el mode pantalla completa amb imatge gran + anàlisi lateral.</li>
+          <li><strong>📄 Exportar fitxa (PDF)</strong>: genera un sol full amb aquesta obra (portada, metadades, anàlisi, connexions).</li>
+          <li><strong>🔗 Copiar enllaç</strong>: posa al porta-retalls un enllaç directe a aquesta fitxa (format <code>#node/id</code>).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Mode presentació</h3>
+        <ol>
+          <li>Activa <strong>Mode presentació</strong> a la capçalera.</li>
+          <li>Clica obres al mapa i prem <strong>+ Afegir a la presentació</strong> per construir la seqüència.</li>
+          <li>Reordena arrossegant diapositives; elimina amb ×.</li>
+          <li><strong>Importa / Exporta</strong> la seqüència com a JSON per reutilitzar-la.</li>
+          <li><strong>▶ Començar</strong> obre una vista fosca a pantalla completa amb navegació.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3>Dreceres de teclat</h3>
+        <table class="help-shortcuts">
+          <tr><th colspan="2">Al mapa</th></tr>
+          <tr><td><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></td><td>Cicle entre les 55 canòniques (vora blava)</td></tr>
+          <tr><td><kbd>Enter</kbd></td><td>Fixa el node enfocat</td></tr>
+          <tr><td><kbd>/</kbd></td><td>Focus a la cerca</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>Pela una capa: cerca → focus teclat → pin</td></tr>
+          <tr><th colspan="2">En presentació</th></tr>
+          <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Anterior / següent</td></tr>
+          <tr><td><kbd>Espai</kbd></td><td>Següent</td></tr>
+          <tr><td><kbd>Home</kbd> / <kbd>End</kbd></td><td>Primera / última</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>Sortir al mode preparació</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h3>Tema</h3>
+        <p>El botó 🌙 / ☀ de la capçalera commuta entre clar i fosc. La tria es recorda entre sessions.</p>
+      </section>
+
+      <p class="help-footer">Art Map · PAU 2026 · <a href="https://github.com/aaronFortuno/art-map" target="_blank" rel="noopener">Codi al GitHub</a></p>
     </div>
   </div>
 

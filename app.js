@@ -59,7 +59,7 @@
   document.getElementById('stats').textContent =
     `${data.nodes.length} nodes (${canonCount} canònics, ${imageCount} amb imatge) · ${data.edges.length} connexions`;
 
-  // Filter UI
+  // Filter UI (connection types)
   const filtersEl = document.getElementById('connection-filters');
   data.connectionTypes.forEach(t => {
     const label = document.createElement('label');
@@ -70,6 +70,30 @@
     label.title = t.description;
     filtersEl.appendChild(label);
   });
+
+  // Filter UI (periods + themes)
+  const periodFiltersEl = document.getElementById('period-filters');
+  const themeFiltersEl  = document.getElementById('theme-filters');
+  // Sort periods chronologically so the list reads naturally
+  const periodsSorted = [...data.periods].sort((a, b) => (a.start || 0) - (b.start || 0));
+  periodsSorted.forEach(p => {
+    const label = document.createElement('label');
+    label.innerHTML = `<input type="checkbox" data-period-id="${p.id}" checked> ${escapeHtmlEarly(p.label)}`;
+    periodFiltersEl.appendChild(label);
+  });
+  const themesSorted = [...data.themes].sort((a, b) => a.label.localeCompare(b.label, 'ca'));
+  themesSorted.forEach(t => {
+    const label = document.createElement('label');
+    label.innerHTML = `<input type="checkbox" data-theme-id="${t.id}" checked> ${escapeHtmlEarly(t.label)}`;
+    themeFiltersEl.appendChild(label);
+  });
+  // (escapeHtml is defined later in the IIFE; we need a local copy for early use)
+  function escapeHtmlEarly(s) {
+    if (s == null) return '';
+    return String(s)
+      .replaceAll('&', '&amp;').replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+  }
 
   // Build Cytoscape elements. Canonical-vs-secondary distinction is two
   // explicit classes ('canonical' or 'secondary') rather than
@@ -588,20 +612,63 @@
   filtersEl.querySelectorAll('input').forEach(cb =>
     cb.addEventListener('change', updateVisibility)
   );
+  periodFiltersEl.querySelectorAll('input').forEach(cb =>
+    cb.addEventListener('change', updateVisibility)
+  );
+  themeFiltersEl.querySelectorAll('input').forEach(cb =>
+    cb.addEventListener('change', updateVisibility)
+  );
   document.getElementById('toggle-secondary').addEventListener('change', updateVisibility);
+
+  // 'Tots' / 'Cap' quick buttons for periods and themes
+  function bulkSet(container, checked) {
+    container.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = checked; });
+    updateVisibility();
+  }
+  document.getElementById('periods-all').addEventListener('click', () => bulkSet(periodFiltersEl, true));
+  document.getElementById('periods-none').addEventListener('click', () => bulkSet(periodFiltersEl, false));
+  document.getElementById('themes-all').addEventListener('click',  () => bulkSet(themeFiltersEl, true));
+  document.getElementById('themes-none').addEventListener('click', () => bulkSet(themeFiltersEl, false));
+
+  // Initialise summary counts
+  updateVisibility();
 
   function updateVisibility() {
     const activeTypes = new Set(
       [...filtersEl.querySelectorAll('input:checked')].map(cb => cb.dataset.type)
     );
     const showSecondary = document.getElementById('toggle-secondary').checked;
+    const activePeriods = new Set(
+      [...periodFiltersEl.querySelectorAll('input:checked')].map(cb => cb.dataset.periodId)
+    );
+    const activeThemes = new Set(
+      [...themeFiltersEl.querySelectorAll('input:checked')].map(cb => cb.dataset.themeId)
+    );
 
-    cy.edges().forEach(edge => {
-      edge.toggleClass('hidden', !activeTypes.has(edge.data('type')));
-    });
+    // Update summary counts
+    document.getElementById('period-count').textContent = `(${activePeriods.size}/${data.periods.length})`;
+    document.getElementById('theme-count').textContent  = `(${activeThemes.size}/${data.themes.length})`;
+
+    // 1. Node visibility
+    const hiddenNodes = new Set();
     cy.nodes().forEach(node => {
+      const n = nodeById[node.id()];
+      if (!n) return;
       const isSecondary = !node.hasClass('canonical');
-      node.toggleClass('hidden', !showSecondary && isSecondary);
+      let hide = false;
+      if (!showSecondary && isSecondary) hide = true;
+      if (!activePeriods.has(n.period)) hide = true;
+      const nodeThemes = n.themes || [];
+      if (nodeThemes.length > 0 && !nodeThemes.some(t => activeThemes.has(t))) hide = true;
+      node.toggleClass('hidden', hide);
+      if (hide) hiddenNodes.add(node.id());
+    });
+
+    // 2. Edge visibility: wrong type OR either endpoint hidden
+    cy.edges().forEach(edge => {
+      const wrongType = !activeTypes.has(edge.data('type'));
+      const orphan = hiddenNodes.has(edge.data('source')) || hiddenNodes.has(edge.data('target'));
+      edge.toggleClass('hidden', wrongType || orphan);
     });
   }
 
@@ -1324,6 +1391,7 @@
         <div><strong>Ubicació:</strong> ${escapeHtml(n.location || '—')}</div>
       </div>
       <div class="fitxa-toolbar">
+        <button class="node-action btn-copy-link" data-node-id="${escapeHtml(n.id)}" title="Copia un enllaç directe a aquesta fitxa">🔗 Copiar enllaç</button>
         <button class="node-action btn-print-single" data-node-id="${escapeHtml(n.id)}" title="Genera un PDF només amb aquesta fitxa">📄 Exportar fitxa (PDF)</button>
         <button class="node-action btn-add-to-pres pres-prep-only" data-node-id="${escapeHtml(n.id)}" title="Afegir aquesta obra a la seqüència de presentació">+ Afegir a la presentació</button>
       </div>
@@ -1819,6 +1887,48 @@
     const btn = evt.target.closest('.btn-add-to-pres');
     if (btn && btn.dataset.nodeId) {
       addToSequence(btn.dataset.nodeId);
+    }
+  });
+
+  // "🔗 Copiar enllaç" button: puts the deep-link URL on the clipboard
+  document.addEventListener('click', async evt => {
+    const btn = evt.target.closest('.btn-copy-link');
+    if (!btn || !btn.dataset.nodeId) return;
+    const url = `${location.origin}${location.pathname}#node/${encodeURIComponent(btn.dataset.nodeId)}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      const original = btn.textContent;
+      btn.textContent = '✓ Copiat';
+      btn.classList.add('copy-ok');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copy-ok');
+      }, 1400);
+    } catch {
+      // Fallback: prompt the user to copy manually
+      prompt('Copia aquest enllaç:', url);
+    }
+  });
+
+  // --- Help modal ---
+  const helpModal = document.getElementById('help-modal');
+  function openHelp() {
+    helpModal.classList.remove('help-hidden');
+    helpModal.setAttribute('aria-hidden', 'false');
+  }
+  function closeHelp() {
+    helpModal.classList.add('help-hidden');
+    helpModal.setAttribute('aria-hidden', 'true');
+  }
+  document.getElementById('help-toggle').addEventListener('click', openHelp);
+  document.getElementById('help-close').addEventListener('click', closeHelp);
+  helpModal.addEventListener('click', evt => {
+    if (evt.target === helpModal) closeHelp();  // backdrop click
+  });
+  document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape' && !helpModal.classList.contains('help-hidden')) {
+      evt.preventDefault();
+      closeHelp();
     }
   });
 

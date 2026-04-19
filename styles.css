@@ -75,7 +75,8 @@ header {
   border-color: #b8860b;
 }
 
-.theme-toggle {
+.theme-toggle,
+.help-toggle {
   background: transparent;
   border: 1px solid var(--c-muted);
   color: var(--c-header-text);
@@ -85,8 +86,16 @@ header {
   margin: 0;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
+  font-family: inherit;
 }
-.theme-toggle:hover {
+
+.help-toggle {
+  width: 2rem;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.theme-toggle:hover,
+.help-toggle:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: #b8860b;
 }
@@ -942,6 +951,149 @@ body.presentation-prep .layout {
 
 @media (max-width: 900px) {
   body.presentation-prep .layout { height: calc(100vh - 52px - 180px); }
+}
+
+/* ---- Help modal ---- */
+#help-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(14, 13, 12, 0.85);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 1.5rem 3rem;
+  overflow-y: auto;
+  animation: help-fade-in 0.22s ease-out;
+}
+#help-modal.help-hidden { display: none; }
+
+@keyframes help-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.help-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--c-panel);
+  color: var(--c-text);
+  border: 1px solid var(--c-border-soft);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+  transition: background 0.15s ease;
+}
+.help-close:hover { background: var(--c-border); }
+
+.help-content {
+  background: var(--c-panel);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  padding: 2rem 2.2rem;
+  max-width: 720px;
+  width: 100%;
+  line-height: 1.55;
+  animation: help-slide-in 0.24s ease-out;
+}
+
+@keyframes help-slide-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.help-content h2 {
+  margin: 0 0 1.2rem 0;
+  font-size: 1.5rem;
+  font-family: Georgia, serif;
+  border-bottom: 2px solid #b8860b;
+  padding-bottom: 0.4rem;
+}
+
+.help-content h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-muted);
+  margin: 1.5rem 0 0.5rem 0;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.help-content ul, .help-content ol { padding-left: 1.3rem; margin: 0.3rem 0; }
+.help-content li { margin: 0.3rem 0; font-size: 0.9rem; }
+.help-content p { font-size: 0.9rem; margin: 0.4rem 0; }
+
+.help-content kbd {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  font-family: sans-serif;
+  font-size: 0.78rem;
+  background: var(--c-panel-alt);
+  border: 1px solid var(--c-border-soft);
+  border-bottom-width: 2px;
+  color: var(--c-text);
+  margin: 0 0.05rem;
+}
+
+.help-content code {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.82rem;
+  background: var(--c-panel-alt);
+  padding: 0.05rem 0.3rem;
+  color: var(--c-text-soft);
+}
+
+.help-shortcuts {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.help-shortcuts td, .help-shortcuts th {
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--c-border);
+}
+.help-shortcuts th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-muted);
+  background: var(--c-panel-alt);
+  font-weight: bold;
+  padding-top: 0.6rem;
+}
+.help-shortcuts td:first-child { white-space: nowrap; }
+
+.help-footer {
+  margin-top: 1.6rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--c-border);
+  font-size: 0.8rem;
+  color: var(--c-muted);
+  text-align: center;
+  font-style: italic;
+}
+.help-footer a { color: #b8860b; text-decoration: none; }
+.help-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  #help-modal { padding: 1rem; }
+  .help-content { padding: 1.3rem; }
+  .help-close { top: 0.4rem; right: 0.4rem; }
+}
+
+/* Copy-link feedback on the detail button */
+.node-action.copy-ok {
+  background: #d4a743;
+  border-color: #b8860b;
+  color: #1c1917;
 }
 
 /* Print container: hidden on screen; @media print reveals it */
