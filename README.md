@@ -8,18 +8,60 @@ Pensat per a **2n de batxillerat**: en comptes d'estudiar les obres aïlladament
 
 **Demo en línia**: <https://aaronfortuno.github.io/art-map/>
 
+També és **instal·lable com a PWA**: des del mòbil o l'ordinador, "Afegeix a la pantalla d'inici" / "Instal·la l'aplicació". Funciona sense connexió un cop carregada la primera vegada.
+
 ---
 
 ## Característiques
 
-- **101 nodes** (55 canòniques PAU + 46 ponts secundaris), **177 connexions** tipificades
-- **Cerca en calent** per títol, autor, període i tema
-- **Imatges locals** per a les 55 canòniques (20 MB; 5 amb estratègies alternatives per drets d'autor vigents)
-- **Panell lateral** amb fitxa analítica (context, anàlisi formal, significat, funció, preguntes contrafactuals)
-- **Mode pantalla completa** amb la imatge grossa i l'anàlisi a banda
-- **Hover / click** amb transicions suaus (200 ms)
-- **Bombolles subtils** que donen vida al graf sense marejar
-- **13 artistes dones** i **4 obres no-occidentals** entre els nodes pont — resposta explícita al mandat de perspectiva de gènere i no-eurocentrisme del Decret 171/2022
+### Exploració del graf
+- **101 nodes** (55 canòniques PAU + 46 ponts secundaris) amb imatge, any, autor, tècnica, ubicació, anàlisi desenvolupada en 4 apartats i preguntes contrafactuals
+- **177 connexions tipificades** amb nota pedagògica per a cadascuna
+- **Cerca en calent** per títol, autor, any, període o tema
+- **Filtres combinables** en tres nivells: tipus de connexió (5), períodes (29), temes (30)
+- **Dues disposicions**: força dirigida (xarxa) i cronològica (X per any, Y per carril)
+- **Zoom intel·ligent** a la roda: animat, amb cursor com a pivot; les vores i les etiquetes mantenen la mida en pantalla
+- **Bloom a la selecció**: els veïns del node clicat es separen suaument per llegir-se sense encavalcar-se
+- **Deep linking** (`#node/id`) i **botó "Copiar enllaç"** per compartir una obra concreta
+
+### Fitxa de cada obra
+- Imatge, metadades i anàlisi en 4 camps (context, anàlisi formal, significat, funció)
+- Preguntes contrafactuals com a material de debat
+- Perspectiva de gènere i no-eurocèntrica incorporades (13 artistes dones, 4 obres no-occidentals, mandat del Decret 171/2022)
+- **Mode pantalla completa** amb imatge gran i anàlisi a la banda dreta
+- **Caveats pedagògics** per a les obres sota drets d'autor (rèplica, fotografia contextual, retrat) amb explicació transparent
+
+### Mode presentació (per a docents)
+- Afegeix obres al mapa a una **seqüència de diapositives** amb el botó "+"
+- Reordena arrossegant, elimina amb ×
+- **Importa / exporta** la seqüència com a JSON per preparar múltiples sessions
+- **Vista a pantalla completa fosca** amb imatge gran + anàlisi + navegació per fletxes (← → Espai Home End) o botons
+
+### Exportació
+- **PDF per node** (única obra, una pàgina)
+- **PDF del temari PAU** (55 obres en un dossier)
+- **PDF complet** (101 obres: canòniques + ponts)
+
+### Temes i accessibilitat
+- **Tema clar / fosc** commutable (persistent, respecta *prefers-color-scheme*)
+- **Navegació per teclat** completa (Tab/Enter/`/`/Esc i arrows en presentació)
+- **Responsive** amb drawer mòbil (*hamburger menu* i bottom sheet per a detalls)
+- **Fons decoratiu** subtil: xarxa esparsa de punts i arestes amb parallax, com a recordatori que el temari és una selecció
+
+## Dreceres de teclat
+
+| | |
+|---|---|
+| `Tab` / `Shift`+`Tab` | Cicle entre les 55 canòniques (vora blava = focus teclat) |
+| `Enter` | Fixa el node enfocat (equivalent a un clic) |
+| `/` | Focus a la cerca |
+| `Esc` | Pela una capa: cerca → focus teclat → pin |
+| `?` (botó) | Obre la guia ràpida integrada |
+| **En mode presentació** | |
+| `←` / `→` | Anterior / següent |
+| `Espai` | Següent |
+| `Home` / `End` | Primera / última |
+| `Esc` | Sortir al mode preparació |
 
 ## Prova-ho localment
 
@@ -31,47 +73,57 @@ python -m http.server 5174
 
 I obre [`http://localhost:5174/`](http://localhost:5174/). No hi ha *build step*: Cytoscape.js es carrega via CDN.
 
+> Nota: el service worker (mode offline) requereix HTTPS o localhost. Amb `file://` no es registra.
+
 ## Estructura del contingut
 
 ```
-├── index.html · app.js · styles.css    aplicació
+├── index.html · app.js · styles.css     aplicació
+├── sw.js                                 service worker (PWA offline)
+├── manifest.webmanifest                  instalabilitat PWA
+├── favicon.svg · favicon-{192,512}.png   icones
 ├── data/
-│   ├── seed.json                       nodes, arestes, períodes, temes
-│   ├── images.json                     metadades d'imatges (llicències, caveats)
-│   ├── canonical-works.json            llista oficial PAU 2026
-│   ├── secondary-proposals.json        propostes per eixos temàtics
-│   └── copyright-alternatives.json     estratègies per les 5 obres amb drets
-├── img/                                 55 imatges descarregades (NN.jpg)
-├── scripts/                             utilitats Python (descàrrega, fusió)
-├── curriculum.txt                       Decret 171/2022 (marc curricular)
-├── TODO.md                              roadmap pedagògic i tècnic
-├── ATTRIBUTIONS.md                      crèdits d'imatges per llicència
-└── LICENSE                              MIT (codi)
+│   ├── seed.json                         nodes, arestes, períodes, temes
+│   ├── images.json                       metadades d'imatges
+│   ├── secondary-images.json             imatges per als 46 ponts
+│   ├── canonical-works.json              llista oficial PAU 2026
+│   ├── secondary-proposals.json          propostes per eixos temàtics
+│   ├── copyright-alternatives.json       estratègies per a les 5 obres amb drets
+│   └── secondary-copyright-alternatives.json  (anàleg per als ponts)
+├── img/                                  imatges locals (~65 MB, 96 fitxers)
+├── scripts/                              utilitats Python
+├── docs/screenshot.png                   captura de pantalla (README)
+├── curriculum.txt                        Decret 171/2022 (marc curricular)
+├── ATTRIBUTIONS.md                       crèdits d'imatges per llicència
+├── TODO.md                               roadmap pedagògic i tècnic
+└── LICENSE                               MIT (codi)
 ```
 
 ## Com s'estenen els continguts
 
 - **Afegir una obra**: nou node a `data/seed.json` (seguir l'esquema de `nodeSchema`) + arestes cap a nodes existents
-- **Afegir una imatge**: a `data/images.json`, registrar-ne la font; executar `scripts/download_images.py`
-- **Regenerar atribucions** (si canvien llicències o es canvien imatges): `python scripts/generate_attributions.py`
+- **Afegir una imatge**: a `data/images.json` (o `secondary-images.json`), registrar-ne la font; executar `scripts/download_images.py` o `scripts/download_secondary_images.py`
+- **Regenerar atribucions**: `python scripts/generate_attributions.py`
+- **Regenerar favicons PNG** (si canvia el disseny): `python scripts/generate_favicons.py`
 
 ## Tecnologia
 
 - **Visualització**: [Cytoscape.js](https://js.cytoscape.org/) (via CDN, sense bundler)
 - **Backend**: cap, 100% estàtic
-- **Scripts**: Python 3 estàndard (`urllib`, `json`, `re`) — no dependències externes
+- **Scripts**: Python 3 estàndard (`urllib`, `json`, `re`) + [Pillow](https://python-pillow.org/) per als favicons
+- **PWA**: webmanifest + service worker sense dependències
 
 ## Llicències
 
-- **Codi** (`app.js`, `index.html`, `styles.css`, `scripts/`): [MIT](./LICENSE)
+- **Codi** (`app.js`, `sw.js`, `index.html`, `styles.css`, `scripts/`): [MIT](./LICENSE)
 - **Contingut pedagògic** (anàlisis, connexions, preguntes contrafactuals a `data/seed.json`): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-- **Imatges**: llicències mixtes per fitxer. Detall complet a [`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md). Inclouen obres en domini públic, CC BY, CC BY-SA i una imatge sota excepció educativa ([LPI Art. 32](https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930)) per a l'obra de Bill Viola, les úniques imatges que no tenen llicència totalment lliure corresponen a estratègies alternatives (rèpliques o fotos contextuals) per a les 5 obres canòniques encara sota drets d'autor.
+- **Imatges**: llicències mixtes per fitxer. Detall complet a [`ATTRIBUTIONS.md`](./ATTRIBUTIONS.md). Inclouen obres en domini públic, CC BY, CC BY-SA i una imatge sota excepció educativa ([LPI Art. 32](https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930)) per a l'obra de Bill Viola. Totes les imatges que no són lliures corresponen a estratègies alternatives (rèpliques, fotos contextuals o retrats de l'artista) per a obres canòniques encara sota drets d'autor, amb *caveat* explícit a l'aplicació.
 
-Les analitzades, preguntes i connexions són fruit d'un diàleg iteratiu amb assistents d'IA supervisat pel professor, i es poden reutilitzar i adaptar sota CC BY-SA.
+Les anàlisis, preguntes i connexions són fruit d'un diàleg iteratiu amb assistents d'IA supervisat pel professor, i es poden reutilitzar i adaptar sota CC BY-SA.
 
 ## Estat
 
-Versió **preliminar**. Les 55 canòniques tenen imatge i anàlisi bàsica; les 46 secundàries tenen metadades però encara no imatge. El clúster *Venus* (al voltant de l'obra de Botticelli) té l'anàlisi més desenvolupada com a plantilla. Vegeu [`TODO.md`](./TODO.md) per al *roadmap*.
+Versió **1.0-beta** (2026-04-19): les 101 fitxes tenen imatge + anàlisi desenvolupada + connexions tipificades; el mapa té cerca, tres nivells de filtre, fullscreen, deep linking, layout persistent, mode cronologia, mode presentació, exportació a PDF, navegació per teclat, tema clar/fosc i suport PWA offline. Vegeu [`TODO.md`](./TODO.md) per al que queda pendent (hotspots sobre imatges, revisió pedagògica de connexions i altres millores).
 
 ## Autoria
 
