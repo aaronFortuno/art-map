@@ -411,6 +411,65 @@
   cy.on('zoom', scheduleStyleRefresh);
   scheduleStyleRefresh(); // apply the zoom=1 baseline cleanly after init
 
+  // --- Decorative background: sparse network of faint dots + lines ---
+  // Purely cosmetic. Generated once per theme change. Very low opacity so
+  // the real graph stays visually dominant. Mouse parallax gives a subtle
+  // 'depth' cue without being distracting.
+  function generateDecor(theme) {
+    const W = 1600, H = 1100, N = 110;
+    const color = theme === 'dark' ? '#d4c4a0' : '#3a342d';
+    const pts = [];
+    for (let i = 0; i < N; i++) {
+      pts.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: 0.5 + Math.random() * 1.6
+      });
+    }
+    const lines = [];
+    pts.forEach((p, i) => {
+      const neighbours = pts
+        .map((q, j) => ({ q, j, d: Math.hypot(p.x - q.x, p.y - q.y) }))
+        .filter(x => x.j !== i)
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 1 + Math.floor(Math.random() * 2));
+      neighbours.forEach(n => {
+        if (n.d < 180) lines.push({ a: p, b: n.q });
+      });
+    });
+    const pathsSVG = lines.map(l =>
+      `<line x1="${l.a.x.toFixed(1)}" y1="${l.a.y.toFixed(1)}" x2="${l.b.x.toFixed(1)}" y2="${l.b.y.toFixed(1)}"/>`
+    ).join('');
+    const pointsSVG = pts.map(p =>
+      `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.r.toFixed(2)}"/>`
+    ).join('');
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">
+      <g stroke="${color}" stroke-width="0.4" opacity="0.22" fill="none">${pathsSVG}</g>
+      <g fill="${color}" opacity="0.35">${pointsSVG}</g>
+    </svg>`;
+  }
+
+  const decorEl = document.getElementById('bg-decor');
+  function applyDecor(theme) {
+    decorEl.innerHTML = generateDecor(theme);
+  }
+  applyDecor(currentTheme);
+
+  // Subtle parallax: SVG drifts a few pixels counter to mouse position.
+  // Throttled to one update per animation frame.
+  let decorTx = 0, decorTy = 0;
+  let decorParallaxPending = false;
+  document.addEventListener('mousemove', evt => {
+    decorTx = -((evt.clientX / window.innerWidth - 0.5) * 24);
+    decorTy = -((evt.clientY / window.innerHeight - 0.5) * 18);
+    if (decorParallaxPending) return;
+    decorParallaxPending = true;
+    requestAnimationFrame(() => {
+      decorEl.style.transform = `translate(${decorTx.toFixed(1)}px, ${decorTy.toFixed(1)}px)`;
+      decorParallaxPending = false;
+    });
+  });
+
   // Theme toggle
   function setTheme(next) {
     currentTheme = next;
@@ -420,6 +479,7 @@
     btn.textContent = next === 'dark' ? '☀' : '🌙';
     btn.title = next === 'dark' ? 'Canviar a mode clar' : 'Canviar a mode fosc';
     scheduleStyleRefresh();
+    applyDecor(next);
   }
   setTheme(currentTheme);  // sync the button label at init
   document.getElementById('theme-toggle').addEventListener('click', () => {
