@@ -1235,21 +1235,12 @@ details.filter-group[open] > summary.filter-summary::after {
 }
 .tip-box__qr {
   margin-top: 0.8rem;
-  font-size: 0.85rem;
 }
-.tip-box__qr summary {
-  cursor: pointer;
-  color: var(--c-muted);
-  padding: 0.25rem 0;
-  user-select: none;
-}
-.tip-box__qr summary:hover { color: var(--c-text); }
 .tip-box__qr-canvas {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 180px;
-  margin-top: 0.6rem;
   padding: 0.7rem;
   background: #fff;
   border-radius: 6px;

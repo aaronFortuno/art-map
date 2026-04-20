@@ -1923,6 +1923,7 @@ if ('serviceWorker' in navigator) {
   function openHelp() {
     helpModal.classList.remove('help-hidden');
     helpModal.setAttribute('aria-hidden', 'false');
+    renderTipQR();
   }
   function closeHelp() {
     helpModal.classList.add('help-hidden');
@@ -1966,8 +1967,7 @@ if ('serviceWorker' in navigator) {
     });
   }
 
-  const tipQrDetails = document.getElementById('tip-qr');
-  const tipQrCanvas  = document.getElementById('tip-qr-canvas');
+  const tipQrCanvas = document.getElementById('tip-qr-canvas');
   let tipQrRendered = false;
   function renderTipQR() {
     if (tipQrRendered || !tipQrCanvas || !tipAddrEl) return;
@@ -1998,11 +1998,6 @@ if ('serviceWorker' in navigator) {
       tipQrCanvas.innerHTML = '<span class="tip-box__qr-msg">No s\'ha pogut carregar el QR</span>';
     };
     document.head.appendChild(s);
-  }
-  if (tipQrDetails) {
-    tipQrDetails.addEventListener('toggle', () => {
-      if (tipQrDetails.open) renderTipQR();
-    });
   }
 
   // Play-mode keyboard navigation
