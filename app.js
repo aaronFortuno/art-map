@@ -1940,6 +1940,71 @@ if ('serviceWorker' in navigator) {
     }
   });
 
+  // --- Lightning tip: copy + lazy QR ---
+  const tipCopyBtn = document.getElementById('tip-copy');
+  const tipAddrEl  = document.getElementById('tip-addr');
+  if (tipCopyBtn && tipAddrEl) {
+    tipCopyBtn.addEventListener('click', async () => {
+      const addr = tipAddrEl.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(addr);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = addr;
+        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch {}
+        document.body.removeChild(ta);
+      }
+      tipCopyBtn.textContent = 'Copiat!';
+      tipCopyBtn.classList.add('is-copied');
+      setTimeout(() => {
+        tipCopyBtn.textContent = 'Copiar';
+        tipCopyBtn.classList.remove('is-copied');
+      }, 2000);
+    });
+  }
+
+  const tipQrDetails = document.getElementById('tip-qr');
+  const tipQrCanvas  = document.getElementById('tip-qr-canvas');
+  let tipQrRendered = false;
+  function renderTipQR() {
+    if (tipQrRendered || !tipQrCanvas || !tipAddrEl) return;
+    const addr = tipAddrEl.textContent.trim();
+    const doRender = () => {
+      if (typeof window.QRCode === 'undefined') {
+        tipQrCanvas.innerHTML = '<span class="tip-box__qr-msg">No s\'ha pogut carregar el QR</span>';
+        return;
+      }
+      tipQrCanvas.innerHTML = '';
+      try {
+        new window.QRCode(tipQrCanvas, {
+          text: 'lightning:' + addr,
+          width: 168, height: 168,
+          colorDark: '#000', colorLight: '#fff',
+          correctLevel: window.QRCode.CorrectLevel.M,
+        });
+        tipQrRendered = true;
+      } catch {
+        tipQrCanvas.innerHTML = '<span class="tip-box__qr-msg">Error generant el QR</span>';
+      }
+    };
+    if (typeof window.QRCode !== 'undefined') { doRender(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+    s.onload  = doRender;
+    s.onerror = () => {
+      tipQrCanvas.innerHTML = '<span class="tip-box__qr-msg">No s\'ha pogut carregar el QR</span>';
+    };
+    document.head.appendChild(s);
+  }
+  if (tipQrDetails) {
+    tipQrDetails.addEventListener('toggle', () => {
+      if (tipQrDetails.open) renderTipQR();
+    });
+  }
+
   // Play-mode keyboard navigation
   document.addEventListener('keydown', evt => {
     if (presentationMode !== 'play') return;

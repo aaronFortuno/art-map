@@ -8,7 +8,7 @@
 // index.html / app.js / styles.css change in ways that shouldn't be
 // mixed with a stale cached version.
 
-const VERSION = 'artmap-v1-2026-04-19';
+const VERSION = 'artmap-v1-2026-04-20';
 
 const CORE_ASSETS = [
   './',
